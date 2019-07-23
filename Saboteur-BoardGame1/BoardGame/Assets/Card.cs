@@ -1,9 +1,8 @@
-﻿//testing script wrote for references (does not work)
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class CardS : MonoBehaviour
 {
     public int right,left,up,down,rotate;
     public Image frontcardArtWork;
