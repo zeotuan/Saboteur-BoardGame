@@ -6,9 +6,9 @@ using UnityEngine;
 public class BoardManager : MonoBehaviour
 {
     //2 dimensional array for cards on board 
-    private Card[.] cards;
-    private Card[5] hand;
-    private Card[50] deck;
+    private Card[,] cards;
+    private Card[] hand;
+    private Card[] deck;
     private Vector3 boardOffset = new Vector3(-4.0f,0,-0.4f);
     private Vector2 mouseOver;
     private Card SelectedCard;
@@ -31,13 +31,13 @@ public class BoardManager : MonoBehaviour
         int x = (int)mouseOver.x;
         int y = (int)mouseOver.y;
 
-        if(SelectedCard!= null)
-            UpdateCardMove(SelectedCard)
+        if (SelectedCard != null)
+            UpdateCardMove(SelectedCard);
         if(Input.GetMouseButtonDown(0))
             SelectCard(x,y);
 
         if(Input.GetMouseButtonUp(0))
-            TryMove((int)startDrag.x, (int)startDrag.y,x,y);
+            TryMove((int)StartDrag.x, (int)StartDrag.y,x,y);
     }
 
 
@@ -49,7 +49,7 @@ public class BoardManager : MonoBehaviour
             return;
         }
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out Hit, 25.0f,LayerMask.GetMask("Board"))){
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 25.0f,LayerMask.GetMask("Board"))){
             mouseOver.x = (int)hit.point.x;
             mouseOver.y = (int)hit.point.z;
         }else{
@@ -66,35 +66,35 @@ public class BoardManager : MonoBehaviour
             }
             Card c = cards[x,y];
             if(c != null){
-                SelectCard = c;
+                SelectedCard = c;
                 StartDrag = mouseOver;
             }
             
     }
 
-    private void tryMove(int x1, int y1, int x2, int y2){
-        startDrag = new Vector2(x1,y1);
+    private void TryMove(int x1, int y1, int x2, int y2){
+        StartDrag = new Vector2(x1,y1);
         EndDrag = new Vector2(x2,y2);
         SelectedCard = cards[x1,y1];
         if(x2 < 0 || x2 >= cards.Length || y2 < 0 || y2 >= cards.Length){
             if(SelectedCard != null){
                 MoveCard(SelectedCard, x1,y1);
             }
-            SelectCard = null;
-            startDrag = Vector2.zero;
+            SelectedCard = null;
+            StartDrag = Vector2.zero;
             return;
         }
 
         if(SelectedCard != null){
             if(EndDrag == StartDrag){
-                MoveCard(SelectCard,x1,y1);
-                SelectCard = null;
+                MoveCard(SelectedCard,x1,y1);
+                SelectedCard = null;
                 StartDrag = Vector2.zero;
                 return;
             }
 
         }
-        MoveCard(SelectCard, x2,y2);
+        MoveCard(SelectedCard, x2,y2);
     }
 
     private void UpdateCardMove(Card c){
@@ -103,11 +103,11 @@ public class BoardManager : MonoBehaviour
             return;
         }
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out Hit, 25.0f,LayerMask.GetMask("Board"))){
-            p.transform.position = hit.point+Vector3.up;
+        if(Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition),out hit, 25.0f,LayerMask.GetMask("Board"))){
+            c.transform.position = hit.point+Vector3.up;
         }
     }
-
+     
     private void GenerateBoard(int numPlayer, int maxCol, int maxRow){
         cards = new Card[maxRow,maxCol];
     }
