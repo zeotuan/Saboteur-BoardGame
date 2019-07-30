@@ -10,7 +10,6 @@ public class DragS : MonoBehaviour, IDragHandler
     Vector2 StartDrag;
     Vector2 EndDrag;
     public Transform parentToReturnTo = null;
-    public Transform placeHolderParent = null;
     GameObject placeHolder = null;
     public void OnBeginDrag(PointerEventData eventData)
     {
