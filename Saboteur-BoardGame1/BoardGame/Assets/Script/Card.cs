@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThisCard : MonoBehaviour
+public class Card : MonoBehaviour
 {
-    public Card card;
+    public CardDetail card;
     public Vector3 oldScale;
     public int rotation;
 

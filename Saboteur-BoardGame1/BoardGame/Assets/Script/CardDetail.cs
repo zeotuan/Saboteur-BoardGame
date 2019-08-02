@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Card : MonoBehaviour
+public class CardDetail
 {
     public Image frontCardArtWork;
     public Image backCardArtWork;
     public Text cardName;
     //public ScriptableCard SCard;
 
-    public Card(Image frontCardArtWork, Image backCardArtWork)
+    public CardDetail(Image frontCardArtWork, Image backCardArtWork)
     {
         this.backCardArtWork = backCardArtWork;
         this.frontCardArtWork = frontCardArtWork;
@@ -33,10 +33,6 @@ public class Card : MonoBehaviour
         backCardArtWork.sprite = c.BackArt;
     }*/
 
-    public bool validMove()
-    {
-        return false;
-    }
 
 
 }

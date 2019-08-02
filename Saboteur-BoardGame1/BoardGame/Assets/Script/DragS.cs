@@ -53,7 +53,7 @@ public class DragS : MonoBehaviour, IDragHandler
     public void OnEndDrag(PointerEventData eventData)
     {
         bool validPos = false;
-        if (validPos)
+        if (!validPos)
         {
             this.transform.position = StartDrag;
         }

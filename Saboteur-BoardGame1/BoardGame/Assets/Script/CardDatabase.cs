@@ -6,7 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class CardDatabase : MonoBehaviour
 {
-    public List<Card> cardList = new List<Card>();
+    public List<CardDetail> cardList = new List<CardDetail>();
     public Image[] cardSprites;
     public Image[] cardBack;
     public static CardDatabase instance;

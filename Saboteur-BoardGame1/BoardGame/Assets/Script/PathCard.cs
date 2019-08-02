@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PathCard : Card
+public class PathCard : CardDetail
 {
     public int right, left, up, down, middle;
     public PathCard(int right, int up, int left, int down, int middle, Image frontCardArtWork, Image backCardArtWork) : base(frontCardArtWork, backCardArtWork)
