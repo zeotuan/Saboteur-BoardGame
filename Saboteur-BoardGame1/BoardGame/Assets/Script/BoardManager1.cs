@@ -1,4 +1,5 @@
 ﻿//this is just a testing script i wrote for reference (not for our game and does not work)
+//does not add this to any gameObject
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PathCard : CardDetail
 {
     public int right, left, up, down, middle;
+    int x, y;
     public PathCard(int right, int up, int left, int down, int middle, Image frontCardArtWork, Image backCardArtWork) : base(frontCardArtWork, backCardArtWork)
     {
         this.right = right;
@@ -15,16 +16,43 @@ public class PathCard : CardDetail
         this.middle = middle;
     }
 
-    public bool ValidMove(Card[,] board, int x1, int y1, int x2, int y2)
+    public bool checkValid(PathCard[,] board,int x, int y)
     {
-        if (board[x2, y2] != null)
-        {// cannot place card on top of other card 
-            return false;
-        }
-        else
+
+            if (board[x, y] == null)//if the position is blank
+            {
+                PathCard above = board[x - 1, y];
+                PathCard left = board[x, y - 1];
+                PathCard below = board[x + 1, y];
+                PathCard right = board[x, y + 1];
+
+                checkFit(above);
+                checkFit(left);
+                checkFit(below);
+                checkFit(right);
+            }
+
+        return false;
+        
+    }
+
+    private void checkFit(PathCard c)
+    {
+        if (x < c.x && )
         {
 
         }
-        return true;
+        else if (x > c.x)
+        {
+
+        }
+        else if (y < c.y)
+        {
+
+        }
+        else if (y > c.y)
+        {
+
+        }
     }
 }

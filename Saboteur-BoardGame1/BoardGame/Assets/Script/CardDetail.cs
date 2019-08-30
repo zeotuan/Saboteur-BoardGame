@@ -16,6 +16,11 @@ public class CardDetail
         this.frontCardArtWork = frontCardArtWork;
     }
 
+    public void checkValid()
+    {
+
+    }
+
 
     /*public void LoadCard(ScriptableCard c){
 

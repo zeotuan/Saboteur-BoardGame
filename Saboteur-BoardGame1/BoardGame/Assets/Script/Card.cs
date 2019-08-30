@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿//add this to card prefab
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,14 +11,15 @@ public class Card : MonoBehaviour
 
     public void InitThisCard(int id)
     {
-        if(CardDatabase.instance.cardList != null)
+        
+        card = CardDatabase.Instance.GetCard(id);
+        if(card != null)
         {
-            card = CardDatabase.instance.cardList[id];
             rotation = 0;
         }
         else
         {
-            Debug.Log("could not load card database");
+            Debug.Log("could not load card from database");
         }
     }
 
@@ -35,6 +37,15 @@ public class Card : MonoBehaviour
     {
         rotation = (rotation == 1) ? 0 : 1;
     }
+
+    public void CheckValid()
+    {
+        card.checkValid();
+    }
+
+    
+
+    
 
     
 

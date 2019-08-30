@@ -1,18 +1,24 @@
-﻿using System.Collections;
+﻿//add this to player prefab
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public string playerName;
+    public List<Card> hand = new List<Card>();
+    StateMachine StateMachine = new StateMachine();
+    public bool PickAxe;
+    public bool Lamb;
+    public bool Cart;
+
     void Start()
     {
-        
+        //StateMachine.ChangeState()
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
-        
+        StateMachine.Update();
     }
 }
