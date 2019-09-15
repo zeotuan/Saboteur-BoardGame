@@ -9,12 +9,18 @@ public class Deck : MonoBehaviour
     public List<Card> deck;
     public List<Card> containter;
 
-    void Start()
+    private void Awake()
     {
         GenerateDeck(10);
+        
+    }
+    void Start()
+    {
+        shuffle();
     }
     void GenerateDeck(int numberPlayer)
     {
+        //generated all needed card
         for (int i = 0; i < 10; ++i)
         {
             SpawnMultipleCard(i, 1);
@@ -66,8 +72,15 @@ public class Deck : MonoBehaviour
         }
     }
 
-    void Deal()
+    public void Deal( PlayerController target, bool gameStarted)
     {
+        int UpperCardIndex = deck.Count - 1;
+        if (gameStarted)
+            deck[UpperCardIndex].GetComponent<Renderer>().enabled = false;
+        else//
+            deck[UpperCardIndex].transform.SetParent(target.transform);// Later on will not target transform of player but a placeHolder object for card(need to be changed) 
 
+        target.hand.Add(deck[UpperCardIndex]);
+        deck.RemoveAt(UpperCardIndex);
     }
 }

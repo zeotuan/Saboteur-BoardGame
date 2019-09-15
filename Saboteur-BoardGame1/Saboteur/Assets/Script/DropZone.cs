@@ -27,10 +27,10 @@ public class DropZone : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
             TruePos.y = Mathf.Floor(eventData.pointerDrag.transform.position.y / gridsize) * gridsize;
             TruePos.z = Mathf.Floor(eventData.pointerDrag.transform.position.z / gridsize) * gridsize;
 
-            if (board.GetComponent<Board>().checkValid(c, (int)TruePos.x, (int)TruePos.y))//check if the move is valid 
+            if (board.GetComponent<Board>().checkValid(c, (int)TruePos.x, (int)TruePos.y))//if move is valid then  
             {
                 d.parentToReturnTo = this.transform;
-                if (c.card is PathCard)
+                if (c.card is PathCard)// not actually needed anymore since Effect caard can no longer be moved 
                 {
                     c.transform.position = TruePos;
                 }

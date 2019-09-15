@@ -9,14 +9,17 @@ public class Card : MonoBehaviour
     public Vector3 oldScale;
     public int rotation;
     bool cardBack = true;
-
+    public bool Interactalbe { get; private set; }// should actually be draggable
 
     public void InitThisCard(int id)
     {
         
         card = CardDatabase.Instance.GetCard(id);
-        if(card != null)
+        Interactalbe = false;
+        if (card != null)
         {
+            if (card is PathCard)
+                Interactalbe = true;
             rotation = 0;
         }
         else

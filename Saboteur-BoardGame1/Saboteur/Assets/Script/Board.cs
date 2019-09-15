@@ -99,7 +99,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         }
         else
         {
-                
+         
         }
         return false;
     }

@@ -13,6 +13,11 @@ public class DragS : MonoBehaviour, IDragHandler
     GameObject placeHolder = null;
     public void OnBeginDrag(PointerEventData eventData)
     {
+        Card c = eventData.pointerDrag.GetComponent<Card>();
+        if (c == null || !c.Interactalbe)// if card is not interactable then do nothing
+        {
+            return;
+        }
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
         
