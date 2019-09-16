@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 5947524457029965522}
   - component: {fileID: 5947524457029965524}
   - component: {fileID: 5947524457029965523}
-  - component: {fileID: 5947524457029965526}
+  - component: {fileID: 5682541120977697557}
+  - component: {fileID: -4625726089313339259}
+  - component: {fileID: 5609330631753172185}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -33,10 +35,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 71.82001, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 291, y: 194}
+  m_SizeDelta: {x: 90, y: 130}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5947524457029965524
 CanvasRenderer:
@@ -75,7 +77,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &5947524457029965526
+--- !u!114 &5682541120977697557
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -87,3 +89,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4334c31151d9875478a86cb175dc9a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4625726089313339259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947524457029965521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreLayout: 0
+  m_MinWidth: -1
+  m_MinHeight: -1
+  m_PreferredWidth: 90
+  m_PreferredHeight: 130
+  m_FlexibleWidth: 1
+  m_FlexibleHeight: 1
+  m_LayoutPriority: 1
+--- !u!225 &5609330631753172185
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947524457029965521}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
