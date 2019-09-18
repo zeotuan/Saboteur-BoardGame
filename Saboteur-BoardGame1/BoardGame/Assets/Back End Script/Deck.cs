@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    Card CardPrefab;
+    public Card CardPrefab;
     public List<Card> deck;
     public List<Card> containter;
 
@@ -21,36 +21,38 @@ public class Deck : MonoBehaviour
     void GenerateDeck(int numberPlayer)
     {
         //generated all needed card
-        for (int i = 0; i < 10; ++i)
+        for (int i = 1; i < 11; ++i)
         {
             SpawnMultipleCard(i, 1);
-            if (i < 7)
+            if (i < 8)
             {
                 SpawnMultipleCard(i + 10, 5);
             }
         }
         
-        SpawnMultipleCard(17, 2);
-        SpawnMultipleCard(18, 3);
-        SpawnMultipleCard(19, 2);
-        SpawnMultipleCard(20, 3);
-        SpawnMultipleCard(21, 2);
-        SpawnMultipleCard(22, 3);
+        SpawnMultipleCard(18, 2);
+        SpawnMultipleCard(19, 3);
+        SpawnMultipleCard(20, 2);
+        SpawnMultipleCard(21, 3);
+        SpawnMultipleCard(22, 2);
         SpawnMultipleCard(23, 3);
-        SpawnMultipleCard(24, 1);
+        SpawnMultipleCard(24, 3);
         SpawnMultipleCard(25, 1);
         SpawnMultipleCard(26, 1);
-        SpawnMultipleCard(27, 3);
+        SpawnMultipleCard(27, 1);
+        SpawnMultipleCard(28, 3);
 
     }
 
     void SpawnCard(int id)
     {
+        
         Card cardObj = Instantiate(CardPrefab) as Card; 
         cardObj.transform.SetParent(transform);
         cardObj.InitThisCard(id);
         cardObj.transform.SetParent(this.transform.parent);
         deck.Add(cardObj);
+        
     }
 
     void SpawnMultipleCard(int id, int amount)
@@ -58,6 +60,7 @@ public class Deck : MonoBehaviour
         for(int i = 0; i < amount; i++)
         {
             SpawnCard(id);
+            
         }
     }
 

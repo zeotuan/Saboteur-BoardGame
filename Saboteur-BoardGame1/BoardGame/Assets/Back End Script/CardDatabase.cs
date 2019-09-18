@@ -6,9 +6,9 @@ using UnityEngine.UI;
 
 public class CardDatabase : Singleton<CardDatabase>
 {
-    List<CardDetail> cardList = new List<CardDetail>();
-    public Image[] cardSprites;
-    public Image[] cardBack;
+    public List<CardDetail> cardList = new List<CardDetail>();
+    public Sprite[] cardSprites;
+    public Sprite[] cardBack;
    
     void Awake()
     {
@@ -22,25 +22,24 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new PathCard(1, 1, 1, 1, 0, cardSprites[6], cardBack[0]));
         cardList.Add(new PathCard(1, 0, 1, 0, 0, cardSprites[7], cardBack[0]));
         cardList.Add(new PathCard(1, 1, 1, 0, 0, cardSprites[8], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 1, 1, 0, cardSprites[9], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 1, 0, 0, cardSprites[10], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 1, 1, 1, cardSprites[11], cardBack[0]));
-        cardList.Add(new PathCard(0, 0, 1, 1, 1, cardSprites[12], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 0, 1, 1, cardSprites[13], cardBack[0]));
-        cardList.Add(new PathCard(0, 1, 0, 1, 1, cardSprites[14], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 0, 1, 1, cardSprites[15], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 1, 1, 1, cardSprites[16], cardBack[0]));
-        cardList.Add(new FixCard("Fix Lamb",false,true,false, cardSprites[17], cardBack[0]));
-        cardList.Add(new EffectCard("Break Lamb",true,false,true, cardSprites[18], cardBack[0]));
-        cardList.Add(new FixCard("Fix Cart",false,false,true, cardSprites[19], cardBack[0]));
-        cardList.Add(new EffectCard("Break Cart",true,true,false, cardSprites[20], cardBack[0]));
-        cardList.Add(new FixCard("Fix PickAxe",true,false,false, cardSprites[21], cardBack[0]));
-        cardList.Add(new EffectCard("Break PickAxe",false,true,true, cardSprites[22], cardBack[0]));
-        cardList.Add(new EffectCard("Break Path",false,false,false, cardSprites[23], cardBack[0]));
-        cardList.Add(new FixCard("Fix Lamb and PickAxe",true,true,false, cardSprites[24], cardBack[0]));
-        cardList.Add(new FixCard("Fix Cart and PickAxe",true,false,true, cardSprites[25], cardBack[0]));
-        cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[26], cardBack[0]));
-        cardList.Add(new EffectCard("View Destination",true,true,true, cardSprites[27], cardBack[0]));
+        cardList.Add(new PathCard(1, 0, 1, 0, 0, cardSprites[9], cardBack[0]));
+        cardList.Add(new PathCard(1, 0, 1, 1, 1, cardSprites[10], cardBack[0]));
+        cardList.Add(new PathCard(0, 0, 1, 1, 1, cardSprites[11], cardBack[0]));
+        cardList.Add(new PathCard(1, 0, 0, 1, 1, cardSprites[12], cardBack[0]));
+        cardList.Add(new PathCard(0, 1, 0, 1, 1, cardSprites[13], cardBack[0]));
+        cardList.Add(new PathCard(1, 1, 0, 1, 1, cardSprites[14], cardBack[0]));
+        cardList.Add(new PathCard(1, 1, 1, 1, 1, cardSprites[15], cardBack[0]));
+        cardList.Add(new FixCard("Fix Lamb",false,true,false, cardSprites[16], cardBack[0]));
+        cardList.Add(new EffectCard("Break Lamb",true,false,true, cardSprites[17], cardBack[0]));
+        cardList.Add(new FixCard("Fix Cart",false,false,true, cardSprites[18], cardBack[0]));
+        cardList.Add(new EffectCard("Break Cart",true,true,false, cardSprites[19], cardBack[0]));
+        cardList.Add(new FixCard("Fix PickAxe",true,false,false, cardSprites[20], cardBack[0]));
+        cardList.Add(new EffectCard("Break PickAxe",false,true,true, cardSprites[21], cardBack[0]));
+        cardList.Add(new EffectCard("Break Path",false,false,false, cardSprites[22], cardBack[0]));
+        cardList.Add(new FixCard("Fix Lamb and PickAxe",true,true,false, cardSprites[23], cardBack[0]));
+        cardList.Add(new FixCard("Fix Cart and PickAxe",true,false,true, cardSprites[24], cardBack[0]));
+        cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[25], cardBack[0]));
+        cardList.Add(new EffectCard("View Destination",true,true,true, cardSprites[26], cardBack[0]));
 
         //add more card here 
     }

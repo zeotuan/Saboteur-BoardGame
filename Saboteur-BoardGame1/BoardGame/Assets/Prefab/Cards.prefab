@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5947524457029965522}
   - component: {fileID: 5947524457029965524}
   - component: {fileID: 5947524457029965523}
-  - component: {fileID: 5682541120977697557}
   - component: {fileID: -4625726089313339259}
   - component: {fileID: 5609330631753172185}
+  - component: {fileID: 6498757942608708331}
+  - component: {fileID: 8323504580639773011}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5947524457029965521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -77,18 +78,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &5682541120977697557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5947524457029965521}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4334c31151d9875478a86cb175dc9a87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &-4625726089313339259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +88,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5947524457029965521}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 1679637790, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
@@ -121,3 +111,34 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &6498757942608708331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947524457029965521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2601c373607a68049b2c7c31a5bba010, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oldScale: {x: 0, y: 0, z: 0}
+  rotation: 0
+  Interactalbe: 0
+--- !u!114 &8323504580639773011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947524457029965521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cde3353ef6fa4c42af2090b7a51fb79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hand: {fileID: 0}
+  parentToReturnTo: {fileID: 0}
+  dropzone: {fileID: 0}
+  TruePos: {x: 0, y: 0, z: 0}

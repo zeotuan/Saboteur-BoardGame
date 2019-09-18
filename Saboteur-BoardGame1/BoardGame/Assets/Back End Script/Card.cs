@@ -9,10 +9,10 @@ public class Card : MonoBehaviour
     public Vector3 oldScale;
     public int rotation;
     bool cardBack = true;
-    public bool Interactalbe;// should actually be draggable
+    public bool Interactalbe = false;// should actually be draggable
     public void InitThisCard(int id)
     {
-        
+        Debug.Log(id);
         card = CardDatabase.Instance.GetCard(id);
         Interactalbe = false;
         if (card != null)

@@ -7,12 +7,13 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     //public static GameManager Instance { get; private set; }
+    PlayerController PlayerPrefab;
     public int RoundTurn { get; set; }
     public List<PlayerController> Players { get; private set; }
-    public List<Round> Rounds { get; private set; }
+    public List<Round> Rounds { get; set; }
     public Round currentRound { get { return Rounds[RoundTurn]; } }
 
-    StateMachine stateMachine = new StateMachine();
+    //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
     
    
@@ -20,17 +21,17 @@ public class GameManager : Singleton<GameManager>
     void Awake()
     {
         base.Awake();
-        Players = new List<PlayerController>();
-        Rounds = new List<Round>();
+        
         for(int i = 0; i < 6; i++)// innitate 7 player
         {
-            PlayerController player = new PlayerController();
+            PlayerController player = Instantiate(PlayerPrefab) as PlayerController;
+            player.transform.SetParent(transform);
             Players.Add(player);
         }
         for(int i =0; i < 4; i++)// initiate 5 round 
         {
-            Round round = new Round();
-            Rounds.Add(round);
+            //Round round = new Round();
+            //Rounds.Add(round);
         }
         gameStarted = false;
     }
@@ -43,7 +44,7 @@ public class GameManager : Singleton<GameManager>
     }
     void Update()
     {
-        stateMachine.Update();
+        //stateMachine.Update();
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             //QuitGamePanel.gameObject.SetActive(true);

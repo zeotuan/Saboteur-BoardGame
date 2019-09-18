@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
 {
    
     public string playerName;
-    public List<Card> hand = new List<Card>();
-    StateMachine StateMachine = new StateMachine();
+    public List<Card> hand;//list of card 
+    //StateMachine StateMachine = new StateMachine();
     public bool PickAxe;
     public bool Lamb;
     public bool Cart;
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
     
     public void Update()
     {   
-        StateMachine.Update();
+        //StateMachine.Update();
         if (MyTurn && FinishTurn)
         {
             FinishTurn = false;

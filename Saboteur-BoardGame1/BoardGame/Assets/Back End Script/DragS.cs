@@ -40,10 +40,11 @@ public class DragS : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        float gridsize = dropzone.gridsize;
+        
         Vector3 ToPos = eventData.position;
         if(dropzone != null)
         {
+            float gridsize = dropzone.gridsize;
             TruePos.x = Mathf.Floor(eventData.pointerDrag.transform.position.x / gridsize) * gridsize;
             TruePos.y = Mathf.Floor(eventData.pointerDrag.transform.position.y / gridsize) * gridsize;
             TruePos.z = Mathf.Floor(eventData.pointerDrag.transform.position.z / gridsize) * gridsize;

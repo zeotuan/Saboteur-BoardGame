@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class FixCard : EffectCard
 {
-    public FixCard(string type,bool Pickaxe, bool Lamb, bool Cart, Image frontCardArtWork, Image backCardArtWork) : base(type,Pickaxe, Lamb, Cart, frontCardArtWork, backCardArtWork)
+    public FixCard(string type,bool Pickaxe, bool Lamb, bool Cart, Sprite frontCardArtWork, Sprite backCardArtWork) : base(type,Pickaxe, Lamb, Cart, frontCardArtWork, backCardArtWork)
     {
     }
 

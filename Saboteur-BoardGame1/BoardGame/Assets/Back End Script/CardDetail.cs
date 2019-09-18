@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class CardDetail
 {
-    public Image frontCardArtWork;
-    public Image backCardArtWork;
+    public Sprite frontCardArtWork;
+    public Sprite backCardArtWork;
     public Text cardName;
     //public ScriptableCard SCard;
 
-    public CardDetail(Image frontCardArtWork, Image backCardArtWork)
+    public CardDetail(Sprite frontCardArtWork, Sprite backCardArtWork)
     {
         this.backCardArtWork = backCardArtWork;
         this.frontCardArtWork = frontCardArtWork;

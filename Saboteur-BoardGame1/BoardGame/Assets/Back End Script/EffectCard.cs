@@ -10,7 +10,7 @@ public class EffectCard : CardDetail
     public bool PickAxe;
     public bool Lamb;
     public bool Cart;
-    public EffectCard(string type,bool PickAxe,bool Lamb,bool Cart,Image frontCardArtWork, Image backCardArtWork) : base (frontCardArtWork,backCardArtWork)
+    public EffectCard(string type,bool PickAxe,bool Lamb,bool Cart, Sprite frontCardArtWork, Sprite backCardArtWork) : base (frontCardArtWork,backCardArtWork)
     {
         this.type = type;
         this.PickAxe = PickAxe;
