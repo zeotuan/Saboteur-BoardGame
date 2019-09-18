@@ -12,7 +12,7 @@ public class DragS : MonoBehaviour, IDragHandler
     public Transform Hand;
     public Transform parentToReturnTo = null;
     GameObject placeHolder = null;
-    public DropZone dropzone = null;
+    public DropZoneS dropzone = null;
     public Vector3 TruePos;
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -77,5 +77,5 @@ public class DragS : MonoBehaviour, IDragHandler
         //EventSystem.current.RaycastAll(eventData, )
     }
 
-    }
+    
 }
