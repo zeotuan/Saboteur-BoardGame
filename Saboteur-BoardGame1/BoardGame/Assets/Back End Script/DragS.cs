@@ -9,8 +9,11 @@ public class DragS : MonoBehaviour, IDragHandler
 {
     Vector2 StartDrag;
     Vector2 EndDrag;
+    public Transform Hand;
     public Transform parentToReturnTo = null;
     GameObject placeHolder = null;
+    public DropZone dropzone = null;
+    public Vector3 TruePos;
     public void OnBeginDrag(PointerEventData eventData)
     {
         Card c = eventData.pointerDrag.GetComponent<Card>();
@@ -18,6 +21,7 @@ public class DragS : MonoBehaviour, IDragHandler
         {
             return;
         }
+        Hand = this.transform.parent;
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
         
@@ -36,8 +40,16 @@ public class DragS : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        this.transform.position = eventData.position;
-
+        float gridsize = dropzone.gridsize;
+        Vector3 ToPos = eventData.position;
+        if(dropzone != null)
+        {
+            TruePos.x = Mathf.Floor(eventData.pointerDrag.transform.position.x / gridsize) * gridsize;
+            TruePos.y = Mathf.Floor(eventData.pointerDrag.transform.position.y / gridsize) * gridsize;
+            TruePos.z = Mathf.Floor(eventData.pointerDrag.transform.position.z / gridsize) * gridsize;
+            ToPos = TruePos;
+        }
+        this.transform.position = ToPos;
         int newSiblingIndex = parentToReturnTo.childCount; 
         
         for(int i = 0; i < parentToReturnTo.childCount; i++)
@@ -63,5 +75,7 @@ public class DragS : MonoBehaviour, IDragHandler
         Destroy(placeHolder);
 
         //EventSystem.current.RaycastAll(eventData, )
+    }
+
     }
 }

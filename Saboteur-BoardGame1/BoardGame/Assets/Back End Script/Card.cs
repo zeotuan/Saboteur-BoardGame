@@ -9,8 +9,7 @@ public class Card : MonoBehaviour
     public Vector3 oldScale;
     public int rotation;
     bool cardBack = true;
-    public bool Interactalbe { get; private set; }// should actually be draggable
-
+    public bool Interactalbe;// should actually be draggable
     public void InitThisCard(int id)
     {
         
@@ -28,6 +27,11 @@ public class Card : MonoBehaviour
         }
     }
 
+    private void start()
+    {
+        this.gameObject.GetComponent<MoveMenu>().enabled = false;
+    }
+
     public void OnMouseOver()
     {
         this.transform.localScale += new Vector3(0.2f, 0.2f, 0.2f);
@@ -40,7 +44,11 @@ public class Card : MonoBehaviour
 
     public void rotate()
     {
-        rotation = (rotation == 1) ? 0 : 1;
+        if(card is PathCard)
+        {
+            ((PathCard)card).Rotate();
+
+        }
     }
 
     public void CheckValid()
@@ -50,9 +58,11 @@ public class Card : MonoBehaviour
 
     
 
-    
 
-    
+
+
+
+
 
 
 }

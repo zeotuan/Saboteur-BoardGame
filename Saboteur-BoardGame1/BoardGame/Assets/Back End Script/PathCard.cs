@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PathCard : CardDetail
 {
     public int right, left, up, down, middle;
-    int x, y;
     public PathCard(int right, int up, int left, int down, int middle, Image frontCardArtWork, Image backCardArtWork) : base(frontCardArtWork, backCardArtWork)
     {
         this.right = right;
@@ -21,38 +20,47 @@ public class PathCard : CardDetail
 
             if (board[x, y] == null)//if the position is blank
             {
-                PathCard above = board[x - 1, y];
-                PathCard left = board[x, y - 1];
-                PathCard below = board[x + 1, y];
-                PathCard right = board[x, y + 1];
+                PathCard left = board[x - 1, y];//left card to this card
+                PathCard below = board[x, y - 1];//below card to this card
+                PathCard right = board[x + 1, y];//right card to this card
+                PathCard above = board[x, y + 1];// above card to this card
 
-                checkFit(above);
-                checkFit(left);
-                checkFit(below);
-                checkFit(right);
+                bool valid = true;
+                if (this.right != right.left)
+                {
+                    valid = false;
+                }
+                else if (this.left != left.right) 
+                {
+                    valid = false;
+                }
+                else if (this.up != above.down)
+                {
+                    valid = false;
+                }
+                else if (this.down != below.up)
+                {
+                    valid = false;
+                }
+                return valid;
             }
 
         return false;
         
     }
 
-    private void checkFit(PathCard c)
+    public void Rotate()
     {
-        if (x < c.x && )
-        {
-
-        }
-        else if (x > c.x)
-        {
-
-        }
-        else if (y < c.y)
-        {
-
-        }
-        else if (y > c.y)
-        {
-
-        }
+        Swap(up, down);
+        Swap(left, right);
     }
+
+    public void Swap(int a, int b)
+    {
+        a = a ^ b;
+        b = b ^ a; 
+        a = a ^ b;
+    }
+
+    
 }

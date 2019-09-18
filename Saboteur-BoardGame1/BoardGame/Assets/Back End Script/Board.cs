@@ -30,6 +30,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (d != null)
         {
             d.parentToReturnTo = this.transform;
+
         }
     }
 

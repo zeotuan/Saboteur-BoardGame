@@ -7,46 +7,60 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     //public static GameManager Instance { get; private set; }
-    public int Turn { get; set; }
+    public int RoundTurn { get; set; }
     public List<PlayerController> Players { get; private set; }
     public List<Round> Rounds { get; private set; }
-    public PlayerController currentPlayer { get { return Players[Turn]; } }
+    public Round currentRound { get { return Rounds[RoundTurn]; } }
+
     StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
     
-    public Deck deck;
    
     
     void Awake()
     {
         base.Awake();
         Players = new List<PlayerController>();
+        Rounds = new List<Round>();
+        for(int i = 0; i < 6; i++)// innitate 7 player
+        {
+            PlayerController player = new PlayerController();
+            Players.Add(player);
+        }
+        for(int i =0; i < 4; i++)// initiate 5 round 
+        {
+            Round round = new Round();
+            Rounds.Add(round);
+        }
         gameStarted = false;
     }
     void Start()
     {
         if (!gameStarted)
         {
-            currentPlayer.StartTurn();
+            currentRound.StartRound();
         }
     }
     void Update()
     {
         stateMachine.Update();
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //QuitGamePanel.gameObject.SetActive(true);
+        }
+
+            
     }
-    
-    public void SwitchTurn()
+
+    public void SwitchRound()
     {
         gameStarted = true;
-        deck.Deal(currentPlayer,gameStarted);
-        currentPlayer.EndTurn();
-        if (checkWinCondition())
-        {
-            return;
-        }
-        Turn = Mathf.Abs(Turn - 1);
-        currentPlayer.StartTurn();
+        currentRound.EndRound();
+        RoundTurn = Mathf.Abs(RoundTurn - 1);
+        currentRound.StartRound();
     }
+    
+    
 
     bool checkWinCondition()
     {

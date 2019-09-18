@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool MyTurn;
     private bool FinishTurn;
     private GameObject deck;
+    private int Point;
     void Start()
     {
         
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
         if (MyTurn && FinishTurn)
         {
             FinishTurn = false;
-            GameManager.Instance.SwitchTurn();
+            GameManager.Instance.currentRound.SwitchTurn();
         }
     }
 
