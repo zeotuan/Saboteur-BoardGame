@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
    
     public string playerName;
-    public List<Card> hand;//list of card 
+    public List<GameObject> hand;//list of card 
     //StateMachine StateMachine = new StateMachine();
     public bool PickAxe;
     public bool Lamb;

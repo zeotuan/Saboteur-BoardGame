@@ -7,9 +7,9 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     //public static GameManager Instance { get; private set; }
-    PlayerController PlayerPrefab;
+    GameObject PlayerPrefab;
     public int RoundTurn { get; set; }
-    public List<PlayerController> Players { get; private set; }
+    public List<GameObject> Players { get; private set; }
     public List<Round> Rounds { get; set; }
     public Round currentRound { get { return Rounds[RoundTurn]; } }
 
@@ -24,7 +24,8 @@ public class GameManager : Singleton<GameManager>
         
         for(int i = 0; i < 6; i++)// innitate 7 player
         {
-            PlayerController player = Instantiate(PlayerPrefab) as PlayerController;
+            GameObject player = Instantiate(PlayerPrefab) as GameObject;
+            PlayerController playerDetail = player.GetComponent<PlayerController>();
             player.transform.SetParent(transform);
             Players.Add(player);
         }

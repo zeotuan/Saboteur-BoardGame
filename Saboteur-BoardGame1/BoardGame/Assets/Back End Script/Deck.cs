@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    public Card CardPrefab;
-    public List<Card> deck;
-    public List<Card> containter;
+    public GameObject CardPrefab;
+    public List<GameObject> deck;
+    public List<GameObject> containter;
 
     private void Awake()
     {
@@ -47,9 +47,10 @@ public class Deck : MonoBehaviour
     void SpawnCard(int id)
     {
         
-        Card cardObj = Instantiate(CardPrefab) as Card; 
+        GameObject cardObj = Instantiate(CardPrefab) as GameObject; 
         cardObj.transform.SetParent(transform);
-        cardObj.InitThisCard(id);
+        Card cardScript = cardObj.GetComponent<Card>();
+        cardScript.InitThisCard(id);
         cardObj.transform.SetParent(this.transform.parent);
         deck.Add(cardObj);
         
