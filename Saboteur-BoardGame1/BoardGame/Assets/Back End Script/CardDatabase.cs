@@ -41,9 +41,14 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[25], cardBack[0]));
         cardList.Add(new EffectCard("View Destination",true,true,true, cardSprites[26], cardBack[0]));
         Debug.Log("there are :"+cardList.Count);
+        
         //add more card here 
     }
 
+    private void Start()
+    {
+        
+    }
     public CardDetail GetCard(int id)
     {
         

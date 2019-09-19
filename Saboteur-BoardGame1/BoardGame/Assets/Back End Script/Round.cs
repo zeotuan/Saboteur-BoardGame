@@ -11,14 +11,10 @@ public class Round : MonoBehaviour
     public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
     bool ThisRoundTurn = false;
     bool roundEnd = false;
-    private void Awake()
-    {
-        deck = Instantiate(deckPrefab) as GameObject;
-        
-        
-    }
+   
     void Start()
     {
+        deck = Instantiate(deckPrefab) as GameObject;
         if (!RoundStarted)
         {
             currentPlayer.GetComponent<PlayerController>().StartTurn();

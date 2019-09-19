@@ -54,12 +54,11 @@ public class Deck : MonoBehaviour
 
     void SpawnCard(int id)
     {
-        
+        Debug.Log(id);
         GameObject cardObj = Instantiate(CardPrefab) as GameObject;
         cardObj.transform.SetParent(transform);
         Card cardScript = cardObj.GetComponent<Card>();
         cardScript.InitThisCard(id);
-        Debug.Log(id);
         cardObj.transform.SetParent(this.transform.parent);
         
         deck.Add(cardObj);
