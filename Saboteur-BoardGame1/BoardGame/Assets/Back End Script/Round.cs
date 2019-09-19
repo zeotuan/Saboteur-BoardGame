@@ -5,22 +5,22 @@ using UnityEngine;
 public class Round : MonoBehaviour
 {
     bool RoundStarted;
-    public Deck deck;
+    public GameObject deck;
+    public GameObject deckPrefab;
     public int Turn { get; set; }
-    public PlayerController currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
+    public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
     bool ThisRoundTurn = false;
     bool roundEnd = false;
     private void Awake()
     {
-        deck = new Deck();
-
+        deck = Instantiate(deckPrefab) as GameObject;
+        
     }
     void Start()
     {
         if (!RoundStarted)
         {
-            
-            currentPlayer.StartTurn();
+            currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
     }
 
@@ -39,8 +39,8 @@ public class Round : MonoBehaviour
     public void SwitchTurn()
     {
         RoundStarted = true;
-        deck.Deal(currentPlayer, RoundStarted);
-        currentPlayer.EndTurn();
+        deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
+        currentPlayer.GetComponent<PlayerController>().EndTurn();
         if (checkWinCondition())
         {
             roundEnd = true;
@@ -48,7 +48,7 @@ public class Round : MonoBehaviour
             return;
         }
         Turn = Mathf.Abs(Turn - 1);
-        currentPlayer.StartTurn();
+        currentPlayer.GetComponent<PlayerController>().StartTurn();
     }
 
     bool checkWinCondition()

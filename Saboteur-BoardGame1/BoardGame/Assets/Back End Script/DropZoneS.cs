@@ -14,7 +14,7 @@ public class DropZoneS : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         DragS d = eventData.pointerDrag.GetComponent<DragS>();
         if(d!= null)
         {
-            d.dropzone = this;
+            d.dropzone = this.gameObject.GetComponent<DropZoneS>();//not really needed to be written like this ?
         }
     }
 
