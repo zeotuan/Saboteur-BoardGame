@@ -2,13 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class Deck : MonoBehaviour
 {
     public GameObject CardPrefab;
-    public List<GameObject> deck;
-    public List<GameObject> containter;
-
+    public List<GameObject> deck = new List<GameObject>();
+   
     private void Awake()
     {
         GenerateDeck(10);
@@ -16,6 +16,7 @@ public class Deck : MonoBehaviour
     }
     void Start()
     {
+        
         shuffle();
     }
     void GenerateDeck(int numberPlayer)
@@ -74,12 +75,14 @@ public class Deck : MonoBehaviour
 
     void shuffle()
     {
+        
         for(int i =0; i < deck.Count; i++)
         {
-            containter[0] = deck[i];
+            var container = deck.ElementAt(i);
             int randomIndex = Random.Range(i, deck.Count);
             deck[i] = deck[randomIndex];
-            deck[randomIndex] = containter[0];
+            deck[randomIndex] = container;
+            
         }
     }
 
