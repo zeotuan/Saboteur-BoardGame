@@ -9,7 +9,7 @@ public class Card : MonoBehaviour
     public Vector3 oldScale;
     public int rotation;
     bool cardBack = true;
-    public bool Interactalbe = false;// should actually be draggable
+    public bool Interactalbe = true;// should actually be draggable
     public void InitThisCard(int id)
     {
         
@@ -29,7 +29,7 @@ public class Card : MonoBehaviour
 
     private void start()
     {
-        this.gameObject.GetComponent<MoveMenu>().enabled = false;
+        //this.gameObject.GetComponent<MoveMenu>().enabled = false;
     }
 
     public void OnMouseOver()

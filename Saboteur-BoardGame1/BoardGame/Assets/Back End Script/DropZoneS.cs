@@ -11,20 +11,24 @@ public class DropZoneS : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
     
     public void OnPointerEnter(PointerEventData eventData)
     {
-        DragS d = eventData.pointerDrag.GetComponent<DragS>();
+        /*DragS d = eventData.pointerDrag.GetComponent<DragS>();
         if(d!= null)
         {
-            d.dropzone = this.gameObject.GetComponent<DropZoneS>();//not really needed to be written like this ?
+            d.dropzone = this;//not really needed to be written like this ?
         }
+        else
+        {
+            Debug.Log("card not exist");
+        }*/
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        DragS d = eventData.pointerDrag.GetComponent<DragS>();
+        /*DragS d = eventData.pointerDrag.GetComponent<DragS>();
         if (d != null)
         {
             d.dropzone = null;
-        }
+        }*/
     }
     public void OnDrop(PointerEventData eventData)
     {
@@ -32,12 +36,8 @@ public class DropZoneS : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
         if(d!= null)
         {
             Card c = eventData.pointerDrag.GetComponent<Card>();
-            /*TruePos.x = Mathf.Floor(eventData.pointerDrag.transform.position.x / gridsize) * gridsize;
-            TruePos.y = Mathf.Floor(eventData.pointerDrag.transform.position.y / gridsize) * gridsize;
-            TruePos.z = Mathf.Floor(eventData.pointerDrag.transform.position.z / gridsize) * gridsize;
-           */
             d.parentToReturnTo = this.transform;
-            eventData.pointerDrag.GetComponent<MoveMenu>().enabled = true;
+            
             if (board.GetComponent<Board>().checkValid(c, (int)d.TruePos.x, (int)d.TruePos.y))//if move is valid then  
             {
                 

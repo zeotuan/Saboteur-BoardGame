@@ -26,14 +26,6 @@ public class DragS : MonoBehaviour, IDragHandler
         this.transform.SetParent(this.transform.parent.parent);
         
 
-        placeHolder = new GameObject();
-        placeHolder.transform.SetParent(this.transform.parent);
-        LayoutElement le = placeHolder.AddComponent<LayoutElement>();
-        le.preferredWidth = this.GetComponent<LayoutElement>().preferredWidth;
-        le.preferredHeight = this.GetComponent<LayoutElement>().preferredHeight;
-        le.flexibleHeight = 0;
-        le.flexibleWidth = 0;
-        placeHolder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
 
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
@@ -51,29 +43,15 @@ public class DragS : MonoBehaviour, IDragHandler
             ToPos = TruePos;
         }
         this.transform.position = ToPos;
-        int newSiblingIndex = parentToReturnTo.childCount; 
         
-        for(int i = 0; i < parentToReturnTo.childCount; i++)
-        {
-            if(this.transform.position.x < parentToReturnTo.GetChild(i).position.x)
-            {
-                newSiblingIndex = i;
-                if(placeHolder.transform.GetSiblingIndex() < newSiblingIndex)
-                {
-                    i--;
-                }
-                break;
-            }
-        }
-        placeHolder.transform.SetSiblingIndex(newSiblingIndex);
+        
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         this.transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        placeHolder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
-        Destroy(placeHolder);
+       
 
         //EventSystem.current.RaycastAll(eventData, )
     }

@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
     //public static GameManager Instance { get; private set; }
     public GameObject PlayerPrefab;
     public int RoundTurn { get; set; }
-    public List<GameObject> Players { get; private set; }
+    public List<GameObject> Players;
     public List<Round> Rounds { get; set; }
     public Round currentRound { get { return Rounds[RoundTurn]; } }
 

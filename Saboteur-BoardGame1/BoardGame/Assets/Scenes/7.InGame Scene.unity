@@ -4008,8 +4008,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fefd7964df3580348a497bc6d48f94d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  board: {fileID: 0}
-  gridsize: 0
+  board: {fileID: 720453950}
+  gridsize: 1
 --- !u!114 &720453955
 MonoBehaviour:
   m_ObjectHideFlags: 0
