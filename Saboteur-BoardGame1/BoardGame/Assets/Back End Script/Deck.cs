@@ -26,21 +26,21 @@ public class Deck : MonoBehaviour
             SpawnMultipleCard(i, 1);
             if (i < 8)
             {
-                SpawnMultipleCard(i + 10, 5);
+                SpawnMultipleCard(i + 10, 4);
             }
         }
         
-        SpawnMultipleCard(18, 2);
-        SpawnMultipleCard(19, 3);
-        SpawnMultipleCard(20, 2);
-        SpawnMultipleCard(21, 3);
-        SpawnMultipleCard(22, 2);
+        SpawnMultipleCard(17, 2);
+        SpawnMultipleCard(18, 3);
+        SpawnMultipleCard(19, 2);
+        SpawnMultipleCard(20, 3);
+        SpawnMultipleCard(21, 2);
+        SpawnMultipleCard(22, 3);
         SpawnMultipleCard(23, 3);
-        SpawnMultipleCard(24, 3);
+        SpawnMultipleCard(24, 1);
         SpawnMultipleCard(25, 1);
         SpawnMultipleCard(26, 1);
-        SpawnMultipleCard(27, 1);
-        SpawnMultipleCard(28, 3);
+        SpawnMultipleCard(27, 3);
 
     }
 
