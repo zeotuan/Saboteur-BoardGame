@@ -12,7 +12,7 @@ public class CardDatabase : Singleton<CardDatabase>
    
     void Awake()
     {
-        base.Awake();
+        base.Awake();//list start from 1 to 27
         cardList.Add(new PathCard(0, 0, 1, 1, 0,cardSprites[0], cardBack[0]));
         cardList.Add(new PathCard(1, 0, 0, 1, 0, cardSprites[1], cardBack[0]));
         cardList.Add(new PathCard(0, 1, 0, 1, 0, cardSprites[2], cardBack[0]));
@@ -40,12 +40,13 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new FixCard("Fix Cart and PickAxe",true,false,true, cardSprites[24], cardBack[0]));
         cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[25], cardBack[0]));
         cardList.Add(new EffectCard("View Destination",true,true,true, cardSprites[26], cardBack[0]));
-
+        Debug.Log("there are :"+cardList.Count);
         //add more card here 
     }
 
     public CardDetail GetCard(int id)
     {
+        
         CardDetail result = null;
         result = cardList[id];
         return result;

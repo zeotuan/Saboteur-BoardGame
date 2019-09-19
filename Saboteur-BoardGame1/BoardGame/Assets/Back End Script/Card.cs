@@ -12,7 +12,7 @@ public class Card : MonoBehaviour
     public bool Interactalbe = false;// should actually be draggable
     public void InitThisCard(int id)
     {
-        Debug.Log(id);
+        
         card = CardDatabase.Instance.GetCard(id);
         Interactalbe = false;
         if (card != null)

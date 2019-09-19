@@ -7,7 +7,7 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     //public static GameManager Instance { get; private set; }
-    GameObject PlayerPrefab;
+    public GameObject PlayerPrefab;
     public int RoundTurn { get; set; }
     public List<GameObject> Players { get; private set; }
     public List<Round> Rounds { get; set; }

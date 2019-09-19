@@ -20,38 +20,48 @@ public class Deck : MonoBehaviour
     }
     void GenerateDeck(int numberPlayer)
     {
-        //generated all needed card
-        for (int i = 1; i < 11; ++i)
-        {
-            SpawnMultipleCard(i, 1);
-            if (i < 8)
-            {
-                SpawnMultipleCard(i + 10, 4);
-            }
-        }
         
-        SpawnMultipleCard(17, 2);
-        SpawnMultipleCard(18, 3);
-        SpawnMultipleCard(19, 2);
-        SpawnMultipleCard(20, 3);
-        SpawnMultipleCard(21, 2);
+        //generated all needed card
+        for (int i = 0; i < 6; ++i)
+        {
+            SpawnCard(i);
+            
+        }
+        SpawnMultipleCard(6, 2);
+        SpawnCard(7);
+        SpawnCard(8);
+        SpawnMultipleCard(9, 2);
+        SpawnMultipleCard(10, 2);
+        SpawnMultipleCard(11, 2);
+        SpawnMultipleCard(12, 2);
+        SpawnMultipleCard(13, 2);
+        SpawnMultipleCard(14, 2);
+        SpawnMultipleCard(15, 2);
+        SpawnMultipleCard(16, 2);
+        SpawnMultipleCard(17, 3);
+        SpawnMultipleCard(18, 2);
+        SpawnMultipleCard(19, 3);
+        SpawnMultipleCard(20, 2);
+        SpawnMultipleCard(21, 3);
         SpawnMultipleCard(22, 3);
-        SpawnMultipleCard(23, 3);
+        SpawnMultipleCard(23, 1);
         SpawnMultipleCard(24, 1);
         SpawnMultipleCard(25, 1);
-        SpawnMultipleCard(26, 1);
-        SpawnMultipleCard(27, 3);
+        SpawnMultipleCard(26, 3);
+        
 
     }
 
     void SpawnCard(int id)
     {
         
-        GameObject cardObj = Instantiate(CardPrefab) as GameObject; 
+        GameObject cardObj = Instantiate(CardPrefab) as GameObject;
         cardObj.transform.SetParent(transform);
         Card cardScript = cardObj.GetComponent<Card>();
         cardScript.InitThisCard(id);
+        Debug.Log(id);
         cardObj.transform.SetParent(this.transform.parent);
+        
         deck.Add(cardObj);
         
     }
@@ -60,8 +70,7 @@ public class Deck : MonoBehaviour
     {
         for(int i = 0; i < amount; i++)
         {
-            SpawnCard(id);
-            
+            SpawnCard(id);  
         }
     }
 

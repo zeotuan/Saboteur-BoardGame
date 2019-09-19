@@ -42,9 +42,9 @@ public class PlayerController : MonoBehaviour
         MyTurn = false;
     }
 
-    public void Discard(Card c)
+    public void Discard(GameObject card)
     {
-        hand.Remove(c);
+        hand.Remove(card);
         FinishTurn = true;
     }
 
