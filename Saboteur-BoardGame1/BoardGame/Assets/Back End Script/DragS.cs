@@ -25,7 +25,7 @@ public class DragS : MonoBehaviour, IDragHandler
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent);
         
-
+        /*
         placeHolder = new GameObject();
         placeHolder.transform.SetParent(this.transform.parent);
         LayoutElement le = placeHolder.AddComponent<LayoutElement>();
@@ -34,7 +34,7 @@ public class DragS : MonoBehaviour, IDragHandler
         le.flexibleHeight = 0;
         le.flexibleWidth = 0;
         placeHolder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
-
+        */
         GetComponent<CanvasGroup>().blocksRaycasts = false;
     }
 
@@ -42,16 +42,16 @@ public class DragS : MonoBehaviour, IDragHandler
     {
         
         Vector3 ToPos = eventData.position;
-        if(dropzone != null)
+        /*if(dropzone != null)
         {
             float gridsize = dropzone.gridsize;
             TruePos.x = Mathf.Floor(eventData.pointerDrag.transform.position.x / gridsize) * gridsize;
             TruePos.y = Mathf.Floor(eventData.pointerDrag.transform.position.y / gridsize) * gridsize;
             TruePos.z = Mathf.Floor(eventData.pointerDrag.transform.position.z / gridsize) * gridsize;
             ToPos = TruePos;
-        }
+        }*/
         this.transform.position = ToPos;
-        int newSiblingIndex = parentToReturnTo.childCount; 
+        /*int newSiblingIndex = parentToReturnTo.childCount; 
         
         for(int i = 0; i < parentToReturnTo.childCount; i++)
         {
@@ -65,16 +65,16 @@ public class DragS : MonoBehaviour, IDragHandler
                 break;
             }
         }
-        placeHolder.transform.SetSiblingIndex(newSiblingIndex);
+        placeHolder.transform.SetSiblingIndex(newSiblingIndex);*/
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         this.transform.SetParent(parentToReturnTo);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        placeHolder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
+        /*placeHolder.transform.SetSiblingIndex(this.transform.GetSiblingIndex());
         Destroy(placeHolder);
-
+        */
         //EventSystem.current.RaycastAll(eventData, )
     }
 
