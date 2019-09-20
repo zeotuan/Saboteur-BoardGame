@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
         if (MyTurn && FinishTurn)
         {
             FinishTurn = false;
-            GameManager.Instance.currentRound.SwitchTurn();
+            GameManager.Instance.currentRound.GetComponent<Round>().SwitchTurn();
         }
     }
 

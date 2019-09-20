@@ -7,7 +7,7 @@ public class Round : MonoBehaviour
     bool RoundStarted;
     public GameObject deck;
     public GameObject deckPrefab;
-    public int Turn { get; set; }
+    public int Turn;
     public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
     bool ThisRoundTurn = false;
     bool roundEnd = false;
@@ -17,6 +17,7 @@ public class Round : MonoBehaviour
         deck = Instantiate(deckPrefab) as GameObject;
         if (!RoundStarted)
         {
+            Turn = 0;
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
     }
@@ -30,6 +31,7 @@ public class Round : MonoBehaviour
     public void StartRound()
     {
         ThisRoundTurn = true;
+        Turn = 0;
     }
 
     
@@ -44,8 +46,15 @@ public class Round : MonoBehaviour
             EndRound();
             return;
         }
-        Turn = Mathf.Abs(Turn - 1);
-        currentPlayer.GetComponent<PlayerController>().StartTurn();
+        Turn++;
+        if (Turn < GameManager.Instance.Players.Count)
+        {
+            currentPlayer.GetComponent<PlayerController>().StartTurn();
+        }
+        else
+        {
+            Turn = 0;
+        }
     }
 
     bool checkWinCondition()

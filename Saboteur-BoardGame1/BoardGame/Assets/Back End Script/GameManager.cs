@@ -8,10 +8,11 @@ public class GameManager : Singleton<GameManager>
 {
     //public static GameManager Instance { get; private set; }
     public GameObject PlayerPrefab;
-    public int RoundTurn { get; set; }
-    public List<GameObject> Players { get; private set; }
-    public List<Round> Rounds { get; set; }
-    public Round currentRound { get { return Rounds[RoundTurn]; } }
+    public GameObject RoundPrefab;
+    public int RoundTurn;
+    public List<GameObject> Players;
+    public List<GameObject> Rounds;
+    public GameObject currentRound { get { return Rounds[RoundTurn]; } }
 
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
@@ -24,15 +25,11 @@ public class GameManager : Singleton<GameManager>
         
         for(int i = 0; i < 6; i++)// innitate 7 player
         {
-            GameObject player = Instantiate(PlayerPrefab) as GameObject;
-            PlayerController playerDetail = player.GetComponent<PlayerController>();
-            player.transform.SetParent(transform);
-            Players.Add(player);
+            createPlayer();
         }
         for(int i =0; i < 4; i++)// initiate 5 round 
         {
-            //Round round = new Round();
-            //Rounds.Add(round);
+            createRound();
         }
         gameStarted = false;
     }
@@ -40,7 +37,8 @@ public class GameManager : Singleton<GameManager>
     {
         if (!gameStarted)
         {
-            currentRound.StartRound();
+            RoundTurn = 0;
+            currentRound.GetComponent<Round>().StartRound();
         }
     }
     void Update()
@@ -57,9 +55,16 @@ public class GameManager : Singleton<GameManager>
     public void SwitchRound()
     {
         gameStarted = true;
-        currentRound.EndRound();
-        RoundTurn = Mathf.Abs(RoundTurn - 1);
-        currentRound.StartRound();
+        currentRound.GetComponent<Round>().EndRound();
+        RoundTurn++;
+        if (RoundTurn < Rounds.Count)
+        {
+            currentRound.GetComponent<Round>().StartRound();
+        }
+        else
+        {
+            Debug.Log("Last round ended");
+        }
     }
     
     
@@ -67,6 +72,21 @@ public class GameManager : Singleton<GameManager>
     bool checkWinCondition()
     {
         return false;
+    }
+
+    public void createRound()
+    {
+        GameObject round = Instantiate(RoundPrefab) as GameObject;
+        round.transform.SetParent(transform);
+        Rounds.Add(round);
+    }
+
+    public void createPlayer()
+    {
+        GameObject player = Instantiate(PlayerPrefab) as GameObject;
+        PlayerController playerDetail = player.GetComponent<PlayerController>();
+        player.transform.SetParent(transform);
+        Players.Add(player);
     }
    
 

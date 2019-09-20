@@ -7,7 +7,6 @@ public class Deck : MonoBehaviour
 {
     public GameObject CardPrefab;
     public List<GameObject> deck;
-    public List<GameObject> containter;
 
     private void Awake()
     {
@@ -77,10 +76,10 @@ public class Deck : MonoBehaviour
     {
         for(int i =0; i < deck.Count; i++)
         {
-            containter[0] = deck[i];
+            var container = deck[i];
             int randomIndex = Random.Range(i, deck.Count);
             deck[i] = deck[randomIndex];
-            deck[randomIndex] = containter[0];
+            deck[randomIndex] = container;
         }
     }
 
