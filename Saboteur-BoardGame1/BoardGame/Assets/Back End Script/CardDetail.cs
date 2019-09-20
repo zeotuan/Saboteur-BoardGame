@@ -18,7 +18,9 @@ public class CardDetail
 
     public virtual bool checkValid()
     {
+
         return false;
+
     }
 
 
