@@ -9,11 +9,11 @@ public class GameManager : Singleton<GameManager>
     //public static GameManager Instance { get; private set; }
     public GameObject PlayerPrefab;
     public GameObject RoundPrefab;
-    public int RoundTurn;
     public List<GameObject> Players;
-    public List<GameObject> Rounds;
-    public GameObject currentRound { get { return Rounds[RoundTurn]; } }
-
+    public List<GameObject> PassedRounds;
+    public GameObject currentRound;
+    public GameObject deck;
+    public GameObject deckPrefab;
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
     
@@ -27,17 +27,16 @@ public class GameManager : Singleton<GameManager>
         {
             createPlayer();
         }
-        for(int i =0; i < 4; i++)// initiate 5 round 
-        {
             createRound();
-        }
+        
         gameStarted = false;
     }
     void Start()
     {
+        deck = Instantiate(deckPrefab) as GameObject;
         if (!gameStarted)
         {
-            RoundTurn = 0;
+            
             currentRound.GetComponent<Round>().StartRound();
         }
     }
@@ -56,15 +55,8 @@ public class GameManager : Singleton<GameManager>
     {
         gameStarted = true;
         currentRound.GetComponent<Round>().EndRound();
-        RoundTurn++;
-        if (RoundTurn < Rounds.Count)
-        {
-            currentRound.GetComponent<Round>().StartRound();
-        }
-        else
-        {
-            Debug.Log("Last round ended");
-        }
+        PassedRounds.Add(currentRound);
+        currentRound = createRound();
     }
     
     
@@ -74,11 +66,12 @@ public class GameManager : Singleton<GameManager>
         return false;
     }
 
-    public void createRound()
+    public GameObject createRound()
     {
         GameObject round = Instantiate(RoundPrefab) as GameObject;
         round.transform.SetParent(transform);
-        Rounds.Add(round);
+        return round;
+
     }
 
     public void createPlayer()

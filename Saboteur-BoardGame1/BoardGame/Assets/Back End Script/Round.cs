@@ -5,8 +5,6 @@ using UnityEngine;
 public class Round : MonoBehaviour
 {
     bool RoundStarted;
-    public GameObject deck;
-    public GameObject deckPrefab;
     public int Turn;
     public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
     bool ThisRoundTurn = false;
@@ -14,7 +12,7 @@ public class Round : MonoBehaviour
    
     void Start()
     {
-        deck = Instantiate(deckPrefab) as GameObject;
+        
         if (!RoundStarted)
         {
             Turn = 0;
@@ -38,7 +36,7 @@ public class Round : MonoBehaviour
     public void SwitchTurn()
     {
         RoundStarted = true;
-        deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
+        GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
         currentPlayer.GetComponent<PlayerController>().EndTurn();
         if (checkWinCondition())
         {

@@ -38,7 +38,7 @@ public class DropZoneS : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
            */
             d.parentToReturnTo = this.transform;
             eventData.pointerDrag.GetComponent<MoveMenu>().enabled = true;
-            if (board.GetComponent<Board>().checkValid(c, (int)d.TruePos.x, (int)d.TruePos.y))//if move is valid then  
+            /*if (board.GetComponent<Board>().checkValid(c, (int)d.TruePos.x, (int)d.TruePos.y))//if move is valid then  
             {
                 
                 if (c.card is PathCard)// not actually needed anymore since Effect card can no longer be moved 
@@ -46,7 +46,7 @@ public class DropZoneS : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoi
                     //d.transform.position = d.TruePos;// could be c.transform.position
                     c.Interactalbe = false;
                 }
-            }
+            }*/
         }
     }
 

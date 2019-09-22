@@ -45,3 +45,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 565919695034762495, guid: 2053e3417fc3d25488b14bc69bb04534,
     type: 3}
+  RoundPrefab: {fileID: 2214550323978849641, guid: babcf846de7e9d74593f2f2235464e3c,
+    type: 3}
+  Players: []
+  PassedRounds: []
+  currentRound: {fileID: 0}
+  deck: {fileID: 0}
+  deckPrefab: {fileID: 1249939279802799276, guid: a650a409c8bb1fe47abda983cb1a0eb1,
+    type: 3}

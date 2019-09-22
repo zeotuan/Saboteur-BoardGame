@@ -7,7 +7,8 @@ using UnityEngine.EventSystems;
 public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //2 dimensional array for cards on board 
-    private PathCard[,] board;
+    public GameObject GridPrefab;
+    private GameObject[,] board;
     private Vector2 mouseOver;
     private Card SelectedCard;
     private Vector2 StartDrag;
@@ -75,25 +76,24 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
 
     private void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
-        board = new PathCard[maxRow, maxCol];
-        GameObject refTile = (GameObject)Instantiate(Resources.Load("GameTile"));
+        board = new GameObject[maxRow, maxCol];
         for(int r = 0; r < maxRow; r++) { 
             for(int c = 0; c < maxCol; c++)
             {
-                GameObject tile = (GameObject)Instantiate(refTile, transform);
+                GameObject tile = Instantiate(GridPrefab) as GameObject;
                 float posX = c * tileSize;
                 float posY = r * tileSize;
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
+                board[r, c] = tile;
             }
         }
-        Destroy(refTile);
         float gridH = maxCol * tileSize;
         float gridW = maxRow * tileSize;
         transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
 
     }
 
-    public bool checkValid(Card c, int x, int y)
+    /*public bool checkValid(Card c, int x, int y)
     {
         if (c.card is PathCard) { 
             return ((PathCard)c.card).checkValid(board, x, y);
@@ -103,7 +103,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
          
         }
         return false;
-    }
+    }*/
 
     public PlayerController chooseTarget(PlayerController target)
     {
