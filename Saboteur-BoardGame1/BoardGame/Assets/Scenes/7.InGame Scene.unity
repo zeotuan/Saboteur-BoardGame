@@ -3887,6 +3887,7 @@ GameObject:
   - component: {fileID: 720453952}
   - component: {fileID: 720453955}
   - component: {fileID: 720453954}
+  - component: {fileID: 720453956}
   m_Layer: 5
   m_Name: Map
   m_TagString: Untagged
@@ -4034,6 +4035,19 @@ MonoBehaviour:
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 5
+--- !u!114 &720453956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720453950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d60617cd590cae42b90751d853556ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileSize: 1
 --- !u!224 &734683999 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5947524457029965522, guid: 84627501764191d40a9860a8b129cc4c,
