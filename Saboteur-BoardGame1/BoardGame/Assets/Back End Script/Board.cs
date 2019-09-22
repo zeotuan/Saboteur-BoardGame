@@ -8,6 +8,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
 {
     //2 dimensional array for cards on board 
     public GameObject GridPrefab;
+    [SerializeField]
     private GameObject[,] board;
     private Vector2 mouseOver;
     private Card SelectedCard;
@@ -84,6 +85,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 float posX = c * tileSize;
                 float posY = r * tileSize;
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
+                tile.transform.SetParent(transform);
                 board[r, c] = tile;
             }
         }
