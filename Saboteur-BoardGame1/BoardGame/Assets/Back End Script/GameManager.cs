@@ -26,9 +26,7 @@ public class GameManager : Singleton<GameManager>
         for(int i = 0; i < 6; i++)// innitate 7 player
         {
             createPlayer();
-        }
-            createRound();
-        
+        }       
         gameStarted = false;
     }
     void Start()
@@ -36,7 +34,7 @@ public class GameManager : Singleton<GameManager>
         deck = Instantiate(deckPrefab) as GameObject;
         if (!gameStarted)
         {
-            
+            currentRound = createRound();   
             currentRound.GetComponent<Round>().StartRound();
         }
     }
