@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-   
+    Transform cardHolder;
     public string playerName;
     public List<GameObject> hand;//list of card 
     //StateMachine StateMachine = new StateMachine();
@@ -24,11 +24,18 @@ public class PlayerController : MonoBehaviour
     
     public void Update()
     {   
+
+
         //StateMachine.Update();
-        if (MyTurn && FinishTurn)
+        if (MyTurn )
         {
-            FinishTurn = false;
-            GameManager.Instance.currentRound.GetComponent<Round>().SwitchTurn();
+
+            if (FinishTurn)
+            {
+                FinishTurn = false;
+                GameManager.Instance.currentRound.GetComponent<Round>().SwitchTurn();
+            }
+            
         }
     }
 
@@ -46,6 +53,18 @@ public class PlayerController : MonoBehaviour
     {
         hand.Remove(card);
         FinishTurn = true;
+    }
+
+    public void RenderCard()
+    {
+        if (MyTurn)
+        {
+            foreach(GameObject card in hand)
+            {
+                card.transform.SetParent(cardHolder);
+
+            }
+        }
     }
 
 
