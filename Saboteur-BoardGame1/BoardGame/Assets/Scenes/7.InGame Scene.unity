@@ -6299,6 +6299,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1400519446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1400519448}
+  - component: {fileID: 1400519447}
+  m_Layer: 0
+  m_Name: Board
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1400519447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400519446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d60617cd590cae42b90751d853556ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GridPrefab: {fileID: 5947524457029965521, guid: 84627501764191d40a9860a8b129cc4c,
+    type: 3}
+  tileSize: 1
+--- !u!4 &1400519448
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400519446}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: 4, z: 505.26938}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1409516325
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7892,9 +7938,12 @@ MonoBehaviour:
     type: 3}
   RoundPrefab: {fileID: 2214550323978849641, guid: babcf846de7e9d74593f2f2235464e3c,
     type: 3}
-  RoundTurn: 0
   Players: []
-  Rounds: []
+  PassedRounds: []
+  currentRound: {fileID: 0}
+  deck: {fileID: 0}
+  deckPrefab: {fileID: 1249939279802799276, guid: a650a409c8bb1fe47abda983cb1a0eb1,
+    type: 3}
 --- !u!4 &1870324317
 Transform:
   m_ObjectHideFlags: 0
