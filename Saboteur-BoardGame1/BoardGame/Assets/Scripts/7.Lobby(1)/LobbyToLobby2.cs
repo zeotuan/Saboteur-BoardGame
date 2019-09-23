@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BeginToLobby : MonoBehaviour
+public class LobbyToLobby2 : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("5.Lobby(1)");
+        SceneManager.LoadScene("8.Lobby(2)");
     }
 }

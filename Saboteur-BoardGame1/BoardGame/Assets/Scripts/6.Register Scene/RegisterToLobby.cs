@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class RegisterToLogin : MonoBehaviour
+public class RegisterToLobby : MonoBehaviour
 {
     public void Scence()
     {
-        SceneManager.LoadScene("3.Login Scene");
+        SceneManager.LoadScene("7.Lobby(1)");
     }
 }

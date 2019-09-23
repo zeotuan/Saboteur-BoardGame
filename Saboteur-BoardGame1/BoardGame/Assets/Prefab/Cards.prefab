@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5609330631753172185}
   - component: {fileID: 6498757942608708331}
   - component: {fileID: -7606566433747751518}
-  - component: {fileID: -1964986786560896293}
+  - component: {fileID: 4941062291293455940}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -145,7 +145,7 @@ MonoBehaviour:
   Right: 0
   center: 0
   used: 0
---- !u!114 &-1964986786560896293
+--- !u!114 &4941062291293455940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

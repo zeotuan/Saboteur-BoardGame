@@ -89,6 +89,7 @@ public class Deck : MonoBehaviour
         if (gameStarted)
         {
             target.hand.Add(deck[UpperCardIndex]);
+            deck[UpperCardIndex].transform.SetParent(target.transform);
             deck.RemoveAt(UpperCardIndex);
         }
         else//start of the round deal 
@@ -96,8 +97,9 @@ public class Deck : MonoBehaviour
             for(int i = UpperCardIndex; i > UpperCardIndex - 5; i--)
             {
                 target.hand.Add(deck[i]);
+                deck[i].transform.SetParent(target.transform);
                 deck.RemoveAt(i);
-                //deck[i].transform.SetParent(target.cardHolder); 
+                 
             }
 
         }

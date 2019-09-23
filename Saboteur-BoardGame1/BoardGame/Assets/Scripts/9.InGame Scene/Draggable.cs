@@ -6,8 +6,14 @@ using UnityEngine.Sprites;
 public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
 {
     public Transform parentToReturnTo = null;
+    GameObject[,] board;
+    public void Awake()
+    {//Get Path object from the Board script's board martix.
+        board = GameObject.Find("Map").GetComponent<Board>().board;
+    }
     public void OnBeginDrag(PointerEventData eventData)
     {
+        
         parentToReturnTo = this.transform.parent;
         this.transform.SetParent(this.transform.parent.parent.parent);
         GetComponent<CanvasGroup>().blocksRaycasts = false;
@@ -21,6 +27,13 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
     public void OnEndDrag(PointerEventData eventData)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+        if (!this.GetComponent<Card>().Interactalbe)
+        {
+            this.transform.SetParent(parentToReturnTo);
+            return;
+        }
+
+        
 
         if (this.transform.parent != this.transform.parent.Find("Map"))
         {
@@ -31,8 +44,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             this.transform.SetParent(parentToReturnTo);
         }
 
-        //Get Path object from the Board script's board martix.
-        GameObject[,] board = this.transform.parent.GetComponent<Board>().board;
+        
         //initiate the variables
         float distance = Vector3.Distance(this.transform.position, board[0, 0].transform.position);
         int cloest_j = 0;
@@ -54,6 +66,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
                 }
             }
         }
+        
+        Debug.Log(checkValid(cloest_j, cloest_i));
         //transform card's data to path
         board[cloest_j, cloest_i].transform.GetComponent<Property>().center = this.transform.GetComponent<Property>().center;
         board[cloest_j, cloest_i].transform.GetComponent<Property>().Down = this.transform.GetComponent<Property>().Down;
@@ -62,8 +76,47 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         board[cloest_j, cloest_i].transform.GetComponent<Property>().Right = this.transform.GetComponent<Property>().Right;
         board[cloest_j, cloest_i].transform.GetComponent<Property>().used = true;
         //transform the card's image to the path
+        
         board[cloest_j, cloest_i].gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<Image>().sprite;
         //Destroy the card object.
+        //need valid checking code here
+        
+        //Confirm card move
+        GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().PlayCard(this.gameObject);
         Destroy(this.gameObject);
+    }
+    public bool checkValid( int x, int y)
+    {
+        PathCard c = (PathCard)this.GetComponent<Card>().card;
+
+        if (board[x, y] == null)//if the position is blank
+        {
+            GameObject left = board[x - 1, y];//left card to this card
+            GameObject below = board[x, y - 1];//below card to this card
+            GameObject right = board[x + 1, y];//right card to this card
+            GameObject above = board[x, y + 1];// above card to this card
+
+            bool valid = true;
+            if (c.right != right.GetComponent<Property>().Left)
+            {
+                valid = false;
+            }
+            else if (c.left != left.GetComponent<Property>().Right)
+            {
+                valid = false;
+            }
+            else if (c.up != above.GetComponent<Property>().Down)
+            {
+                valid = false;
+            }
+            else if (c.down != below.GetComponent<Property>().Up)
+            {
+                valid = false;
+            }
+            return valid;
+        }
+
+        return false;
+
     }
 }
