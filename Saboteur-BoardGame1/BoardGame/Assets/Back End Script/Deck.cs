@@ -97,7 +97,7 @@ public class Deck : MonoBehaviour
             {
                 target.hand.Add(deck[i]);
                 deck.RemoveAt(i);
-                //deck[i].transform.SetParent(target.cardHolder); 
+               
             }
 
         }
