@@ -89,8 +89,12 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 board[r, c] = tile;
             }
         }
+
         //float gridH = maxCol * tileSize;
         //float gridW = maxRow * tileSize;
+
+        
+
         //transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
 
     }

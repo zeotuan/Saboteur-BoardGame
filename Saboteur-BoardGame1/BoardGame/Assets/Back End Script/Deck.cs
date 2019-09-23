@@ -17,6 +17,7 @@ public class Deck : MonoBehaviour
     {
         shuffle();
     }
+
     public void GenerateDeck(int numberPlayer)
     {
         
@@ -86,11 +87,20 @@ public class Deck : MonoBehaviour
     {
         int UpperCardIndex = deck.Count - 1;
         if (gameStarted)
-            deck[UpperCardIndex].GetComponent<Renderer>().enabled = false;
-        else//
-            deck[UpperCardIndex].transform.SetParent(target.transform);// Later on will not target transform of player but a placeHolder object for card(need to be changed) 
+        {
+            target.hand.Add(deck[UpperCardIndex]);
+            deck.RemoveAt(UpperCardIndex);
+        }
+        else//start of the round deal 
+        {
+            for(int i = UpperCardIndex; i > UpperCardIndex - 5; i--)
+            {
+                target.hand.Add(deck[i]);
+                deck.RemoveAt(i);
+                //deck[i].transform.SetParent(target.cardHolder); 
+            }
 
-        target.hand.Add(deck[UpperCardIndex]);
-        deck.RemoveAt(UpperCardIndex);
+        }
+        
     }
 }
