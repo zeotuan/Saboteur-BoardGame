@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    Transform cardHolder;
+    public Transform cardHolder;
     public string playerName;
     public List<GameObject> hand;//list of card 
     //StateMachine StateMachine = new StateMachine();
     public bool PickAxe;
     public bool Lamb;
     public bool Cart;
+    [SerializeField]
     private bool MyTurn;
+    [SerializeField]
     private bool FinishTurn;
     private GameObject deck;
     private int Point;

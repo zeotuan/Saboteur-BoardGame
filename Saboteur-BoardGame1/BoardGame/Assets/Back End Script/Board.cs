@@ -91,7 +91,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         }
         float gridH = maxCol * tileSize;
         float gridW = maxRow * tileSize;
-        transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
+        //transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
 
     }
 
