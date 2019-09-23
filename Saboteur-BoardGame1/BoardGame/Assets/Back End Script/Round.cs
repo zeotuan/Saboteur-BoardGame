@@ -23,7 +23,10 @@ public class Round : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentPlayer.GetComponent<PlayerController>().Played())
+        {
+            SwitchTurn();
+        }   
     }
 
     public void StartRound()
@@ -45,14 +48,11 @@ public class Round : MonoBehaviour
             return;
         }
         Turn++;
-        if (Turn < GameManager.Instance.Players.Count)
+        if (Turn == GameManager.Instance.Players.Count)
         {
-            currentPlayer.GetComponent<PlayerController>().StartTurn();
+            Turn = 0;    
         }
-        else
-        {
-            Turn = 0;
-        }
+        currentPlayer.GetComponent<PlayerController>().StartTurn();
     }
 
     bool checkWinCondition()

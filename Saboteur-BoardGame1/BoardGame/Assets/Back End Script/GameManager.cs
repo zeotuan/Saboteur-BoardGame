@@ -32,6 +32,7 @@ public class GameManager : Singleton<GameManager>
     void Start()
     {
         deck = Instantiate(deckPrefab) as GameObject;
+        deck.transform.SetParent(transform);
         if (!gameStarted)
         {
             currentRound = createRound();   
@@ -53,8 +54,10 @@ public class GameManager : Singleton<GameManager>
     {
         gameStarted = true;
         currentRound.GetComponent<Round>().EndRound();
+        currentRound.GetComponent<Round>().enabled = false;
         PassedRounds.Add(currentRound);
         currentRound = createRound();
+        deck.GetComponent<Deck>().GenerateDeck(10);
     }
     
     

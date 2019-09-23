@@ -17,7 +17,7 @@ public class Deck : MonoBehaviour
     {
         shuffle();
     }
-    void GenerateDeck(int numberPlayer)
+    public void GenerateDeck(int numberPlayer)
     {
         
         //generated all needed card

@@ -29,13 +29,9 @@ public class PlayerController : MonoBehaviour
         //StateMachine.Update();
         if (MyTurn )
         {
-
             if (FinishTurn)
             {
-                FinishTurn = false;
-                GameManager.Instance.currentRound.GetComponent<Round>().SwitchTurn();
             }
-            
         }
     }
 
@@ -65,6 +61,16 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+    }
+
+    public bool Played()
+    {
+        if (FinishTurn)
+        {
+            FinishTurn = false;
+            return true;
+        }
+        return FinishTurn;
     }
 
 
