@@ -1312,6 +1312,8 @@ MonoBehaviour:
   Down: 1
   Left: 0
   Right: 1
+  center: 0
+  used: 0
 --- !u!1 &720453950
 GameObject:
   m_ObjectHideFlags: 0

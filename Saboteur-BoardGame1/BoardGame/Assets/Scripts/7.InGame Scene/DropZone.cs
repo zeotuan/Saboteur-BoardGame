@@ -11,23 +11,21 @@ public class DropZone : MonoBehaviour,IDropHandler,IPointerEnterHandler,IPointer
     }
     public void OnPointerExit(PointerEventData eventData)//检测鼠标离开
     {
-       //Debug.Log("OnPointerExit to " + gameObject.name);
+        //Debug.Log("OnPointerExit to " + gameObject.name);
     }
     public void OnDrop(PointerEventData eventData)
     {
         //Debug.Log(eventData.pointerDrag.name + "was dropped on " + gameObject.name);
-        Draggable d =  eventData.pointerDrag.GetComponent<Draggable>();
+        Draggable d = eventData.pointerDrag.GetComponent<Draggable>();
         Property p = eventData.pointerDrag.GetComponent<Property>();
-        if (d!=null)
+        if (d != null)
         {
-            d.parentToReturnTo = this.transform;
-            
         }
         else
         {
             //eventData.p.Down;
             //this.transform.Find('')
         }
-        
+
     }
 }
