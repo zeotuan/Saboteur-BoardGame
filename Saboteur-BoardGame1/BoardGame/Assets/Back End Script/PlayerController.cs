@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     public Transform cardHolder;
     public string playerName;
+    [SerializeField]
     public List<GameObject> hand;//list of card 
     //StateMachine StateMachine = new StateMachine();
     public bool PickAxe;
@@ -16,11 +17,10 @@ public class PlayerController : MonoBehaviour
     private bool MyTurn;
     [SerializeField]
     private bool FinishTurn;
-    private GameObject deck;
     private int Point;
     void Start()
     {
-        
+        cardHolder = GameObject.Find("Cards").transform;
         //StateMachine.ChangeState()
     }
     
@@ -31,8 +31,17 @@ public class PlayerController : MonoBehaviour
         //StateMachine.Update();
         if (MyTurn )
         {
-            if (FinishTurn)
+            foreach(GameObject card in hand)
             {
+                card.transform.SetParent(cardHolder);
+                
+            }
+        }
+        else
+        {
+            foreach (GameObject card in hand)
+            {
+                card.transform.SetParent(transform);
             }
         }
     }

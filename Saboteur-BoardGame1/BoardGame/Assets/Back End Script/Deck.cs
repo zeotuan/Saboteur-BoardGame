@@ -17,6 +17,7 @@ public class Deck : MonoBehaviour
     {
         shuffle();
     }
+
     public void GenerateDeck(int numberPlayer)
     {
         
@@ -90,9 +91,9 @@ public class Deck : MonoBehaviour
             target.hand.Add(deck[UpperCardIndex]);
             deck.RemoveAt(UpperCardIndex);
         }
-        else
+        else//start of the round deal 
         {
-            for(int i = UpperCardIndex; i >= 0; i--)
+            for(int i = UpperCardIndex; i > UpperCardIndex - 5; i--)
             {
                 target.hand.Add(deck[i]);
                 deck.RemoveAt(i);

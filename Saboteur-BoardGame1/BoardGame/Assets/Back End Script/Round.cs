@@ -18,7 +18,9 @@ public class Round : MonoBehaviour
             Turn = 0;
             foreach(GameObject player in GameManager.Instance.Players)
             {
+
                 GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
+                
             }
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
