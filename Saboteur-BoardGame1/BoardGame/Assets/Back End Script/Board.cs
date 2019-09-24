@@ -156,7 +156,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         grid.Down = setProperty.Down;
         grid.Left = setProperty.Left;
         grid.Right = setProperty.Right;
-        board[2, 0].GetComponent<Image>().sprite = img;
+        board[x, y].GetComponent<Image>().sprite = img;
     }
 }
 
