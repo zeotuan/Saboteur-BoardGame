@@ -159,6 +159,13 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         board[x, y].GetComponent<Image>().sprite = img;
         
     }
+
+    public bool searchBFS()
+    {
+
+        return false;
+    }
+
 }
 
     
