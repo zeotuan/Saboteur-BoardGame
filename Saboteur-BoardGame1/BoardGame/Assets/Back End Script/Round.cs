@@ -33,8 +33,10 @@ public class Round : MonoBehaviour
         TimeLeft -= Time.deltaTime; 
         if(TimeLeft <= 0)
         {
-            SwitchTurn();
-            Debug.Log("out of time ");
+            if(currentPlayer.GetComponent<PlayerController>().hand.Count > 4)
+            {
+                currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[4]);
+            }
         }
         if (currentPlayer.GetComponent<PlayerController>().Played())
         {

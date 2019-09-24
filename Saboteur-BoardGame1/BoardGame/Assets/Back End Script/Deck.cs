@@ -88,6 +88,11 @@ public class Deck : MonoBehaviour
         int UpperCardIndex = deck.Count - 1;
         if (gameStarted)
         {
+            if(deck.Count <= 0)
+            {
+                Debug.Log("out of card");
+                return;
+            }
             target.hand.Add(deck[UpperCardIndex]);
             deck[UpperCardIndex].transform.SetParent(target.transform);
             deck.RemoveAt(UpperCardIndex);

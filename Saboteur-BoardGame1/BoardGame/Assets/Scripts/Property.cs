@@ -11,14 +11,14 @@ public class Property : MonoBehaviour
     public bool center = false;
     public bool used = false;
     public bool visited = false;
-    /*public void rotate()
+    public void rotate()
     {
         Swap(Up, Down);
         Swap(Left, Right);
-        this.gameObject.transform.Find("Image").Rotate(Vector3.forward * -180);
+        this.gameObject.transform.Rotate(Vector3.forward * -180);
      
 
-    }*/
+    }
 
     public void Swap(bool a, bool b)
     {

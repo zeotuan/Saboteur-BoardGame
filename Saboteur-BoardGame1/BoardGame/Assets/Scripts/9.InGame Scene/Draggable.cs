@@ -80,6 +80,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         this.transform.parent.parent.Find("Handle/Buttons/Cancel").gameObject.SetActive(true);
         this.transform.parent.parent.Find("Handle/Buttons/Discard").gameObject.SetActive(false);
 
+        this.transform.parent.parent.Find("Handle/Buttons/Rotate").GetComponent<Dropped_path>().setSelectedPath(board[cloest_j, cloest_i]); 
+        
+
         boardDetail.setGrid(cloest_j, cloest_i, this.gameObject.GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
         //Destroy the card object.
         //need valid checking code here
