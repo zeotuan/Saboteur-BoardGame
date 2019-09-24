@@ -99,20 +99,38 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             GameObject right = board[x + 1, y];//right card to this card
             GameObject above = board[x, y + 1];// above card to this card
 
-            bool valid = true;
-            if (c.right != right.GetComponent<Property>().Left)
+            bool valid = false;
+            //first check if the placed card is connect to any card if  it is then it maybe a valid position 
+            if (c.right && right.GetComponent<Property>().Left && right.GetComponent<Property>().used)
+            {
+                valid = true;
+            }else if (c.left && left.GetComponent<Property>().Right && left.GetComponent<Property>().used)
+            {
+                valid = true;
+            }
+            else if (c.up && above.GetComponent<Property>().Down && above.GetComponent<Property>().used)
+            {
+                valid = true;
+            }
+            else if (c.down && below.GetComponent<Property>().Up && below.GetComponent<Property>().used)
+            {
+                valid = true;
+            }
+
+            //then check if the placed card compatible with any other path
+            if (c.right != right.GetComponent<Property>().Left && right.GetComponent<Property>().used)//
             {
                 valid = false;
             }
-            else if (c.left != left.GetComponent<Property>().Right)
+            else if (c.left != left.GetComponent<Property>().Right && left.GetComponent<Property>().used)
             {
                 valid = false;
             }
-            else if (c.up != above.GetComponent<Property>().Down)
+            else if (c.up != above.GetComponent<Property>().Down && above.GetComponent<Property>().used)
             {
                 valid = false;
             }
-            else if (c.down != below.GetComponent<Property>().Up)
+            else if (c.down != below.GetComponent<Property>().Up && below.GetComponent<Property>().used)
             {
                 valid = false;
             }
