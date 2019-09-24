@@ -16,6 +16,8 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     private Vector2 EndDrag;
     [SerializeField]
     private float tileSize = 1;
+    public GameObject startGrid;
+    public GameObject[] DesGrid;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -78,10 +80,29 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     private void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
         board = new GameObject[maxRow, maxCol];
-        for(int r = 0; r < maxRow; r++) { 
+        shuffleDestination();
+        for (int r = 0; r < maxRow; r++) { 
             for(int c = 0; c < maxCol; c++)
             {
-                GameObject tile = Instantiate(GridPrefab) as GameObject;
+                GameObject tile;
+                if (r==2 && c==0)
+                {
+                    tile = Instantiate(startGrid) as GameObject;
+                }else if (r==0 && c==8)
+                {
+                    tile = Instantiate(DesGrid[0]) as GameObject;
+                }else if (r==2 && c==8)
+                {
+                    tile = Instantiate(DesGrid[1]) as GameObject;
+                } else if (r==4 && c==8)
+                {
+                    tile = Instantiate(DesGrid[2]) as GameObject;
+                }
+                else
+                {
+                    tile = Instantiate(GridPrefab) as GameObject;
+                }
+                
                 float posX = c * tileSize;
                 float posY = r * tileSize;
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
@@ -89,7 +110,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 board[r, c] = tile;
             }
         }
-
+        
         //float gridH = maxCol * tileSize;
         //float gridW = maxRow * tileSize;
 
@@ -111,9 +132,31 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return false;
     }*/
 
+    private void shuffleDestination()
+    {
+        for (int i = 0; i < DesGrid.Length; i++)
+        {
+            var container = DesGrid[i];
+            int randomIndex = Random.Range(i, DesGrid.Length);
+            DesGrid[i] = DesGrid[randomIndex];
+            DesGrid[randomIndex] = container;
+        }
+    }
+     
     public PlayerController chooseTarget(PlayerController target)
     {
         return target;
+    }
+
+    public void setGrid(int x, int y, Sprite img,Property setProperty)
+    {
+        Property grid = board[x, y].GetComponent<Property>();
+        grid.used = true;
+        grid.Up = setProperty.Up;
+        grid.Down = setProperty.Down;
+        grid.Left = setProperty.Left;
+        grid.Right = setProperty.Right;
+        board[2, 0].GetComponent<Image>().sprite = img;
     }
 }
 
