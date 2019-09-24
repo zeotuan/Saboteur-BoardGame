@@ -126,3 +126,5 @@ MonoBehaviour:
   Down: 0
   Left: 0
   Right: 0
+  center: 0
+  used: 0

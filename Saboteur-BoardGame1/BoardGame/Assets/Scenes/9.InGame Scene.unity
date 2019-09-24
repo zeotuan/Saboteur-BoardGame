@@ -1164,6 +1164,12 @@ MonoBehaviour:
   GridPrefab: {fileID: 5947524457029965521, guid: 84627501764191d40a9860a8b129cc4c,
     type: 3}
   tileSize: 1
+  startGrid: {fileID: 5789745792347235758, guid: 6edf1fdfe86144c41ae20f3a308baad4,
+    type: 3}
+  DesGrid:
+  - {fileID: 8447856599965173738, guid: 3b9001039618ace42961782e91ec4770, type: 3}
+  - {fileID: 4731209532549389020, guid: 6de8d69206ca6b549bcbff3e9abf3418, type: 3}
+  - {fileID: 410335968587384005, guid: e7cb5ac566805df409dbfa04fa7fa745, type: 3}
 --- !u!1 &1088618708
 GameObject:
   m_ObjectHideFlags: 0

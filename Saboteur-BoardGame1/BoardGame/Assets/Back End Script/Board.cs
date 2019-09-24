@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
 public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //2 dimensional array for cards on board 
