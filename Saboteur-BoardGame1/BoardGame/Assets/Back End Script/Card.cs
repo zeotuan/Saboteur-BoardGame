@@ -20,13 +20,23 @@ public class Card : MonoBehaviour
         if (card != null)
         {
             if (card is PathCard)
+            {
                 Interactalbe = true;
+                this.GetComponent<Property>().Up = ((PathCard)card).up;
+                this.GetComponent<Property>().Down = ((PathCard)card).down;
+                this.GetComponent<Property>().Left = ((PathCard)card).left;
+                this.GetComponent<Property>().Right = ((PathCard)card).right;
+                this.GetComponent<Property>().center = ((PathCard)card).middle;
+
+            }
+                
             rotation = 0;
         }
         else
         {
             Debug.Log("could not load card from database");
         }
+        
     }
 
     private void start()
