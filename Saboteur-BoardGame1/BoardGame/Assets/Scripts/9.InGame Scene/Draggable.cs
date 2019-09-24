@@ -6,10 +6,12 @@ using UnityEngine.Sprites;
 public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragHandler
 {
     public Transform parentToReturnTo = null;
+    Board boardDetail;
     GameObject[,] board;
     public void Awake()
     {//Get Path object from the Board script's board martix.
-        board = GameObject.Find("Map").GetComponent<Board>().board;
+        boardDetail = GameObject.Find("Map").GetComponent<Board>();
+        board = boardDetail.board;
     }
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -69,7 +71,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         
         Debug.Log(checkValid(cloest_j, cloest_i));
         //transform card's data to path
-        board[cloest_j, cloest_i].transform.GetComponent<Property>().center = this.transform.GetComponent<Property>().center;
+        boardDetail.setGrid(cloest_j, cloest_i, this.gameObject.GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
+        /*board[cloest_j, cloest_i].transform.GetComponent<Property>().center = this.transform.GetComponent<Property>().center;
         board[cloest_j, cloest_i].transform.GetComponent<Property>().Down = this.transform.GetComponent<Property>().Down;
         board[cloest_j, cloest_i].transform.GetComponent<Property>().Up = this.transform.GetComponent<Property>().Up;
         board[cloest_j, cloest_i].transform.GetComponent<Property>().Left = this.transform.GetComponent<Property>().Left;
@@ -77,7 +80,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         board[cloest_j, cloest_i].transform.GetComponent<Property>().used = true;
         //transform the card's image to the path
         
-        board[cloest_j, cloest_i].gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<Image>().sprite;
+        board[cloest_j, cloest_i].gameObject.GetComponent<Image>().sprite = this.gameObject.GetComponent<Image>().sprite;*/
         //Destroy the card object.
         //need valid checking code here
         
