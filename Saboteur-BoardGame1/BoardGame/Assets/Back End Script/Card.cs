@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     public Vector3 oldScale;
     public int rotation;
     bool cardBack = true;
+    bool Selected = false;
     public bool Interactalbe = false;// should actually be draggable
     public void InitThisCard(int id)
     {
@@ -68,7 +69,19 @@ public class Card : MonoBehaviour
         card.checkValid();
     }
 
-    
+    public void OnClick()
+    {
+        if(Selected)
+        {
+            Selected = false;
+        }
+        else
+        {
+            Selected = true; 
+        }
+        this.transform.parent.parent.Find("Buttons/Discard").GetComponent<Selected_Card>().setSelectedCard(this.gameObject);
+        this.transform.parent.parent.Find("Buttons/Discard").gameObject.SetActive(true);
+    }
 
 
 
