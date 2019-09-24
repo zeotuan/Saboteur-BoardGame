@@ -31,29 +31,31 @@ public class PlayerController : MonoBehaviour
         //StateMachine.Update();
         if (MyTurn )
         {
-            foreach(GameObject card in hand)
-            {
-                card.transform.SetParent(cardHolder);
-                
-            }
+            //
         }
         else
         {
-            foreach (GameObject card in hand)
-            {
-                card.transform.SetParent(transform);
-            }
+            //
         }
     }
 
     public void StartTurn()
     {
         MyTurn = true;
+        foreach (GameObject card in hand)
+        {
+            card.transform.SetParent(cardHolder);
+
+        }
     }
 
     public void EndTurn()
     {
         MyTurn = false;
+        foreach (GameObject card in hand)
+        {
+            card.transform.SetParent(transform);
+        }
     }
 
     public void Discard(GameObject card)
@@ -72,6 +74,12 @@ public class PlayerController : MonoBehaviour
 
             }
         }
+    }
+
+    public void PlayCard(GameObject card)
+    {
+        FinishTurn = true;
+        hand.Remove(card);
     }
 
     public bool Played()

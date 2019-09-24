@@ -9,21 +9,27 @@ EditorBuildSettings:
     path: Assets/Scenes/1.Splash Scene.unity
     guid: d1d64f7386ea08640a230a39146941da
   - enabled: 1
-    path: Assets/Scenes/2.Begin Scene.unity
+    path: Assets/Scenes/2.Menu Scene.unity
+    guid: b0bac81996ad60246bb296dfa1a91bd2
+  - enabled: 1
+    path: Assets/Scenes/3.PlayMenu Scene.unity
+    guid: 1dd2b8006464ec3418bba715014b4bd0
+  - enabled: 1
+    path: Assets/Scenes/4.Begin Scene.unity
     guid: ce8a8714ee6c9e845b2a0c262515b92d
   - enabled: 1
-    path: Assets/Scenes/3.Login Scene.unity
+    path: Assets/Scenes/5.Login Scene.unity
     guid: 67e5d6d9a6d9a654089e30ec95a2b559
   - enabled: 1
-    path: Assets/Scenes/4.Register Scene.unity
+    path: Assets/Scenes/6.Register Scene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
-    path: Assets/Scenes/5.Lobby(1).unity
+    path: Assets/Scenes/7.Lobby(1).unity
     guid: 9dc08bba72536ee4891014e1c76e0d33
   - enabled: 1
-    path: Assets/Scenes/6.Lobby(2).unity
+    path: Assets/Scenes/8.Lobby(2).unity
     guid: e1389633f5f9a174ea7c51ae44f87aa3
   - enabled: 1
-    path: Assets/Scenes/7.InGame Scene.unity
+    path: Assets/Scenes/9.InGame Scene.unity
     guid: fd21db6ece5232946ad183015f5ee2db
   m_configObjects: {}

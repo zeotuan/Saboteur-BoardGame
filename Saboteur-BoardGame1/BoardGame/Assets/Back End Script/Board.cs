@@ -9,7 +9,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     //2 dimensional array for cards on board 
     public GameObject GridPrefab;
     [SerializeField]
-    private GameObject[,] board;
+    public GameObject[,] board;
     private Vector2 mouseOver;
     private Card SelectedCard;
     private Vector2 StartDrag;
@@ -89,8 +89,12 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 board[r, c] = tile;
             }
         }
-        float gridH = maxCol * tileSize;
-        float gridW = maxRow * tileSize;
+
+        //float gridH = maxCol * tileSize;
+        //float gridW = maxRow * tileSize;
+
+        
+
         //transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
 
     }

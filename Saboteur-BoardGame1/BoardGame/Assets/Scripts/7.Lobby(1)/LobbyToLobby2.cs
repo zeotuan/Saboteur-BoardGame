@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Splash_Panel : MonoBehaviour
+public class LobbyToLobby2 : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("2.Menu Scene");
+        SceneManager.LoadScene("8.Lobby(2)");
     }
 }

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: -4625726089313339259}
   - component: {fileID: 5609330631753172185}
   - component: {fileID: 6498757942608708331}
-  - component: {fileID: -1964986786560896293}
+  - component: {fileID: -7606566433747751518}
+  - component: {fileID: 4941062291293455940}
   m_Layer: 5
   m_Name: Cards
   m_TagString: Untagged
@@ -126,7 +127,25 @@ MonoBehaviour:
   oldScale: {x: 0, y: 0, z: 0}
   rotation: 0
   Interactalbe: 0
---- !u!114 &-1964986786560896293
+--- !u!114 &-7606566433747751518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947524457029965521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00277074ffb2b314381c0db4e2bef311, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Up: 0
+  Down: 0
+  Left: 0
+  Right: 0
+  center: 0
+  used: 0
+--- !u!114 &4941062291293455940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

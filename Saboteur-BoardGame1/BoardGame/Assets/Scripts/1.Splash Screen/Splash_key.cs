@@ -9,7 +9,7 @@ public class Splash_key : MonoBehaviour
     {
         if(Input.anyKey)
         {
-          SceneManager.LoadScene("2.Begin Scene");
+          SceneManager.LoadScene("2.Menu Scene");
         }
     }
     

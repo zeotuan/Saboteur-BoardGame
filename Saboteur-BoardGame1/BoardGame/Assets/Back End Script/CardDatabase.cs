@@ -13,22 +13,22 @@ public class CardDatabase : Singleton<CardDatabase>
     void Awake()
     {
         base.Awake();//list start from 1 to 27
-        cardList.Add(new PathCard(0, 0, 1, 1, 0,cardSprites[0], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 0, 1, 0, cardSprites[1], cardBack[0]));
-        cardList.Add(new PathCard(0, 1, 0, 1, 0, cardSprites[2], cardBack[0]));
-        cardList.Add(new PathCard(0, 0, 1, 0, 1, cardSprites[3], cardBack[0]));
-        cardList.Add(new PathCard(0, 1, 0, 0, 1, cardSprites[4], cardBack[0]));
-        cardList.Add(new PathCard(0, 1, 1, 1, 0, cardSprites[5], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 1, 1, 0, cardSprites[6], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 1, 0, 0, cardSprites[7], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 1, 0, 0, cardSprites[8], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 1, 0, 0, cardSprites[9], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 1, 1, 1, cardSprites[10], cardBack[0]));
-        cardList.Add(new PathCard(0, 0, 1, 1, 1, cardSprites[11], cardBack[0]));
-        cardList.Add(new PathCard(1, 0, 0, 1, 1, cardSprites[12], cardBack[0]));
-        cardList.Add(new PathCard(0, 1, 0, 1, 1, cardSprites[13], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 0, 1, 1, cardSprites[14], cardBack[0]));
-        cardList.Add(new PathCard(1, 1, 1, 1, 1, cardSprites[15], cardBack[0]));
+        cardList.Add(new PathCard(false, false, true, false, true, cardSprites[0], cardBack[0]));
+        cardList.Add(new PathCard(true, false, false, true, false, cardSprites[1], cardBack[0]));
+        cardList.Add(new PathCard(false, true, false, true, false, cardSprites[2], cardBack[0]));
+        cardList.Add(new PathCard(false, false, true, false, true, cardSprites[3], cardBack[0]));
+        cardList.Add(new PathCard(false, true, false, false, true, cardSprites[4], cardBack[0]));
+        cardList.Add(new PathCard(false, true, true, true, false, cardSprites[5], cardBack[0]));
+        cardList.Add(new PathCard(true, true, true, true, false, cardSprites[6], cardBack[0]));
+        cardList.Add(new PathCard(true, false, true, false, false, cardSprites[7], cardBack[0]));
+        cardList.Add(new PathCard(true, true, true, false, false, cardSprites[8], cardBack[0]));
+        cardList.Add(new PathCard(true, false, true, false, false, cardSprites[9], cardBack[0]));
+        cardList.Add(new PathCard(true, false, true, true, true, cardSprites[10], cardBack[0]));
+        cardList.Add(new PathCard(false, false, true, true, true, cardSprites[11], cardBack[0]));
+        cardList.Add(new PathCard(true, false, false, true, true, cardSprites[12], cardBack[0]));
+        cardList.Add(new PathCard(false, true, false, true, true, cardSprites[13], cardBack[0]));
+        cardList.Add(new PathCard(true, true, false, true, true, cardSprites[14], cardBack[0]));
+        cardList.Add(new PathCard(true, true, true, true, true, cardSprites[15], cardBack[0]));
         cardList.Add(new FixCard("Fix Lamb",false,true,false, cardSprites[16], cardBack[0]));
         cardList.Add(new EffectCard("Break Lamb",true,false,true, cardSprites[17], cardBack[0]));
         cardList.Add(new FixCard("Fix Cart",false,false,true, cardSprites[18], cardBack[0]));
