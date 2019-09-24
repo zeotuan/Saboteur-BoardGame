@@ -17,4 +17,9 @@ public class Property : MonoBehaviour
 
         }
     }
+
+    public void Update()
+    {
+       
+    }
 }
