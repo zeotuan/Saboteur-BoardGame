@@ -158,6 +158,13 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         grid.Right = setProperty.Right;
         board[x, y].GetComponent<Image>().sprite = img;
     }
+
+    public bool searchBFS()
+    {
+
+        return false;
+    }
+
 }
 
     

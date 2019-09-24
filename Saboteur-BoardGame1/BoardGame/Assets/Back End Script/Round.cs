@@ -9,7 +9,8 @@ public class Round : MonoBehaviour
     public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
     bool ThisRoundTurn = false;
     bool roundEnd = false;
-   
+    [SerializeField]
+    float TimeLeft = 20;
     void Start()
     {
         
@@ -29,10 +30,17 @@ public class Round : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        TimeLeft -= Time.deltaTime; 
+        if(TimeLeft <= 0)
+        {
+            SwitchTurn();
+            Debug.Log("out of time ");
+        }
         if (currentPlayer.GetComponent<PlayerController>().Played())
         {
             SwitchTurn();
         }   
+
     }
 
     public void StartRound()
@@ -44,6 +52,7 @@ public class Round : MonoBehaviour
     
     public void SwitchTurn()
     {
+        TimeLeft = 20;
         RoundStarted = true;
         GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
         currentPlayer.GetComponent<PlayerController>().EndTurn();
