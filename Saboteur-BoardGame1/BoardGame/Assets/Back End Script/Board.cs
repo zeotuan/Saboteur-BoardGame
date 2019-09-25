@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor;
 public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //2 dimensional array for cards on board 
@@ -103,7 +104,14 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 {
                     tile = Instantiate(GridPrefab) as GameObject;
                 }
-                
+
+                PrefabAssetType prefabType = PrefabUtility.GetPrefabAssetType(tile);
+                if (prefabType.ToString() == "TrueDes")
+                {
+                    xTrueDes = r;
+                    yTrueDes = c;
+                }
+
                 float posX = c * tileSize;
                 float posY = r * tileSize;
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
@@ -179,6 +187,10 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             Property current = queue.Dequeue();
             foreach(Property next in Getreachable(current))
             {
+                if(next.x == xTrueDes && next.y == yTrueDes)
+                {
+                    return true;
+                }
                 if(!visited[next.x, next.y])
                 {
                     queue.Enqueue(next);
