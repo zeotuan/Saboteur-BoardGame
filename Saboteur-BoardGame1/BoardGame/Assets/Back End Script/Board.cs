@@ -18,6 +18,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     private float tileSize = 1;
     public GameObject startGrid;
     public GameObject[] DesGrid;
+    int xTrueDes, yTrueDes;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -108,6 +109,8 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
                 tile.transform.SetParent(transform);
                 board[r, c] = tile;
+                tile.GetComponent<Property>().x = r;
+                tile.GetComponent<Property>().y = c;
             }
         }
         
@@ -159,10 +162,89 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         board[x, y].GetComponent<Image>().sprite = img;
     }
 
-    public bool searchBFS()
+    public bool BreadthFirstSearch(int x, int y)
     {
+        if (x == xTrueDes && y == yTrueDes)
+        {
+            return true;
+        }
+        bool[,] visited = new bool[5, 9];
 
+        Queue<Property> queue = new Queue<Property>();
+        queue.Enqueue(board[x,y].GetComponent<Property>());
+        
+        while(queue.Count > 0)
+        {
+            Property current = queue.Dequeue();
+            foreach(Property next in Getreachable(current))
+            {
+                if(!visited[next.x, next.y])
+                {
+                    queue.Enqueue(next);
+                }
+            }
+        }
         return false;
+    }
+
+    
+
+    public List<Property> Getreachable(Property property)
+    {
+        
+        List<Property> reachableList = new List<Property>();
+        Property up, down, left, right;
+        bool isUp = true, isDown = true, isLeft = true, isRight = true;
+        if (property.x == 0)//no up
+        {
+            isUp = false;
+        }else if(property.x == 4)//no down
+        {
+            isDown = false;
+        }
+
+        if (property.y == 0)//no left
+        {
+            isLeft = false;
+        }else if(property.y == 8)//no right
+        {
+            isRight = false;
+        }
+
+        if (isUp)
+        {
+            up = board[property.x - 1, property.y].GetComponent<Property>();
+            if(up.Down && property.Up && up.center)
+            {
+                reachableList.Add(up);
+            }
+        }
+
+        if (isRight)
+        {
+            right = board[property.x, property.y+1].GetComponent<Property>();
+            if (right.Left && property.Right && right.center)
+            {
+                reachableList.Add(right);
+            }
+        }
+        if (isLeft)
+        {
+            left = board[property.x, property.y-1].GetComponent<Property>();
+            if (left.Right && property.Left && left.center)
+            {
+                reachableList.Add(left);
+            }
+        }
+        if (isDown)
+        {
+            down = board[property.x + 1, property.y].GetComponent<Property>();
+            if (down.Up && property.Down && down.center)
+            {
+                reachableList.Add(down);
+            }
+        }
+        return reachableList;
     }
 
 }

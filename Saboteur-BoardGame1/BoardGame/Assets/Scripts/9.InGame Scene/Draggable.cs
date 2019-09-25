@@ -83,14 +83,22 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
     {
         PathCard c = (PathCard)this.GetComponent<Card>().card;
 
-            if(y == 0 || x == 0)
-            {
-
-            }
-            GameObject left = board[x - 1, y];//left card to this card
-            GameObject below = board[x, y + 1];//below card to this card
-            GameObject right = board[x + 1, y];//right card to this card
-            GameObject above = board[x, y - 1];// above card to this card
+        GameObject left;
+        GameObject below;
+        GameObject right;
+        GameObject above;
+        if (x == 0)
+        {
+            left = null;        
+        }
+        if ( y == 0)
+        {
+            
+        }
+            above = board[x - 1, y];//left card to this card
+            right = board[x, y + 1];//below card to this card
+            below = board[x + 1, y];//right card to this card
+            left = board[x, y - 1];// above card to this card
             Debug.Log("c right:" + c.right + " left:" + c.left + " above:" + c.up + " down:" + c.down);
             bool valid = false;
             //first check if the placed card is connect to any card if  it is then it maybe a valid position 
