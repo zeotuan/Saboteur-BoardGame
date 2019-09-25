@@ -160,6 +160,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         grid.Left = setProperty.Left;
         grid.Right = setProperty.Right;
         board[x, y].GetComponent<Image>().sprite = img;
+        
     }
 
     public bool BreadthFirstSearch(int x, int y)

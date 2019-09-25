@@ -12,16 +12,22 @@ public class Property : MonoBehaviour
     public bool used = false;
     public int x;
     public int y;
+
     public void rotate()
-    {
-        if(Up == false)
-        {
 
-        }
+    {
+        Swap(Up, Down);
+        Swap(Left, Right);
+        this.gameObject.transform.Find("Image").Rotate(Vector3.forward * -180);
+     
+
     }
 
-    public void Update()
+    public void Swap(bool a, bool b)
     {
-       
+        a = a ^ b;
+        b = b ^ a;
+        a = a ^ b;
     }
+
 }
