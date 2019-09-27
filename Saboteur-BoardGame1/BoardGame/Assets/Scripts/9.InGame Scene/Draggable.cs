@@ -69,7 +69,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             }
         }
 
-        //Debug.Log(checkValid(cloest_j, cloest_i));
+        Debug.Log(checkValid(cloest_j, cloest_i));
         //transform card's data to path
         //Debug.Log(board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true));
         //board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true);
@@ -111,9 +111,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             up = board[x - 1, y].GetComponent<Property>();
             if (up.Down && c.up)
             {
-                valid = true;    
+                valid = true;    Debug.Log(1);
             }
-            if(up.Down != c.up)
+            if(up.Down != c.up && up.used)
             {
                 return false;
             }
@@ -124,9 +124,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             right = board[x, y + 1].GetComponent<Property>();
             if (right.Left && c.right)
             {
-                valid = true;
+                valid = true; Debug.Log(2);
             }
-            if(right.Left != c.right)
+            if(right.Left != c.right && right.used)
             {
                 return false;
             }
@@ -136,9 +136,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             left = board[x, y - 1].GetComponent<Property>();
             if (left.Right && c.left)
             {
-                valid = true;
+                valid = true; Debug.Log(3);
             }
-            if(left.Right != c.left)
+            if(left.Right != c.left && left.used)
             {
                 return false;
             }
@@ -148,9 +148,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             down = board[x + 1, y].GetComponent<Property>();
             if (down.Up && c.down)
             {
-                valid = true;
+                valid = true; Debug.Log(4);
             }
-            if(down.Up != c.down)
+            if(down.Up != c.down && down.used)
             {
                 return false;
             }

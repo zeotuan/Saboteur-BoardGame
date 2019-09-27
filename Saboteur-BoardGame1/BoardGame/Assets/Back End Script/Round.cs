@@ -14,8 +14,8 @@ public class Round : MonoBehaviour
     string[] roles;
     void Start()
     {
-        shufflePlayer();
-        shuffleRole();
+        //shufflePlayer();
+        //shuffleRole();
         
         /*GameManager.Instance.shuffle(roles);
         GameManager.Instance.shuffle(GameManager.Instance.Players);*/
@@ -27,7 +27,7 @@ public class Round : MonoBehaviour
             foreach(GameObject player in GameManager.Instance.Players)
             {
                 GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
-                player.GetComponent<PlayerController>().setRole(roles[count]);
+                //player.GetComponent<PlayerController>().setRole(roles[count]);
 
             }
             count++;
