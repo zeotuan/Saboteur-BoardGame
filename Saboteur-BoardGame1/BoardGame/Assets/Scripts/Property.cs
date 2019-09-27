@@ -11,7 +11,11 @@ public class Property : MonoBehaviour
     public bool center = false;
     public bool used = false;
     public bool visited = false;
+    public int x;
+    public int y;
+
     public void rotate()
+
     {
         Swap(Up, Down);
         Swap(Left, Right);

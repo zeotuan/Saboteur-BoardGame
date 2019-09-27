@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 [System.Serializable]
@@ -78,11 +79,27 @@ public class GameManager : Singleton<GameManager>
     public void createPlayer()
     {
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
-        PlayerController playerDetail = player.GetComponent<PlayerController>();
         player.transform.SetParent(transform);
         Players.Add(player);
     }
-   
 
-    
+    //generic function to create GameObject and add Parent to it 
+    public GameObject createGameObject(GameObject Prefab, Transform Parent)
+    {
+        GameObject obj = Instantiate(Prefab) as GameObject;
+        obj.transform.SetParent(Parent);
+        return obj;
+    }
+
+    public void shuffle(object list)
+    {
+        int count = ((IList)list).Count;
+        for (int i = 0; i < count; i++)
+        {
+            var container = ((IList)list)[i];
+            int randomIndex = UnityEngine.Random.Range(i, count);
+            ((IList)list)[i] = ((IList)list)[randomIndex];
+            ((IList)list)[randomIndex] = container;
+        }
+    }
 }

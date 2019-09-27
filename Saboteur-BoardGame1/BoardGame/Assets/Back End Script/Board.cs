@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEditor;
 public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
 {
     //2 dimensional array for cards on board 
@@ -18,6 +19,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     private float tileSize = 1;
     public GameObject startGrid;
     public GameObject[] DesGrid;
+    int xTrueDes, yTrueDes;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
@@ -81,6 +83,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     {
         board = new GameObject[maxRow, maxCol];
         shuffleDestination();
+        //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++) { 
             for(int c = 0; c < maxCol; c++)
             {
@@ -102,12 +105,21 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 {
                     tile = Instantiate(GridPrefab) as GameObject;
                 }
-                
+
+                PrefabAssetType prefabType = PrefabUtility.GetPrefabAssetType(tile);
+                if (prefabType.ToString() == "TrueDes")
+                {
+                    xTrueDes = r;
+                    yTrueDes = c;
+                }
+
                 float posX = c * tileSize;
                 float posY = r * tileSize;
                 tile.transform.position = new Vector3(posX, posY, transform.position.z);
                 tile.transform.SetParent(transform);
                 board[r, c] = tile;
+                tile.GetComponent<Property>().x = r;
+                tile.GetComponent<Property>().y = c;
             }
         }
         
@@ -160,10 +172,75 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         
     }
 
-    public bool searchBFS()
+    public bool BreadthFirstSearch(int x, int y)
     {
+        if (x == xTrueDes && y == yTrueDes)
+        {
+            return true;
+        }
+        bool[,] visited = new bool[5, 9];
 
+        Queue<Property> queue = new Queue<Property>();
+        queue.Enqueue(board[x,y].GetComponent<Property>());
+        
+        while(queue.Count > 0)
+        {
+            Property current = queue.Dequeue();
+            foreach(Property next in Getreachable(current))
+            {
+                if(next.x == xTrueDes && next.y == yTrueDes)
+                {
+                    return true;
+                }
+                if(!visited[next.x, next.y])
+                {
+                    queue.Enqueue(next);
+                }
+            }
+        }
         return false;
+    }
+
+    
+
+    public List<Property> Getreachable(Property property)
+    {
+        List<Property> reachableList = new List<Property>();
+        Property up, down, left, right;
+        if (property.x != 0)
+        {
+            up = board[property.x - 1, property.y].GetComponent<Property>();
+            if(up.Down && property.Up && up.center)
+            {
+                reachableList.Add(up);
+            }
+        }
+
+        if (property.y != 8)
+        {
+            right = board[property.x, property.y+1].GetComponent<Property>();
+            if (right.Left && property.Right && right.center)
+            {
+                reachableList.Add(right);
+            }
+        }
+        if (property.y != 0)
+        {
+            left = board[property.x, property.y-1].GetComponent<Property>();
+            if (left.Right && property.Left && left.center)
+            {
+                reachableList.Add(left);
+            }
+        }
+        if (property.x!=4)
+        {
+            down = board[property.x + 1, property.y].GetComponent<Property>();
+            if (down.Up && property.Down && down.center)
+            {
+                reachableList.Add(down);
+            }
+        }
+        return reachableList;
     }
 
 }
