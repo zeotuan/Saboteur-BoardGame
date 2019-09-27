@@ -16,6 +16,7 @@ public class Deck : MonoBehaviour
     void Start()
     {
         shuffle();
+        //GameManager.Instance.shuffle(deck);
     }
 
     public void GenerateDeck(int numberPlayer)

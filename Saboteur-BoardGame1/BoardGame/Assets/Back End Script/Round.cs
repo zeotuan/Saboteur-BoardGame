@@ -11,18 +11,26 @@ public class Round : MonoBehaviour
     bool roundEnd = false;
     [SerializeField]
     float TimeLeft = 20;
+    string[] roles;
     void Start()
     {
+        shufflePlayer();
+        shuffleRole();
         
+        /*GameManager.Instance.shuffle(roles);
+        GameManager.Instance.shuffle(GameManager.Instance.Players);*/
         if (!RoundStarted)
         {
             Turn = 0;
+            int count = 0;
+            
             foreach(GameObject player in GameManager.Instance.Players)
             {
-
                 GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
-                
+                player.GetComponent<PlayerController>().setRole(roles[count]);
+
             }
+            count++;
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
     }
@@ -31,6 +39,10 @@ public class Round : MonoBehaviour
     void Update()
     {
         TimeLeft -= Time.deltaTime; 
+        if(TimeLeft > 20)
+        {
+            //PrepareToSwitchTurnPanel.Raise();
+        }
         if(TimeLeft <= 0)
         {
             SwitchTurn();
@@ -52,11 +64,11 @@ public class Round : MonoBehaviour
     
     public void SwitchTurn()
     {
-        TimeLeft = 20;
+        TimeLeft = 30;
         RoundStarted = true;
         GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
         currentPlayer.GetComponent<PlayerController>().EndTurn();
-        if (checkWinCondition())
+        if (checkWinCondition() == 1 || checkWinCondition() == -1)
         {
             roundEnd = true;
             EndRound();
@@ -70,13 +82,50 @@ public class Round : MonoBehaviour
         currentPlayer.GetComponent<PlayerController>().StartTurn();
     }
 
-    bool checkWinCondition()
+    int checkWinCondition()
     {
-        return false;
+        Board board = GameObject.Find("Map").GetComponent<Board>();
+        if(board.BreadthFirstSearch(2, 0))
+        {
+            return 1;
+        }
+        else
+        {
+            if (GameManager.Instance.deck.GetComponent<Deck>().deck.Count == 0)
+            {
+                return -1;
+            }
+                
+        }
+        return 0;
+        
     }
 
     public void EndRound()
     {
         ThisRoundTurn = false;
+    }
+
+    
+    void shufflePlayer()
+    {
+        for (int i = 0; i < GameManager.Instance.Players.Count; i++)
+        {
+            var container = GameManager.Instance.Players[i];
+            int randomIndex = Random.Range(i, GameManager.Instance.Players.Count);
+            GameManager.Instance.Players[i] = GameManager.Instance.Players[randomIndex];
+            GameManager.Instance.Players[randomIndex] = container;
+        }
+    }
+
+    void shuffleRole()
+    {
+        for (int i = 0; i < roles.Length; i++)
+        {
+            var container = roles[i];
+            int randomIndex = Random.Range(i, roles.Length);
+            roles[i] = roles[randomIndex];
+            roles[randomIndex] = container;
+        }
     }
 }

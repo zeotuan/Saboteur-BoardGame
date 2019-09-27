@@ -83,6 +83,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     {
         board = new GameObject[maxRow, maxCol];
         shuffleDestination();
+        //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++) { 
             for(int c = 0; c < maxCol; c++)
             {
@@ -204,27 +205,9 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
 
     public List<Property> Getreachable(Property property)
     {
-        
         List<Property> reachableList = new List<Property>();
         Property up, down, left, right;
-        bool isUp = true, isDown = true, isLeft = true, isRight = true;
-        if (property.x == 0)//no up
-        {
-            isUp = false;
-        }else if(property.x == 4)//no down
-        {
-            isDown = false;
-        }
-
-        if (property.y == 0)//no left
-        {
-            isLeft = false;
-        }else if(property.y == 8)//no right
-        {
-            isRight = false;
-        }
-
-        if (isUp)
+        if (property.x != 0)
         {
             up = board[property.x - 1, property.y].GetComponent<Property>();
             if(up.Down && property.Up && up.center)
@@ -233,7 +216,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             }
         }
 
-        if (isRight)
+        if (property.y != 8)
         {
             right = board[property.x, property.y+1].GetComponent<Property>();
             if (right.Left && property.Right && right.center)
@@ -241,7 +224,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 reachableList.Add(right);
             }
         }
-        if (isLeft)
+        if (property.y != 0)
         {
             left = board[property.x, property.y-1].GetComponent<Property>();
             if (left.Right && property.Left && left.center)
@@ -249,7 +232,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 reachableList.Add(left);
             }
         }
-        if (isDown)
+        if (property.x!=4)
         {
             down = board[property.x + 1, property.y].GetComponent<Property>();
             if (down.Up && property.Down && down.center)

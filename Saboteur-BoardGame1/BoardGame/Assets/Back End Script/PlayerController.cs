@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool FinishTurn;
     private int Point;
+    private string role;
+    private bool IsBot;
     void Start()
     {
         cardHolder = GameObject.Find("Cards").transform;
@@ -29,9 +31,12 @@ public class PlayerController : MonoBehaviour
 
 
         //StateMachine.Update();
-        if (MyTurn )
+        if (MyTurn)
         {
-            //
+            if (IsBot)
+            {
+                BotPlay();
+            }
         }
         else
         {
@@ -64,18 +69,6 @@ public class PlayerController : MonoBehaviour
         FinishTurn = true;
     }
 
-    public void RenderCard()
-    {
-        if (MyTurn)
-        {
-            foreach(GameObject card in hand)
-            {
-                card.transform.SetParent(cardHolder);
-
-            }
-        }
-    }
-
     public void PlayCard(GameObject card)
     {
         FinishTurn = true;
@@ -90,6 +83,16 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return FinishTurn;
+    }
+
+    public void setRole(string role)
+    {
+        this.role = role;
+    }
+
+    public void BotPlay()
+    {
+
     }
 
 

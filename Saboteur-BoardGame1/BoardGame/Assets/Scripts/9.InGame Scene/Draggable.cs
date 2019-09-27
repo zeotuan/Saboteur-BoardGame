@@ -88,65 +88,71 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().PlayCard(this.gameObject);
         Destroy(this.gameObject);
     }
+    public GameObject findNearestGrid()
+    {
+        GameObject nearestGrid = null;
+
+        return nearestGrid;
+    }
+
     public bool checkValid( int x, int y)
     {
         PathCard c = (PathCard)this.GetComponent<Card>().card;
+        Property left;
+        Property up;
+        Property right;
+        Property down;
+        bool valid = false;
+        if (x != 0)
+        {
+            up = board[x - 1, y].GetComponent<Property>();
+            if (up.Down && c.up)
+            {
+                valid = true;    
+            }
+            if(up.Down != c.up)
+            {
+                return false;
+            }
+        }
 
-        GameObject left;
-        GameObject below;
-        GameObject right;
-        GameObject above;
-        if (x == 0)
+        if (y != 8)
         {
-            left = null;        
-        }
-        if ( y == 0)
-        {
-            
-        }
-            above = board[x - 1, y];//left card to this card
-            right = board[x, y + 1];//below card to this card
-            below = board[x + 1, y];//right card to this card
-            left = board[x, y - 1];// above card to this card
-            Debug.Log("c right:" + c.right + " left:" + c.left + " above:" + c.up + " down:" + c.down);
-            bool valid = false;
-            //first check if the placed card is connect to any card if  it is then it maybe a valid position 
-            if (c.right && right.GetComponent<Property>().Left && right.GetComponent<Property>().used)
+            right = board[x, y + 1].GetComponent<Property>();
+            if (right.Left && c.right)
             {
                 valid = true;
-                Debug.Log(1);
-            }else if (c.left && left.GetComponent<Property>().Right && left.GetComponent<Property>().used)
-            {
-                valid = true; Debug.Log(2);
             }
-            else if (c.up && above.GetComponent<Property>().Down && above.GetComponent<Property>().used)
+            if(right.Left != c.right)
             {
-                valid = true; Debug.Log(3);
+                return false;
             }
-            else if (c.down && below.GetComponent<Property>().Up && below.GetComponent<Property>().used)
+        }
+        if (y != 0)
+        {
+            left = board[x, y - 1].GetComponent<Property>();
+            if (left.Right && c.left)
             {
-                valid = true; Debug.Log(4);
+                valid = true;
             }
-
-            //then check if the placed card compatible with any other path
-            if (c.right != right.GetComponent<Property>().Left && right.GetComponent<Property>().used)//
+            if(left.Right != c.left)
             {
-                valid = false; Debug.Log(5);
+                return false;
             }
-            else if (c.left != left.GetComponent<Property>().Right && left.GetComponent<Property>().used)
+        }
+        if (x!=4)
+        {
+            down = board[x + 1, y].GetComponent<Property>();
+            if (down.Up && c.down)
             {
-                valid = false; Debug.Log(6);
+                valid = true;
             }
-            else if (c.up != above.GetComponent<Property>().Down && above.GetComponent<Property>().used)
+            if(down.Up != c.down)
             {
-                valid = false; Debug.Log(7);
+                return false;
             }
-            else if (c.down != below.GetComponent<Property>().Up && below.GetComponent<Property>().used)
-            {
-                valid = false; Debug.Log(8);
-            }
-         
-
+        }
+        //then check if the placed card compatible with any other path
         return valid;
 
     }
