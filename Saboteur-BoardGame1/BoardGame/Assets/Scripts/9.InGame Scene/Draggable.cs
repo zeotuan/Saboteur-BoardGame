@@ -130,7 +130,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             {
                 return false;
             }
+            if(y == 7 && (x == 0 || x == 2 || x == 4)){
+                //do something to check destination
+            }
         }
+        
         if (y != 0)
         {
             left = board[x, y - 1].GetComponent<Property>();

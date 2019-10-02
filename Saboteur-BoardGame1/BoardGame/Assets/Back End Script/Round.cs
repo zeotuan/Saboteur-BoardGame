@@ -14,7 +14,7 @@ public class Round : MonoBehaviour
     string[] roles;
     void Start()
     {
-        //shufflePlayer();
+        shufflePlayer();
         //shuffleRole();
         
         /*GameManager.Instance.shuffle(roles);
@@ -23,12 +23,12 @@ public class Round : MonoBehaviour
         {
             Turn = 0;
             int count = 0;
-            
-            foreach(GameObject player in GameManager.Instance.Players)
-            {
-                GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
-                //player.GetComponent<PlayerController>().setRole(roles[count]);
-
+            for(int i = 0; i < 5; i++){//deal 5 card to each player when starting the round
+                foreach(GameObject player in GameManager.Instance.Players)
+                {
+                    GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
+                    //player.GetComponent<PlayerController>().setRole(roles[count]);
+                }
             }
             count++;
             currentPlayer.GetComponent<PlayerController>().StartTurn();
@@ -43,12 +43,11 @@ public class Round : MonoBehaviour
         {
             //PrepareToSwitchTurnPanel.Raise();
         }
-        if(TimeLeft <= 0)
+        if(TimeLeft <= 0)//out of time without playing anycard
         {
-            if(currentPlayer.GetComponent<PlayerController>().hand.Count > 4)
-            {
-                currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[4]);
-            }
+                int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
+                currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
+            
         }
         if (currentPlayer.GetComponent<PlayerController>().Played())
         {
@@ -87,19 +86,20 @@ public class Round : MonoBehaviour
     int checkWinCondition()
     {
         Board board = GameObject.Find("Map").GetComponent<Board>();
-        if(board.BreadthFirstSearch(2, 0))
+
+        if(board.BreadthFirstSearch(2, 0))// if there is a path from start to goal
         {
-            return 1;
+            return 1;//Goal digger win
         }
-        else
+        else//there is no path from start to goal
         {
-            if (GameManager.Instance.deck.GetComponent<Deck>().deck.Count == 0)
+            if (GameManager.Instance.deck.GetComponent<Deck>().deck.Count == 0)//there no card left 
             {
-                return -1;
+                return -1;//saboteur win
             }
-                
+              
         }
-        return 0;
+        return 0;// no group has won
         
     }
 

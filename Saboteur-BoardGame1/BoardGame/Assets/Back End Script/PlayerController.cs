@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         MyTurn = true;
         foreach (GameObject card in hand)
         {
+            card.active = true;
             card.transform.SetParent(cardHolder);
 
         }
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject card in hand)
         {
             card.transform.SetParent(transform);
+            card.active = false;
         }
     }
 

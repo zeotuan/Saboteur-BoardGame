@@ -16,7 +16,7 @@ public class Deck : MonoBehaviour
     void Start()
     {
         shuffle();
-        //GameManager.Instance.shuffle(deck);
+        //xGameManager.Instance.shuffle(deck);
     }
 
     public void GenerateDeck(int numberPlayer)
@@ -84,31 +84,17 @@ public class Deck : MonoBehaviour
         }
     }
 
-    public void Deal( PlayerController target, bool gameStarted)
+    public void Deal( PlayerController target)
     {
         int UpperCardIndex = deck.Count - 1;
-        if (gameStarted)
+        if(deck.Count <= 0)
         {
-            if(deck.Count <= 0)
-            {
-                Debug.Log("out of card");
-                return;
-            }
-            target.hand.Add(deck[UpperCardIndex]);
-            deck[UpperCardIndex].transform.SetParent(target.transform);
-            deck.RemoveAt(UpperCardIndex);
+            Debug.Log("out of card");
+            return;
         }
-        else//start of the round deal 
-        {
-            for(int i = UpperCardIndex; i > UpperCardIndex - 5; i--)
-            {
-                target.hand.Add(deck[i]);
-                deck[i].transform.SetParent(target.transform);
-                deck.RemoveAt(i);
-
-            }
-
-        }
+        target.hand.Add(deck[UpperCardIndex]);
+        deck[UpperCardIndex].transform.SetParent(target.transform);
+        deck.RemoveAt(UpperCardIndex);
         
     }
 }
