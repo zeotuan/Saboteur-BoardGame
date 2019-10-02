@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class Round : MonoBehaviour
@@ -38,7 +37,8 @@ public class Round : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TimeLeft -= Time.deltaTime; 
+        TimeLeft -= Time.deltaTime;
+        GameObject.Find("Canvas/Time left").GetComponent<Time_Record>().time = TimeLeft;
         if(TimeLeft > 20)
         {
             //PrepareToSwitchTurnPanel.Raise();

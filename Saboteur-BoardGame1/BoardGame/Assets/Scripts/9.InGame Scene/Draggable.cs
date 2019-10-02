@@ -69,27 +69,35 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             }
         }
 
-        Debug.Log(checkValid(cloest_j, cloest_i));
-        //transform card's data to path
-        //Debug.Log(board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true));
-        //board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true);
-        //board[cloest_j, cloest_i].transform.Find("Rotate").gameObject.SetActive(true);
-        //this.transform.parent.Find("Discard").gameObject.SetActive(true);
-        this.transform.parent.parent.Find("Handle/Buttons/Confirm").gameObject.SetActive(true);
-        this.transform.parent.parent.Find("Handle/Buttons/Rotate").gameObject.SetActive(true);
-        this.transform.parent.parent.Find("Handle/Buttons/Cancel").gameObject.SetActive(true);
-        this.transform.parent.parent.Find("Handle/Buttons/Discard").gameObject.SetActive(false);
+        //Debug.Log(checkValid(cloest_j, cloest_i));
+        if (checkValid(cloest_j, cloest_i))
 
-        this.transform.parent.parent.Find("Handle/Buttons/Rotate").GetComponent<Dropped_path>().setSelectedPath(board[cloest_j, cloest_i]); 
-        
+        {         //transform card's data to path
+            //Debug.Log(board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true));
+            //board[cloest_j, cloest_i].transform.Find("Confirm").gameObject.SetActive(true);
+            //board[cloest_j, cloest_i].transform.Find("Rotate").gameObject.SetActive(true);
+            //this.transform.parent.Find("Discard").gameObject.SetActive(true);
+            this.transform.parent.parent.Find("Handle/Buttons/Confirm").gameObject.SetActive(true);
+            this.transform.parent.parent.Find("Handle/Buttons/Rotate").gameObject.SetActive(true);
+            this.transform.parent.parent.Find("Handle/Buttons/Cancel").gameObject.SetActive(true);
+            this.transform.parent.parent.Find("Handle/Buttons/Discard").gameObject.SetActive(false);
 
-        boardDetail.setGrid(cloest_j, cloest_i, this.gameObject.GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-        //Destroy the card object.
-        //need valid checking code here
-        
-        //Confirm card move
-        GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().PlayCard(this.gameObject);
-        Destroy(this.gameObject);
+            this.transform.parent.parent.Find("Handle/Buttons/Rotate").GetComponent<Dropped_path>().setSelectedPath(board[cloest_j, cloest_i]);
+
+
+            boardDetail.setGrid(cloest_j, cloest_i, this.gameObject.GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
+            //Destroy the card object.
+            //need valid checking code here
+
+            //Confirm card move
+            GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().PlayCard(this.gameObject);
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            //Debug.Log(this.transform.parent.name);
+            this.transform.SetParent(parentToReturnTo);
+        }
     }
     public GameObject findNearestGrid()
     {
