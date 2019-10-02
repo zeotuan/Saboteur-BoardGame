@@ -13,7 +13,7 @@ public class CardDatabase : Singleton<CardDatabase>
     void Awake()
     {
         base.Awake();//list start from 1 to 27
-        cardList.Add(new PathCard(false, false, true, false, true, cardSprites[0], cardBack[0]));
+        cardList.Add(new PathCard(false, false, true, true, false, cardSprites[0], cardBack[0]));
         cardList.Add(new PathCard(true, false, false, true, false, cardSprites[1], cardBack[0]));
         cardList.Add(new PathCard(false, true, false, true, false, cardSprites[2], cardBack[0]));
         cardList.Add(new PathCard(false, false, true, false, true, cardSprites[3], cardBack[0]));
@@ -22,7 +22,7 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new PathCard(true, true, true, true, false, cardSprites[6], cardBack[0]));
         cardList.Add(new PathCard(true, false, true, false, false, cardSprites[7], cardBack[0]));
         cardList.Add(new PathCard(true, true, true, false, false, cardSprites[8], cardBack[0]));
-        cardList.Add(new PathCard(true, false, true, false, false, cardSprites[9], cardBack[0]));
+        cardList.Add(new PathCard(true, false, true, false, true, cardSprites[9], cardBack[0]));
         cardList.Add(new PathCard(true, false, true, true, true, cardSprites[10], cardBack[0]));
         cardList.Add(new PathCard(false, false, true, true, true, cardSprites[11], cardBack[0]));
         cardList.Add(new PathCard(true, false, false, true, true, cardSprites[12], cardBack[0]));
