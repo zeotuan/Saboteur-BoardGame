@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private bool FinishTurn;
     private int Point;
+    [SerializeField]
     private string role;
     private bool IsBot;
     void Start()
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
         MyTurn = true;
         foreach (GameObject card in hand)
         {
-            card.active = true;
+            card.SetActive(true);
             card.transform.SetParent(cardHolder);
 
         }
@@ -61,22 +62,18 @@ public class PlayerController : MonoBehaviour
         foreach (GameObject card in hand)
         {
             card.transform.SetParent(transform);
-            card.active = false;
+            card.SetActive(false);
         }
     }
 
     public void Discard(GameObject card)
     {
         hand.Remove(card);
+        Destroy(card);
         FinishTurn = true;
     }
 
-    public void PlayCard(GameObject card)
-    {
-        FinishTurn = true;
-        hand.Remove(card);
-    }
-
+   
     public bool Played()
     {
         if (FinishTurn)

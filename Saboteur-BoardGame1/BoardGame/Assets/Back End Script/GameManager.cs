@@ -24,7 +24,7 @@ public class GameManager : Singleton<GameManager>
     {
         base.Awake();
         
-        for(int i = 0; i < 6; i++)// innitate 7 player
+        for(int i = 0; i < 5; i++)// innitate 7 player
         {
             createPlayer();
         }       
@@ -81,6 +81,7 @@ public class GameManager : Singleton<GameManager>
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
         player.transform.SetParent(transform);
         Players.Add(player);
+        player.GetComponent<PlayerController>().name = "Player " + (Players.Count).ToString() ;
     }
 
     //generic function to create GameObject and add Parent to it 
