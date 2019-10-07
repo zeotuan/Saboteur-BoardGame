@@ -19,6 +19,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     private float tileSize = 1;
     public GameObject startGrid;
     public GameObject[] DesGrid;
+    public List<Property> usedGridproperty;
     int xTrueDes, yTrueDes;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -169,6 +170,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         grid.Left = setProperty.Left;
         grid.Right = setProperty.Right;
         board[x, y].GetComponent<Image>().sprite = img;
+        usedGridproperty.Add(grid);
         
     }
 
@@ -242,6 +244,65 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         }
         return reachableList;
     }
+
+
+    public List<Property> GetPossibleUpPosition(){
+        List<Property> possibleUpList = new List<Property>();
+        foreach(Property prop in usedGridproperty){
+            if(prop.x==0){
+                continue;
+            }
+            Property upGrid = board[prop.x-1,prop.y].GetComponent<Property>();
+            if(prop.Up && !upGrid.used){//there a way up and up is not used
+                possibleUpList.Add(upGrid);
+            }
+        }
+        return possibleUpList;
+    }
+
+    public List<Property> GetPossibleDownPosition( ){
+        List<Property> possibleDownList = new List<Property>();
+        foreach(Property prop in usedGridproperty){
+            if(prop.x == 4){
+                continue;
+            }
+            Property downGrid = board[prop.x+1,prop.y].GetComponent<Property>();
+            if(prop.Up && !downGrid.used){//there a way up and up is not used
+                possibleUpList.Add(downGrid);
+            }
+        }
+        return possibleDownList;
+    }
+
+    public List<Property> GetPossibleRightPosition( ){
+        List<Property> possibleRightList = new List<Property>();
+        foreach(Property prop in usedGridproperty){
+            if(prop.y == 8){
+                continue;
+            }
+            Property rightGrid = board[prop.x,prop.y+1].GetComponent<Property>();
+            if(prop.Up && !rightGrid.used){//there a way up and up is not used
+                possibleUpList.Add(rightGrid);
+            }
+        }
+        return  possibleRightList;
+    }
+
+    public List<Property> GetPossibleLeftPosition( ){
+        List<Property> possibleLeftList = new List<Property>();
+        foreach(Property prop in usedGridproperty){
+            if(prop.y == 0){
+                continue;
+            }
+            Property leftGrid = board[prop.x,prop.y-1].GetComponent<Property>();
+            if(prop.Up && !leftGrid.used){//there a way up and up is not used
+                possibleUpList.Add(leftGrid);
+            }
+        }
+        return  possibleLeftList;
+    }
+
+    
 
 }
 

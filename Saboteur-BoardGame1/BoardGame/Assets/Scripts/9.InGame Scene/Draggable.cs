@@ -13,6 +13,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         boardDetail = GameObject.Find("Map").GetComponent<Board>();
         board = boardDetail.board;
     }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
         
@@ -99,6 +100,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             this.transform.SetParent(parentToReturnTo);
         }
     }
+
     public GameObject findNearestGrid()
     {
         GameObject nearestGrid = null;
