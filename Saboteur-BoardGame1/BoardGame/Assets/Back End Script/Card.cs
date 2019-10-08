@@ -42,7 +42,7 @@ public class Card : MonoBehaviour
 
     private void start()
     {
-        this.gameObject.GetComponent<MoveMenu>().enabled = false;
+        
     }
 
     public void OnMouseOver()

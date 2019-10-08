@@ -33,12 +33,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     }
     public void OnDrop(PointerEventData eventData)
     {
-        DragS d = eventData.pointerDrag.GetComponent<DragS>();
-        if (d != null)
-        {
-            d.parentToReturnTo = this.transform;
-
-        }
+       
     }
 
     private void UpdateMouseOver()

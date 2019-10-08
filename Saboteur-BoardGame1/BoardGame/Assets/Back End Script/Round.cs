@@ -9,12 +9,13 @@ public class Round : MonoBehaviour
     bool ThisRoundTurn = false;
     bool roundEnd = false;
     [SerializeField]
-    float TimeLeft = 20;
+    float TimeLeft = 10;
+    [SerializeField]
     string[] roles;
     void Start()
     {
         shufflePlayer();
-        //shuffleRole();
+        shuffleRole();
         
         /*GameManager.Instance.shuffle(roles);
         GameManager.Instance.shuffle(GameManager.Instance.Players);*/
@@ -25,11 +26,16 @@ public class Round : MonoBehaviour
             for(int i = 0; i < 5; i++){//deal 5 card to each player when starting the round
                 foreach(GameObject player in GameManager.Instance.Players)
                 {
-                    GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>(), RoundStarted);
-                    //player.GetComponent<PlayerController>().setRole(roles[count]);
+                    GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>());
                 }
             }
-            count++;
+            foreach (GameObject player in GameManager.Instance.Players)
+            {
+                player.GetComponent<PlayerController>().setRole(roles[count]);
+                count++;
+            }
+            
+
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
     }
@@ -39,7 +45,7 @@ public class Round : MonoBehaviour
     {
         TimeLeft -= Time.deltaTime;
         GameObject.Find("Canvas/Time left").GetComponent<Time_Record>().time = TimeLeft;
-        if(TimeLeft > 20)
+        if(TimeLeft > 5)
         {
             //PrepareToSwitchTurnPanel.Raise();
         }
@@ -65,9 +71,9 @@ public class Round : MonoBehaviour
     
     public void SwitchTurn()
     {
-        TimeLeft = 30;
+        TimeLeft = 11;
         RoundStarted = true;
-        GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>(), RoundStarted);
+        GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>());
         currentPlayer.GetComponent<PlayerController>().EndTurn();
         if (checkWinCondition() == 1 || checkWinCondition() == -1)
         {
@@ -81,6 +87,7 @@ public class Round : MonoBehaviour
             Turn = 0;    
         }
         currentPlayer.GetComponent<PlayerController>().StartTurn();
+        
     }
 
     int checkWinCondition()

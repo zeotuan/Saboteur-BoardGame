@@ -43,6 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6ce35ac58702748862316023c2a621, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: {fileID: 0}
-  deckPrefab: {fileID: 1249939279802799276, guid: a650a409c8bb1fe47abda983cb1a0eb1,
-    type: 3}
+  Turn: 0
+  TimeLeft: 10
+  roles:
+  - saboteur
+  - saboteur
+  - dwarf
+  - dwarf
+  - dwarf

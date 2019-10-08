@@ -55,7 +55,7 @@ public class Deck : MonoBehaviour
 
     void SpawnCard(int id)
     {
-        Debug.Log(id);
+
         GameObject cardObj = Instantiate(CardPrefab) as GameObject;
         cardObj.transform.SetParent(transform);
         Card cardScript = cardObj.GetComponent<Card>();
@@ -95,6 +95,5 @@ public class Deck : MonoBehaviour
         target.hand.Add(deck[UpperCardIndex]);
         deck[UpperCardIndex].transform.SetParent(target.transform);
         deck.RemoveAt(UpperCardIndex);
-        
     }
 }
