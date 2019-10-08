@@ -17,6 +17,10 @@ public class GameManager : Singleton<GameManager>
     public GameObject deckPrefab;
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
+    [SerializeField]
+    int maxRound;
+    [SerializeField]
+    int curRound;
     
    
     
@@ -53,18 +57,26 @@ public class GameManager : Singleton<GameManager>
 
     public void SwitchRound()
     {
-        gameStarted = true;
-        currentRound.GetComponent<Round>().EndRound();
-        currentRound.GetComponent<Round>().enabled = false;
-        PassedRounds.Add(currentRound);
-        currentRound = createRound();
-        deck.GetComponent<Deck>().GenerateDeck(10);
+        curRound++;
+        if(curRound < maxRound){
+            gameStarted = true;
+            currentRound.GetComponent<Round>().EndRound();
+            currentRound.GetComponent<Round>().enabled = false;
+            PassedRounds.Add(currentRound);
+            currentRound = createRound();
+            deck.GetComponent<Deck>().GenerateDeck(10);
+        }else{
+            //Raise Score Board
+        }               
+
+        
     }
     
     
 
     bool checkWinCondition()
     {
+
         return false;
     }
 
