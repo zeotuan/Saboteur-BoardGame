@@ -73,7 +73,6 @@ public class PlayerController : MonoBehaviour
         FinishTurn = true;
     }
 
-   
     public bool Played()
     {
         if (FinishTurn)
@@ -100,7 +99,7 @@ public class PlayerController : MonoBehaviour
                 /*
                 if(cardProp.Left){// if this card can be put on the right of some other card 
                     foreach(Property prop in board.GetPossibleRightPosition()){
-                        if(checkValid((PathCard)c,prop.x, prop.y)){
+                        if(checkValid(cardProp,prop.x, prop.y)){
                             board.setGrid(prop.x, prop.y, cardProp);
                             Discard(card);
                             return;
@@ -109,7 +108,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (cardProp.Right){
                     foreach(Property prop in board.GetPossibleLeftPosition()){
-                        if(checkValid((PathCard)c,prop.x, prop.y)){
+                        if(checkValid(cardProp,prop.x, prop.y)){
                             board.setGrid(prop.x, prop.y, cardProp);
                             Discard(card);
                             return;
@@ -118,7 +117,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (cardProp.Up){
                     foreach(Property prop in board.GetPossibleDownPosition()){
-                        if(checkValid((PathCard)c,prop.x, prop.y)){
+                        if(checkValid(cardProp,prop.x, prop.y)){
                             board.setGrid(prop.x, prop.y, cardProp);
                             Discard(card);
                             return;
@@ -127,15 +126,17 @@ public class PlayerController : MonoBehaviour
                 }
                 if (cardProp.Down){
                     foreach(Property prop in board.GetPossibleUpPosition()){
-                        if(checkValid((PathCard)c,prop.x, prop.y)){
+                        if(checkValid(cardProp,prop.x, prop.y)){
                             board.setGrid(prop.x, prop.y, cardProp);
                             Discard(card);
                             return;
                         }
                     }
                 } 
-                */ 
-            }else{
+                */
+            }
+            else
+            {
                 Discard(card);
                 return;
             }
