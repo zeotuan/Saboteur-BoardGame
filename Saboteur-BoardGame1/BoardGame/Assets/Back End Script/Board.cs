@@ -33,7 +33,6 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     }
     public void OnDrop(PointerEventData eventData)
     {
-       
     }
 
     private void UpdateMouseOver()
@@ -128,16 +127,34 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
 
     }
 
+    public GameObject findNearestGrid(GameObject card)
+    {
+        GameObject nearestGrid = null;
+        float distance = Vector3.Distance(card.transform.position, board[0, 0].transform.position);
+        int cloest_j = 0;
+        int cloest_i = 0;
+        //Find the closest path and it is not used yet.
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                if (Vector3.Distance(this.transform.position, board[j, i].transform.position) < distance)
+                {
+                    if (board[j, i].transform.GetComponent<Property>().used == false)
+                    {
+                        distance = Vector3.Distance(this.transform.position, board[j, i].transform.position);
+                        nearestGrid = boardp[j, i];
+                    }
+
+                }
+            }
+        }
+        return nearestGrid;
+    }
+
     /*public bool checkValid(Card c, int x, int y)
     {
-        if (c.card is PathCard) { 
-            return ((PathCard)c.card).checkValid(board, x, y);
-        }
-        else
-        {
-         
-        }
-        return false;
+        
     }*/
 
     private void shuffleDestination()
@@ -198,8 +215,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return false;
     }
 
-    
-
+    //Get Reachable path from inputted path
     public List<Property> Getreachable(Property property)
     {
         List<Property> reachableList = new List<Property>();
@@ -207,7 +223,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (property.x != 0)
         {
             up = board[property.x - 1, property.y].GetComponent<Property>();
-            if(up.Down && property.Up && up.center)
+            if(up.Down && property.Up && up.center)//need to check center since though without the center will not lead to anywhere else even thought path can still be placed next to them  
             {
                 reachableList.Add(up);
             }
@@ -240,7 +256,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return reachableList;
     }
 
-
+    //get possible available position that can placed card above it 
     public List<Property> GetPossibleUpPosition(){
         List<Property> possibleUpList = new List<Property>();
         foreach(Property prop in usedGridproperty){
@@ -255,6 +271,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return possibleUpList;
     }
 
+    //get possible available position that can placed card below it 
     public List<Property> GetPossibleDownPosition( ){
         List<Property> possibleDownList = new List<Property>();
         foreach(Property prop in usedGridproperty){
@@ -269,6 +286,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return possibleDownList;
     }
 
+    //get possible available position that card can be plalced on the right of it 
     public List<Property> GetPossibleRightPosition( ){
         List<Property> possibleRightList = new List<Property>();
         foreach(Property prop in usedGridproperty){
@@ -283,6 +301,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return  possibleRightList;
     }
 
+    //get possible available position that can placed card on the left of it 
     public List<Property> GetPossibleLeftPosition( ){
         List<Property> possibleLeftList = new List<Property>();
         foreach(Property prop in usedGridproperty){
@@ -297,7 +316,13 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         return  possibleLeftList;
     }
 
-    
+    public void CheckDes(Property prop)
+    {
+        if(prop.y == 8 && (prop.x == 0 || prop.x ==2 || prop.x == 4))
+        {
+            //reveal card 
+        }    
+    }
 
 }
 
