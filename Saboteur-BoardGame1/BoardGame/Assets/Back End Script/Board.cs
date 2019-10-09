@@ -280,7 +280,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             }
             Property downGrid = board[prop.x+1,prop.y].GetComponent<Property>();
             if(prop.Up && !downGrid.used){//there a way up and up is not used
-                possibleUpList.Add(downGrid);
+                possibleDownList.Add(downGrid);
             }
         }
         return possibleDownList;
@@ -295,7 +295,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             }
             Property rightGrid = board[prop.x,prop.y+1].GetComponent<Property>();
             if(prop.Up && !rightGrid.used){//there a way up and up is not used
-                possibleUpList.Add(rightGrid);
+                possibleRightList.Add(rightGrid);
             }
         }
         return  possibleRightList;
@@ -310,10 +310,78 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             }
             Property leftGrid = board[prop.x,prop.y-1].GetComponent<Property>();
             if(prop.Up && !leftGrid.used){//there a way up and up is not used
-                possibleUpList.Add(leftGrid);
+                possibleLeftList.Add(leftGrid);
             }
         }
         return  possibleLeftList;
+    }
+
+    public bool checkValid(Property c, int x, int y)
+    {
+        Property left;
+        Property up;
+        Property right;
+        Property down;
+        bool valid = false;
+        if (x != 0)
+        {
+            up = board[x - 1, y].GetComponent<Property>();
+            if (up.Down && c.up)
+            {
+                valid = true; Debug.Log("Valid Card Placed at position:" + up.x + up.y);
+                //CheckDes(up);
+            }
+            if (up.Down != c.Up && up.used)
+            {
+                return false;
+            }
+        }
+
+        if (x != 4)
+        {
+            down = board[x + 1, y].GetComponent<Property>();
+            if (down.Up && c.down)
+            {
+                valid = true; Debug.Log("Valid Card Placed at position:" + down.x + down.y);
+                //CheckDes(down);
+            }
+            if (down.Up != c.Down && down.used)
+            {
+                return false;
+            }
+        }
+
+        if (y != 8)
+        {
+            right = board[x, y + 1].GetComponent<Property>();
+            if (right.Left && c.right)
+            {
+                valid = true; Debug.Log("Valid Card Placed at position:" + right.x + right.y);
+                //CheckDes(eight);
+            }
+            if (right.Left != c.Right && right.used)
+            {
+                return false;
+            }
+            
+        }
+
+        if (y != 0)
+        {
+            left = board[x, y - 1].GetComponent<Property>();
+            if (left.Right && c.left)
+            {
+                valid = true; Debug.Log("Valid Card Placed at position:" + left.x + left.y);
+
+            }
+            if (left.Right != c.Left && left.used)
+            {
+                return false;
+            }
+        }
+        //then check if the placed card compatible with any other path
+        return valid;
+
     }
 
     public void CheckDes(Property prop)

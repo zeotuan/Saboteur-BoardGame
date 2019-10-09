@@ -69,7 +69,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         }
 
         //Debug.Log(checkValid(cloest_j, cloest_i));
-        if (checkValid(cloest_j, cloest_i))
+        Property c = this.GetComponent<Property>();
+        if (boardDetail.    checkValid(c,cloest_j, cloest_i))
 
         {
             /*
@@ -97,72 +98,5 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
 
     
     //need to  be change to accept card property instead and need to move to boaard script 
-    public bool checkValid( int x, int y)
-    {
-        PathCard c = (PathCard)this.GetComponent<Card>().card;
-        Property left;
-        Property up;
-        Property right;
-        Property down;
-        bool valid = false;
-        if (x != 0)
-        {
-            up = board[x - 1, y].GetComponent<Property>();
-            if (up.Down && c.up)
-            {
-                valid = true;    Debug.Log(1);
-                //CheckDes(up);
-            }
-            if (up.Down != c.up && up.used)
-            {
-                return false;
-            }
-        }
-
-        if (x != 4)
-        {
-            down = board[x + 1, y].GetComponent<Property>();
-            if (down.Up && c.down)
-            {
-                valid = true; Debug.Log(4);
-                //CheckDes(down);
-            }
-            if (down.Up != c.down && down.used)
-            {
-                return false;
-            }
-        }
-
-        if (y != 8)
-        {
-            right = board[x, y + 1].GetComponent<Property>();
-            if (right.Left && c.right)
-            {
-                valid = true; Debug.Log(2);
-                //CheckDes(eight);
-            }
-            if (right.Left != c.right && right.used)
-            {
-                return false;
-            }
-            boardDetail.revealDes(right);
-        }
-        
-        if (y != 0)
-        {
-            left = board[x, y - 1].GetComponent<Property>();
-            if (left.Right && c.left)
-            {
-                valid = true; Debug.Log(3);
-                
-            }
-            if (left.Right != c.left && left.used)
-            {
-                return false;
-            }
-        }
-        //then check if the placed card compatible with any other path
-        return valid;
-
-    }
+    
 }
