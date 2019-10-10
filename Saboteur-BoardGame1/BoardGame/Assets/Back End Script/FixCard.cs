@@ -8,7 +8,7 @@ public class FixCard : EffectCard
     {
     }
 
-    public void Apply(PlayerController Target)
+    public override void Apply(PlayerController Target)
     {
         if (PickAxe)
             Target.PickAxe = true;

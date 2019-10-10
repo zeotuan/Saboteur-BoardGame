@@ -18,7 +18,7 @@ public class EffectCard : CardDetail
         this.Cart = Cart;
     }
 
-    public void Apply(PlayerController Target)
+    public virtual void Apply(PlayerController Target)
     {
         if (!PickAxe)
             Target.PickAxe = false;
