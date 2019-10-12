@@ -30,7 +30,6 @@ public class Card : MonoBehaviour
                 this.GetComponent<Property>().Left = ((PathCard)card).left;
                 this.GetComponent<Property>().Right = ((PathCard)card).right;
                 this.GetComponent<Property>().center = ((PathCard)card).middle;
-
             }
                 
             rotation = 0;
