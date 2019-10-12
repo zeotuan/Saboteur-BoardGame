@@ -143,7 +143,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                     if (board[j, i].transform.GetComponent<Property>().used == false)
                     {
                         distance = Vector3.Distance(this.transform.position, board[j, i].transform.position);
-                        nearestGrid = boardp[j, i];
+                        nearestGrid = board[j, i];
                     }
 
                 }
@@ -326,7 +326,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (x != 0)
         {
             up = board[x - 1, y].GetComponent<Property>();
-            if (up.Down && c.up)
+            if (up.Down && c.Up)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + up.x + up.y);
                 //CheckDes(up);
@@ -340,7 +340,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (x != 4)
         {
             down = board[x + 1, y].GetComponent<Property>();
-            if (down.Up && c.down)
+            if (down.Up && c.Down)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + down.x + down.y);
                 //CheckDes(down);
@@ -354,7 +354,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (y != 8)
         {
             right = board[x, y + 1].GetComponent<Property>();
-            if (right.Left && c.right)
+            if (right.Left && c.Right)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + right.x + right.y);
                 //CheckDes(eight);
@@ -369,9 +369,9 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         if (y != 0)
         {
             left = board[x, y - 1].GetComponent<Property>();
-            if (left.Right && c.left)
+            if (left.Right && c.Left)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + left.x + left.y);
+                valid = true; Debug.Log("Valid Card Placed at position:" + left.x +" "+ left.y);
 
             }
             if (left.Right != c.Left && left.used)

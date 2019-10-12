@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Property : MonoBehaviour
 {
@@ -19,9 +20,8 @@ public class Property : MonoBehaviour
     {
         Swap(Up, Down);
         Swap(Left, Right);
-        this.gameObject.transform.Rotate(Vector3.forward * -180);
-     
-
+        //this.gameObject.transform.Rotate(Vector3.forward * -180);
+        this.gameObject.transform.Find("Image").transform.Rotate(Vector3.forward * -180);
     }
 
     public void Swap(bool a, bool b)

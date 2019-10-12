@@ -15,7 +15,9 @@ public class Dropped_path : MonoBehaviour
 
     public void Rotate()
     {
-        path.GetComponent<Property>().rotate();
-        
+        //path.GetComponent<Property>().rotate();
+        this.GetComponent<Property>().rotate();
+
+
     }
 }

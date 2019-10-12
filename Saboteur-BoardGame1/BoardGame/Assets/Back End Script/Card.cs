@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
+    
     public CardDetail card;
     public Vector3 oldScale;
     public int rotation;
@@ -16,7 +17,8 @@ public class Card : MonoBehaviour
     {
         
         card = CardDatabase.Instance.GetCard(id);
-        this.GetComponent<Image>().sprite = card.frontCardArtWork;
+        //this.GetComponent<Image>().sprite = card.frontCardArtWork;
+        this.transform.Find("Image").GetComponent<Image>().sprite = card.frontCardArtWork;
         Interactalbe = false;
         if (card != null)
         {
@@ -71,16 +73,7 @@ public class Card : MonoBehaviour
 
     public void OnClick()
     {
-        if(Selected)
-        {
-            Selected = false;
-        }
-        else
-        {
-            Selected = true; 
-        }
-        this.transform.parent.parent.Find("Buttons/Discard").GetComponent<Selected_Card>().setSelectedCard(this.gameObject);
-        this.transform.parent.parent.Find("Buttons/Discard").gameObject.SetActive(true);
+        this.GetComponent<activate>().selected(this.transform);
     }
 
 
