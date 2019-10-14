@@ -92,6 +92,7 @@ public class Deck : MonoBehaviour
             Debug.Log("out of card");
             return;
         }
+        
         target.hand.Add(deck[UpperCardIndex]);
         deck[UpperCardIndex].transform.SetParent(target.transform);
         deck.RemoveAt(UpperCardIndex);

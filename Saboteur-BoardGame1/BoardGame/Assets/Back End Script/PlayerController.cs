@@ -141,11 +141,11 @@ public class PlayerController : MonoBehaviour
                 if(c is FixCard)
                 {
 
-                    ((FixCard)c.Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>()));
+                    //((FixCard)c.Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>()));
                 }
                 else
                 {
-                    c.Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>());
+                    //c.Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>());
                 }
                 Discard(card);
                 return;
