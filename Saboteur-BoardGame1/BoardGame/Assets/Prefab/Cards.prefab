@@ -571,6 +571,7 @@ MonoBehaviour:
   center: 0
   used: 0
   visited: 0
+  rotated: 0
   x: 0
   y: 0
 --- !u!114 &4941062291293455940

@@ -19,9 +19,14 @@ public class activate : MonoBehaviour
             {
                 this.transform.Find("Effect").gameObject.SetActive(true);
 
-            ///this.transform.root.Find("Panel/Left/Player's panel/Select").gameObject.SetActive(true);
+            ///this.transform.root.Find("Panel/Left").gameObject.SetActive(true);
+            for(int i =0; i < this.transform.root.Find("Panel/Left").childCount; i++)
+            {
+                this.transform.root.Find("Panel/Left").GetChild(i).Find("Select").gameObject.SetActive(true);
+            }
+            
         }
-        
+
     }
 
     public void DeActivate()
@@ -33,10 +38,29 @@ public class activate : MonoBehaviour
         else
         {
             this.transform.Find("Effect").gameObject.SetActive(false);
+
         }
+        
+       
+        
+        
     }
     public void Update()
     {
+        if(currentlySelected == null)
+        {
+            for (int i = 0; i < this.transform.root.Find("Panel/Left").childCount; i++)
+            {
+                this.transform.root.Find("Panel/Left").GetChild(i).Find("Select").gameObject.SetActive(false);
+            }
+        }
+        else if (currentlySelected == this.transform && this.GetComponent<Card>().card is PathCard)
+        {
+            for (int i = 0; i < this.transform.root.Find("Panel/Left").childCount; i++)
+            {
+                this.transform.root.Find("Panel/Left").GetChild(i).Find("Select").gameObject.SetActive(false);
+            }
+        }
         if(currentlySelected == this.transform)
         {
             Activate();

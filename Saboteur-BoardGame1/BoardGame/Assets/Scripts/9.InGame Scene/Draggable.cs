@@ -36,14 +36,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             return;
         }
 
-        if (this.transform.parent != this.transform.parent.Find("Map"))
-        {
-            this.transform.SetParent(this.transform.parent.Find("Map"));
-        }
-        else
-        {
-            this.transform.SetParent(parentToReturnTo);
-        }
+       
 
         
         //find closest path

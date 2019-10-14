@@ -66,6 +66,7 @@ public class PlayerController : MonoBehaviour
             card.SetActive(true);
             card.transform.SetParent(cardHolder);
             playerInformation.transform.SetParent(currentPlayerHolder);
+            card.GetComponent<activate>().enabled = true;
 
 
         }
@@ -76,6 +77,7 @@ public class PlayerController : MonoBehaviour
         MyTurn = false;
         foreach (GameObject card in hand)
         {
+            card.GetComponent<activate>().enabled = false;
             card.transform.SetParent(transform);
             card.SetActive(false);
             playerInformation.transform.SetParent(playerHolder);

@@ -48,7 +48,8 @@ public class Round : MonoBehaviour
     void Update()
     {
         TimeLeft -= Time.deltaTime;
-        GameObject.Find("Canvas/Time left").GetComponent<Time_Record>().time = TimeLeft;
+        GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
+        
         if(TimeLeft > 5)
         {
             //PrepareToSwitchTurnPanel.Raise();
@@ -77,6 +78,14 @@ public class Round : MonoBehaviour
     
     public void SwitchTurn()
     {
+        GameObject PlayersPanel = GameObject.Find("Canvas/Panel/Left");
+        Debug.Log(PlayersPanel.transform.name);
+       
+        for (int i = 0; i < PlayersPanel.transform.childCount; i++)
+        {
+            PlayersPanel.transform.GetChild(i).Find("Select").gameObject.SetActive(false);
+        }
+
         TimeLeft = 11;
         RoundStarted = true;
         GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>());
@@ -85,11 +94,11 @@ public class Round : MonoBehaviour
         Debug.Log(Condition);
         if (Condition == 1 || Condition == -1)//someone win
         {
-            //this.gameObject.SetActive(false);
+            //activate the end game panel
             GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
             End_Game.SetActive(true);
-//            Debug.Log(this.name);
             Time.timeScale = 0;
+            
             roundEnd = true;
             EndRound();
             return;
@@ -100,6 +109,7 @@ public class Round : MonoBehaviour
             Turn = 0;    
         }
         currentPlayer.GetComponent<PlayerController>().StartTurn();
+
         raiseCover();
         
     }

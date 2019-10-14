@@ -60,6 +60,7 @@ public class Deck : MonoBehaviour
         cardObj.transform.SetParent(transform);
         Card cardScript = cardObj.GetComponent<Card>();
         cardScript.InitThisCard(id);
+        cardObj.GetComponent<activate>().enabled = false;
         
         deck.Add(cardObj);
         
