@@ -41,7 +41,7 @@ public class Round : MonoBehaviour
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
         GameObject Canvas = GameObject.Find("Canvas");
-        Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
+        //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
     }
 
     // Update is called once per frame
@@ -81,8 +81,15 @@ public class Round : MonoBehaviour
         RoundStarted = true;
         GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>());
         currentPlayer.GetComponent<PlayerController>().EndTurn();
-        if (checkWinCondition() == 1 || checkWinCondition() == -1)
+        int Condition = checkWinCondition();
+        Debug.Log(Condition);
+        if (Condition == 1 || Condition == -1)//someone win
         {
+            //this.gameObject.SetActive(false);
+            GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
+            End_Game.SetActive(true);
+//            Debug.Log(this.name);
+            Time.timeScale = 0;
             roundEnd = true;
             EndRound();
             return;
@@ -109,7 +116,16 @@ public class Round : MonoBehaviour
         {
             if (GameManager.Instance.deck.GetComponent<Deck>().deck.Count == 0)//there no card left 
             {
-                return -1;//saboteur win
+                bool cardleft = false;
+                foreach(GameObject p in GameManager.Instance.Players)
+                {
+                    if (p.GetComponent<PlayerController>().hand.Count > 0)
+                    {
+                        cardleft = true;
+                    }
+                }
+                if(!cardleft)
+                    return -1;//saboteur win
             }
               
         }
@@ -148,7 +164,7 @@ public class Round : MonoBehaviour
     void raiseCover()
     {
         GameObject Canvas = GameObject.Find("Canvas");
-        Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
+        //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
         Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
         Time.timeScale = 0;
     }

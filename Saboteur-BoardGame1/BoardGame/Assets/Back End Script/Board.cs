@@ -20,6 +20,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     public GameObject startGrid;
     public GameObject[] DesGrid;
     public List<Property> usedGridproperty;
+    [SerializeField]
     int xTrueDes, yTrueDes;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -100,13 +101,15 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 {
                     tile = Instantiate(GridPrefab) as GameObject;
                 }
+                
+                  
+                    if (tile.name == "TrueDes Variant(Clone)")
+                    {
+                        xTrueDes = r;
+                        yTrueDes = c;
+                    }
+                
 
-                PrefabAssetType prefabType = PrefabUtility.GetPrefabAssetType(tile);
-                if (prefabType.ToString() == "TrueDes")
-                {
-                    xTrueDes = r;
-                    yTrueDes = c;
-                }
 
                 float posX = c * tileSize;
                 float posY = r * tileSize;
@@ -116,6 +119,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
                 tile.GetComponent<Property>().x = r;
                 tile.GetComponent<Property>().y = c;
             }
+            
         }
         
         //float gridH = maxCol * tileSize;
@@ -181,13 +185,20 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         grid.Down = setProperty.Down;
         grid.Left = setProperty.Left;
         grid.Right = setProperty.Right;
+        grid.center = setProperty.center;
         board[x, y].GetComponent<Image>().sprite = img;
         if (setProperty.rotated)
         {
             board[x, y].GetComponent<Image>().transform.Rotate(Vector3.forward * -180);
         }
         usedGridproperty.Add(grid);
-        
+        var tempColor = board[x, y].GetComponent<Image>().color;
+        tempColor.a = 1f;
+        tempColor = Color.white;
+        board[x, y].GetComponent<Image>().color = tempColor;
+
+
+
     }
 
     public bool BreadthFirstSearch(int x, int y)
@@ -204,9 +215,13 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
         while(queue.Count > 0)
         {
             Property current = queue.Dequeue();
-            foreach(Property next in Getreachable(current))
+            visited[current.x, current.y] = true;
+            Debug.Log("current: " + current.x + " " + current.y);
+            List<Property> ReachableList = Getreachable(current);
+            foreach(Property next in ReachableList)
             {
-                if(next.x == xTrueDes && next.y == yTrueDes)
+                
+                if (next.x == xTrueDes && next.y == yTrueDes)
                 {
                     return true;
                 }
@@ -230,6 +245,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             if(up.Down && property.Up && up.center)//need to check center since though without the center will not lead to anywhere else even thought path can still be placed next to them  
             {
                 reachableList.Add(up);
+                Debug.Log("reachable: " + up.x + " " + up.y);
             }
         }
 
@@ -239,6 +255,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             if (right.Left && property.Right && right.center)
             {
                 reachableList.Add(right);
+                Debug.Log("reachable: " + right.x + " " + right.y);
             }
         }
         if (property.y != 0)
@@ -247,6 +264,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             if (left.Right && property.Left && left.center)
             {
                 reachableList.Add(left);
+                Debug.Log("reachable: " + left.x + " " + left.y);
             }
         }
         if (property.x!=4)
@@ -255,6 +273,7 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
             if (down.Up && property.Down && down.center)
             {
                 reachableList.Add(down);
+                Debug.Log("reachable: " + down.x + " " + down.y);
             }
         }
         return reachableList;

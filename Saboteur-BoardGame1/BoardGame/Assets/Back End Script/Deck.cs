@@ -96,6 +96,6 @@ public class Deck : MonoBehaviour
         target.hand.Add(deck[UpperCardIndex]);
         deck[UpperCardIndex].transform.SetParent(target.transform);
         deck.RemoveAt(UpperCardIndex);
-        Debug.Log(deck.Count);
+        
     }
 }

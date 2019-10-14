@@ -43,8 +43,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cfc0567901803b4fa4ce774bc369302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardHolder: {fileID: 0}
+  playerHoler: {fileID: 0}
+  PlayerHolderPrefab: {fileID: 7995826326293950270, guid: d1fbee19fd988ac4791b4331f18f57e4,
+    type: 3}
   playerName: 
   hand: []
   PickAxe: 0
   Lamb: 0
   Cart: 0
+  MyTurn: 0
+  FinishTurn: 0
+  role: 

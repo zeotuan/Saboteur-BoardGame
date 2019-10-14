@@ -2,11 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     public Transform cardHolder;
-    public Transform playerHoler;
+    public Transform playerHolder;
+    public Transform currentPlayerHolder;
+    public GameObject PlayerHolderPrefab;
     public string playerName;
     [SerializeField]
     public List<GameObject> hand;//list of card 
@@ -22,14 +25,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string role;
     private bool IsBot;
-    public GameObject PlayerHolderPrefab;
+    
     private GameObject playerInformation;
 
     void Start()
     {
         cardHolder = GameObject.Find("Cards").transform;
+        playerHolder = GameObject.Find("Left").transform;
+        currentPlayerHolder = GameObject.Find("Bottom_Left").transform;
         playerInformation = Instantiate(PlayerHolderPrefab) as GameObject;
-        playerInformation.transform.SetParent();
+        playerInformation.transform.SetParent(playerHolder);
+        playerInformation.transform.Find("Player's name").GetComponent<Text>().text = playerName;
+        playerInformation.name = this.name;
         //StateMachine.ChangeState()
     }
     
@@ -58,6 +65,8 @@ public class PlayerController : MonoBehaviour
         {
             card.SetActive(true);
             card.transform.SetParent(cardHolder);
+            playerInformation.transform.SetParent(currentPlayerHolder);
+
 
         }
     }
@@ -69,6 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             card.transform.SetParent(transform);
             card.SetActive(false);
+            playerInformation.transform.SetParent(playerHolder);
         }
     }
 
