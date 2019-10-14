@@ -41,7 +41,7 @@ public class Round : MonoBehaviour
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
         GameObject Canvas = GameObject.Find("Canvas");
-        Canvas.transform.Find("Who's turn").GetComponent<Text>().text = currentPlayer.name;
+        Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
     }
 
     // Update is called once per frame
@@ -55,11 +55,8 @@ public class Round : MonoBehaviour
         }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
-                GameObject Canvas = GameObject.Find("Canvas");
-                Debug.Log(Canvas.name);
-                Canvas.transform.Find("Who's turn").GetComponent<Text>().text = currentPlayer.name;
-                Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
-                Time.timeScale = 0;
+                
+
                 int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
                 currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
             
@@ -96,6 +93,7 @@ public class Round : MonoBehaviour
             Turn = 0;    
         }
         currentPlayer.GetComponent<PlayerController>().StartTurn();
+        raiseCover();
         
     }
 
@@ -145,5 +143,13 @@ public class Round : MonoBehaviour
             roles[i] = roles[randomIndex];
             roles[randomIndex] = container;
         }
+    }
+
+    void raiseCover()
+    {
+        GameObject Canvas = GameObject.Find("Canvas");
+        Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
+        Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
+        Time.timeScale = 0;
     }
 }

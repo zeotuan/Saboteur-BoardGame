@@ -12,14 +12,14 @@ public class activate : MonoBehaviour
             {
                 //this.gameObject.active()
                 this.transform.Find("Path").gameObject.SetActive(true);
-                
-                this.transform.parent.parent.Find("Left/Player's panel/Effect").gameObject.SetActive(false);
 
-            }
-            else
+                this.transform.parent.parent.Find("Left/Player's panel/Select").gameObject.SetActive(false);
+
+        }
+        else
             {
                 this.transform.Find("Effect").gameObject.SetActive(true);
-                this.transform.parent.parent.Find("Left/Player's panel/Effect").gameObject.SetActive(true);
+                this.transform.parent.parent.Find("Left/Player's panel/Select").gameObject.SetActive(true);
             }
         
     }
