@@ -10,7 +10,9 @@ public class ChangeScene : MonoBehaviour
 
     public void Update()
     {
+        /*
         GameObject root = GameObject.Find("GameManager");
         Debug.Log(root.transform.Find("Player 1").name);
+        */
     }
 }

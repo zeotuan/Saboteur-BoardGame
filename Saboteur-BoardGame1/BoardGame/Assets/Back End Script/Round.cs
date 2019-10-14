@@ -1,5 +1,6 @@
 ﻿using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Round : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Round : MonoBehaviour
     float TimeLeft = 10;
     [SerializeField]
     string[] roles;
+    
     void Start()
     {
         shufflePlayer();
@@ -38,6 +40,8 @@ public class Round : MonoBehaviour
 
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
+        GameObject Canvas = GameObject.Find("Canvas");
+        Canvas.transform.Find("Who's turn").GetComponent<Text>().text = currentPlayer.name;
     }
 
     // Update is called once per frame
@@ -51,6 +55,11 @@ public class Round : MonoBehaviour
         }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
+                GameObject Canvas = GameObject.Find("Canvas");
+                Debug.Log(Canvas.name);
+                Canvas.transform.Find("Who's turn").GetComponent<Text>().text = currentPlayer.name;
+                Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
+                Time.timeScale = 0;
                 int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
                 currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
             
