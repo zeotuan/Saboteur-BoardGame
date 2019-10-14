@@ -30,7 +30,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
     public void OnEndDrag(PointerEventData eventData)
     {
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (!this.GetComponent<Card>().Interactalbe)
+        if (!this.GetComponent<Card>().Interactalbe)//effect card
         {
             this.transform.SetParent(parentToReturnTo);
             return;

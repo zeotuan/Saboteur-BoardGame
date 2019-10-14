@@ -60,8 +60,7 @@ public class Card : MonoBehaviour
     {
         if(card is PathCard)
         {
-            ((PathCard)card).Rotate();
-
+            this.gameObject.GetComponent<Property>().rotate();
         }
     }
 
@@ -73,6 +72,10 @@ public class Card : MonoBehaviour
     public void OnClick()
     {
         this.GetComponent<activate>().selected(this.transform);
+    }
+
+    public CardDetail GetCardDetail(){
+        return card;
     }
 
 

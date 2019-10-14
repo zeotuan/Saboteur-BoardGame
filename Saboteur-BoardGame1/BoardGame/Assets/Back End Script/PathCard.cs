@@ -14,21 +14,4 @@ public class PathCard : CardDetail
         this.down = down;
         this.middle = middle;
     }
-
-    
-
-    public void Rotate()
-    {
-        Swap(up, down);
-        Swap(left, right);
-    }
-
-    public void Swap(bool a, bool b)
-    {
-        a = a ^ b;
-        b = b ^ a; 
-        a = a ^ b;
-    }
-
-    
 }
