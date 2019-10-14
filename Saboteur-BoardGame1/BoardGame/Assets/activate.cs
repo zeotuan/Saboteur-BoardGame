@@ -12,11 +12,14 @@ public class activate : MonoBehaviour
             {
                 //this.gameObject.active()
                 this.transform.Find("Path").gameObject.SetActive(true);
+                
+                this.transform.parent.parent.Find("Left/Player's panel/Effect").gameObject.SetActive(false);
 
             }
             else
             {
                 this.transform.Find("Effect").gameObject.SetActive(true);
+                this.transform.parent.parent.Find("Left/Player's panel/Effect").gameObject.SetActive(true);
             }
         
     }
@@ -25,9 +28,7 @@ public class activate : MonoBehaviour
     {
         if (this.GetComponent<Card>().card is PathCard)
         {
-            //this.gameObject.active()
             this.transform.Find("Path").gameObject.SetActive(false);
-
         }
         else
         {
