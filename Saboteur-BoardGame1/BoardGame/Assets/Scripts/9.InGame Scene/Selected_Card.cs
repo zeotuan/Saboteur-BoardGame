@@ -5,16 +5,9 @@ using UnityEngine;
 public class Selected_Card : MonoBehaviour
 {
     public int card_number;
-    GameObject card;
-
-    public void setSelectedCard(GameObject c)
+   public void Discard()
     {
-        card = c;
-    }
-
-    public void Discard()
-    {
-        GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().Discard(card);
-        Destroy(card);
+        GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().Discard(this.gameObject);
+        //Destroy(card);
     }
 }

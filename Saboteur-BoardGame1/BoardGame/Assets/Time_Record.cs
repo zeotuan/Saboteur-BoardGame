@@ -7,6 +7,6 @@ public class Time_Record : MonoBehaviour
     public float time;
     public void FixedUpdate()
     {
-        this.gameObject.GetComponent<Text>().text = (int)time + " seconds left";
+        this.gameObject.GetComponent<Text>().text = (int)time + " seconds";
     }
 }

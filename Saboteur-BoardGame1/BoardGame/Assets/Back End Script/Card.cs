@@ -19,7 +19,7 @@ public class Card : MonoBehaviour
         card = CardDatabase.Instance.GetCard(id);
         //this.GetComponent<Image>().sprite = card.frontCardArtWork;
         this.transform.Find("Image").GetComponent<Image>().sprite = card.frontCardArtWork;
-        this.transform.GetChild("Image").GetComponent<Image>().sprite = card.frontCardArtWork;
+        
         Interactalbe = false;
         if (card != null)
         {
