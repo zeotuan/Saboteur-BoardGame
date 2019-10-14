@@ -46,11 +46,11 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         }
 
         
-        //initiate the variables
+        //find closest path
         float distance = Vector3.Distance(this.transform.position, board[0, 0].transform.position);
         int cloest_j = 0;
         int cloest_i = 0;
-        //Find the closest path and it is not used yet.
+        
         for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 5; j++)
@@ -68,9 +68,8 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             }
         }
 
-        //Debug.Log(checkValid(cloest_j, cloest_i));
         Property c = this.GetComponent<Property>();
-        if (boardDetail.    checkValid(c,cloest_j, cloest_i))
+        if (boardDetail.checkValid(c,cloest_j, cloest_i))
 
         {
             /*
