@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public Transform cardHolder;
+    public Transform playerHoler;
     public string playerName;
     [SerializeField]
     public List<GameObject> hand;//list of card 
@@ -21,9 +22,14 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string role;
     private bool IsBot;
+    public GameObject PlayerHolderPrefab;
+    private GameObject playerInformation;
+
     void Start()
     {
         cardHolder = GameObject.Find("Cards").transform;
+        playerInformation = Instantiate(PlayerHolderPrefab) as GameObject;
+        playerInformation.transform.SetParent();
         //StateMachine.ChangeState()
     }
     
