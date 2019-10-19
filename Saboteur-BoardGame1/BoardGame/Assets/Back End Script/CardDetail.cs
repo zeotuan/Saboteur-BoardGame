@@ -22,21 +22,6 @@ public class CardDetail
     }
 
 
-    /*public void LoadCard(ScriptableCard c){
-
-        if(c == null)
-            return;
-
-        SCard = c;
-        cardName.text = c.cardName;
-        right = c.right;
-        left = c.left;
-        up = c.up;
-        down = c.down;
-        rotate = c.rotate;
-        frontcardArtWork.sprite = c.FrontArt;
-        backCardArtWork.sprite = c.BackArt;
-    }*/
 
 
 
