@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
 
     public void SwitchRound()
     {
+        maxRound = this.GetComponent<Round_slider>().max_round;
         curRound++;
         if(curRound < maxRound){
             gameStarted = true;
