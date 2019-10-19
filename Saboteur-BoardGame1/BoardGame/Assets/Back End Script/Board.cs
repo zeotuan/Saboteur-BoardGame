@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityEditor;
-public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class Board : MonoBehaviour
 {
     //2 dimensional array for cards on board 
     public GameObject GridPrefab;

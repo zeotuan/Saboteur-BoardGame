@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private string role;
     private bool IsBot;
     private List<int> Points;
-    private List<string> role;
+    private List<string> Role;
     
     private GameObject playerInformation;
 
