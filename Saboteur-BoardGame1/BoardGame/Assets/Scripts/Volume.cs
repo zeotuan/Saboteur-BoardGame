@@ -19,4 +19,12 @@ public class Volume : MonoBehaviour
         Main_value = Mute.GetFloat("Main", Main_value);
     }
     */
+    public void mute()
+    {/*
+        if()
+        {
+            BGM.SetFloat("BGM_1", 1);
+        }
+        */
+    }
 }

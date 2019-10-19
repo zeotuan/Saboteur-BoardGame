@@ -22,8 +22,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     int curRound;
     
-   
-    
+
+
     void Awake()
     {
         base.Awake();
@@ -93,8 +93,12 @@ public class GameManager : Singleton<GameManager>
     {
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
         player.transform.SetParent(transform);
+        //Steve's
         Players.Add(player);
         player.GetComponent<PlayerController>().name = "Player " + (Players.Count).ToString() ;
+
+        //Ryan's
+         
     }
 
     //generic function to create GameObject and add Parent to it 
