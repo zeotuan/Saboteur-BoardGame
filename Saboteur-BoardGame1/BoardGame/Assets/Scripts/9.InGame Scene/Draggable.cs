@@ -35,10 +35,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             this.transform.SetParent(parentToReturnTo);
             return;
         }
-
-       
-
-        
+ 
         //find closest path
         float distance = Vector3.Distance(this.transform.position, board[0, 0].transform.position);
         int cloest_j = 0;
@@ -65,18 +62,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         if (boardDetail.checkValid(c,cloest_j, cloest_i))
 
         {
-            /*
-            this.transform.parent.parent.Find("Handle/Buttons/Confirm").gameObject.SetActive(true);
-            
-            Debug.Log(this.transform.name);
-            this.transform.parent.Find("Canvas/Panel/Buttons/Rotate").gameObject.SetActive(true);
-            
-            this.transform.parent.parent.Find("Handle/Buttons/Cancel").gameObject.SetActive(true);
-            
-            this.transform.parent.Find("Buttons/Discard").gameObject.SetActive(false);
-            this.transform.parent.Find("Buttons/Rotate").GetComponent<Dropped_path>().setSelectedPath(board[cloest_j, cloest_i]); */
-            
-
+           
             boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
             GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().Discard(this.gameObject);
             
