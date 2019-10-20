@@ -35,7 +35,7 @@ public class Round : MonoBehaviour
             {
                 PlayerController playerC = player.GetComponent<PlayerController>();
                 playerC.setRole(roles[count]);
-                playerC.addRole(roles[count]);
+                //playerC.addRole(roles[count]);
                 count++;
             }
             
@@ -58,9 +58,8 @@ public class Round : MonoBehaviour
         }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
-                int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
-
-                currPlayer.Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
+                int index = Random.Range(0, currPlayer.hand.Count);
+                currPlayer.Discard(currPlayer.hand[index]);
 
         }
         if (currPlayer.Played())
@@ -76,7 +75,6 @@ public class Round : MonoBehaviour
         Turn = 0;
     }
 
-    
     public void SwitchTurn()
     {
         GameObject PlayersPanel = GameObject.Find("Canvas/Panel/Left");

@@ -64,6 +64,7 @@ public class Board : MonoBehaviour
 
     public void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
+        //Destroy existed GridObject
         board = new GameObject[maxRow, maxCol];
         if(board.Length > 0){
             for (int r = 0; r < maxRow; r++) { 
