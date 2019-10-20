@@ -59,11 +59,10 @@ public class Round : MonoBehaviour
         }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
-                
-
                 int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
+
                 currPlayer.Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
-            
+
         }
         if (currPlayer.Played())
         {
