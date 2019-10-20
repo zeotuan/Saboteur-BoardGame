@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string role;
     private bool IsBot;
-    private List<int> Points;
+    private List<int> Points = new List<int>();
     private List<string> Role;
     
     private GameObject playerInformation;
