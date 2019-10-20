@@ -65,9 +65,24 @@ public class Board : MonoBehaviour
     public void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
         board = new GameObject[maxRow, maxCol];
+
         if (board.Length > 0)
         {
             for (int r = 0; r < maxRow; r++)
+
+        if(board.Length > 0){
+            for (int r = 0; r < maxRow; r++) { 
+                for(int c = 0; c < maxCol; c++)
+                {
+                    Destroy(board[r,c]);  
+                }
+            }
+        }
+        shuffleDestination();
+        //GameManager.Instance.shuffle(DesGrid);
+        for (int r = 0; r < maxRow; r++) { 
+            for(int c = 0; c < maxCol; c++)
+
             {
                 for (int c = 0; c < maxCol; c++)
                 {
@@ -80,6 +95,7 @@ public class Board : MonoBehaviour
             {
                 for (int c = 0; c < maxCol; c++)
                 {
+
                     GameObject tile;
                     if (r == 2 && c == 0)
                     {
@@ -130,6 +146,25 @@ public class Board : MonoBehaviour
             //transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
 
         }
+=======
+                    tile = Instantiate(GridPrefab) as GameObject;
+                }
+                if (tile.name == "TrueDes Variant(Clone)")
+                {
+                    xTrueDes = r;
+                    yTrueDes = c;
+                }
+                float posX = c * tileSize;
+                float posY = r * tileSize;
+                tile.transform.position = new Vector3(posX, posY, transform.position.z);
+                tile.transform.SetParent(transform);
+                board[r, c] = tile;
+                tile.GetComponent<Property>().x = r;
+                tile.GetComponent<Property>().y = c;
+            }  
+        }
+        
+>>>>>>> b002ec5b9bde90da2c07e953ff0ee0d7659affde
     }
 
     public GameObject findNearestGrid(GameObject card)
