@@ -19,6 +19,7 @@ public class Round : MonoBehaviour
 
     void Start()
     {
+        createBoard();
         shufflePlayer();
         shuffleRole();
         
@@ -36,7 +37,9 @@ public class Round : MonoBehaviour
             }
             foreach (GameObject player in GameManager.Instance.Players)
             {
-                player.GetComponent<PlayerController>().setRole(roles[count]);
+                PlayerController playerC = player.GetComponent<PlayerController>();
+                playerC.setRole(roles[count]);
+                playerC.addRole(roles[count]);
                 count++;
             }
             

@@ -109,6 +109,9 @@ public class PlayerController : MonoBehaviour
     {
         return this.role;
     }
+    public void addRole(string role){
+        Role.Add(role);
+    }
 
     public void addPoint(int point){
         Points.Add(point);

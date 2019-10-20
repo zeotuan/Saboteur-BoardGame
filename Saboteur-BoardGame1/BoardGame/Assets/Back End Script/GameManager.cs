@@ -64,13 +64,10 @@ public class GameManager : Singleton<GameManager>
         curRound++;
         if(curRound < maxRound){
             gameStarted = true;
-            //currentRound.GetComponent<Round>().EndRound();
-            //currentRound.GetComponent<Round>().enabled = false;
             currRound.EndRound();
             currRound.enabled = false;
             PassedRounds.Add(currentRound);
             currentRound = createRound();
-            //deck.GetComponent<Deck>().GenerateDeck(10);
             Deck.GenerateDeck(10);
         }else{
             //Raise Score Board
@@ -78,12 +75,9 @@ public class GameManager : Singleton<GameManager>
 
         
     }
-    
-    
 
     bool checkWinCondition()
     {
-
         return false;
     }
 
@@ -100,14 +94,11 @@ public class GameManager : Singleton<GameManager>
     {
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
         player.transform.SetParent(transform);
-        //Steve's
         Players.Add(player);
         player.GetComponent<PlayerController>().name = "Player " + (Players.Count).ToString() ;
-
         //Ryan's
          
     }
-
     //generic function to create GameObject and add Parent to it 
     public GameObject createGameObject(GameObject Prefab, Transform Parent)
     {
