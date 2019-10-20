@@ -66,6 +66,11 @@ public class Board : MonoBehaviour
     {
         //Destroy existed GridObject
         board = new GameObject[maxRow, maxCol];
+
+        if (board.Length > 0)
+        {
+            for (int r = 0; r < maxRow; r++)
+
         if(board.Length > 0){
             for (int r = 0; r < maxRow; r++) { 
                 for(int c = 0; c < maxCol; c++)
@@ -78,23 +83,71 @@ public class Board : MonoBehaviour
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++) { 
             for(int c = 0; c < maxCol; c++)
+
             {
-                GameObject tile;
-                if (r==2 && c==0)
+                for (int c = 0; c < maxCol; c++)
                 {
-                    tile = Instantiate(startGrid) as GameObject;
-                }else if (r==0 && c==8)
-                {
-                    tile = Instantiate(DesGrid[0]) as GameObject;
-                }else if (r==2 && c==8)
-                {
-                    tile = Instantiate(DesGrid[1]) as GameObject;
-                } else if (r==4 && c==8)
-                {
-                    tile = Instantiate(DesGrid[2]) as GameObject;
+                    Destroy(board[r, c]);
                 }
-                else
+            }
+            shuffleDestination();
+            //GameManager.Instance.shuffle(DesGrid);
+            for (int r = 0; r < maxRow; r++)
+            {
+                for (int c = 0; c < maxCol; c++)
                 {
+
+                    GameObject tile;
+                    if (r == 2 && c == 0)
+                    {
+                        tile = Instantiate(startGrid) as GameObject;
+                    }
+                    else if (r == 0 && c == 8)
+                    {
+                        tile = Instantiate(DesGrid[0]) as GameObject;
+                    }
+                    else if (r == 2 && c == 8)
+                    {
+                        tile = Instantiate(DesGrid[1]) as GameObject;
+                    }
+                    else if (r == 4 && c == 8)
+                    {
+                        tile = Instantiate(DesGrid[2]) as GameObject;
+                    }
+                    else
+                    {
+                        tile = Instantiate(GridPrefab) as GameObject;
+                    }
+
+
+                    if (tile.name == "TrueDes Variant(Clone)")
+                    {
+                        xTrueDes = r;
+                        yTrueDes = c;
+                    }
+
+
+
+                    float posX = c * tileSize;
+                    float posY = r * tileSize;
+                    tile.transform.position = new Vector3(posX, posY, transform.position.z);
+                    tile.transform.SetParent(transform);
+                    board[r, c] = tile;
+                    tile.GetComponent<Property>().x = r;
+                    tile.GetComponent<Property>().y = c;
+                }
+
+            }
+
+            //float gridH = maxCol * tileSize;
+            //float gridW = maxRow * tileSize;
+
+
+
+            //transform.position = new Vector3(-gridW / 2 + tileSize / 2, gridH / 2 - tileSize / 2);
+
+        }
+=======
                     tile = Instantiate(GridPrefab) as GameObject;
                 }
                 if (tile.name == "TrueDes Variant(Clone)")
@@ -112,6 +165,7 @@ public class Board : MonoBehaviour
             }  
         }
         
+>>>>>>> b002ec5b9bde90da2c07e953ff0ee0d7659affde
     }
 
     public GameObject findNearestGrid(GameObject card)
