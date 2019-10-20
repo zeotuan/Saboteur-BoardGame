@@ -12,8 +12,10 @@ public class GameManager : Singleton<GameManager>
     public GameObject RoundPrefab;
     public List<GameObject> Players;
     public List<GameObject> PassedRounds;
-    public GameObject currentRound;
+    public GameObject currentRound;//should be replaced
+    public Round currRound;
     public GameObject deck;
+    public Deck Deck;
     public GameObject deckPrefab;
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
@@ -38,6 +40,7 @@ public class GameManager : Singleton<GameManager>
     {
         deck = Instantiate(deckPrefab) as GameObject;
         deck.transform.SetParent(transform);
+        Deck = deck.GetComponent<Deck>();
         if (!gameStarted)
         {
             currentRound = createRound();   
@@ -60,11 +63,14 @@ public class GameManager : Singleton<GameManager>
         curRound++;
         if(curRound < maxRound){
             gameStarted = true;
-            currentRound.GetComponent<Round>().EndRound();
-            currentRound.GetComponent<Round>().enabled = false;
+            //currentRound.GetComponent<Round>().EndRound();
+            //currentRound.GetComponent<Round>().enabled = false;
+            currRound.EndRound();
+            currRound.enabled = false;
             PassedRounds.Add(currentRound);
             currentRound = createRound();
-            deck.GetComponent<Deck>().GenerateDeck(10);
+            //deck.GetComponent<Deck>().GenerateDeck(10);
+            Deck.GenerateDeck(10);
         }else{
             //Raise Score Board
         }               
@@ -84,6 +90,7 @@ public class GameManager : Singleton<GameManager>
     {
         GameObject round = Instantiate(RoundPrefab) as GameObject;
         round.transform.SetParent(transform);
+        currRound = round.GetComponent<Round>();
         return round;
 
     }

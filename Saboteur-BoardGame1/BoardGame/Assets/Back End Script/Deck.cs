@@ -21,7 +21,9 @@ public class Deck : MonoBehaviour
 
     public void GenerateDeck(int numberPlayer)
     {
-        
+        if(deck.Count != 0){//clear the deck before regenerating the card
+            deck.Clear();
+        }
         //generated all needed card
         for (int i = 0; i < 6; ++i)
         {

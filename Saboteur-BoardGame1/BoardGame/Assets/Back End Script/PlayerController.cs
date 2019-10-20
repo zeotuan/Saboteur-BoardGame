@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string role;
     private bool IsBot;
+    private List<int> Points;
+    private List<string> role;
     
     private GameObject playerInformation;
 
@@ -67,8 +69,6 @@ public class PlayerController : MonoBehaviour
             card.transform.SetParent(cardHolder);
             playerInformation.transform.SetParent(currentPlayerHolder);
             card.GetComponent<activate>().enabled = true;
-
-
         }
     }
 
@@ -104,6 +104,14 @@ public class PlayerController : MonoBehaviour
     public void setRole(string role)
     {
         this.role = role;
+    }
+    public string getRole()
+    {
+        return this.role;
+    }
+
+    public void addPoint(int point){
+        Points.Add(point);
     }
 
     public void BotPlay()

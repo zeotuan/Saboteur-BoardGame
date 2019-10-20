@@ -23,19 +23,6 @@ public class Board : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointer
     [SerializeField]
     int xTrueDes, yTrueDes;
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-
-    }
-
-    public void OnPointerExit(PointerEventData eventData)
-    {
-
-    }
-    public void OnDrop(PointerEventData eventData)
-    {
-    }
-
     private void UpdateMouseOver()
     {
         //if it's my turn

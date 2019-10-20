@@ -7,13 +7,16 @@ public class Round : MonoBehaviour
     bool RoundStarted;
     public int Turn;
     public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
-    bool ThisRoundTurn = false;
+    public PlayerController currPlayer {get { return GameManager.Instance.Players[Turn].GetComponent<PlayerController>(); }}
     bool roundEnd = false;
     [SerializeField]
     float TimeLeft = 10;
     [SerializeField]
     string[] roles;
-    
+    public GameObject boardPrefab;
+    [SerializeField]
+    Board curboard;
+
     void Start()
     {
         shufflePlayer();
@@ -28,7 +31,7 @@ public class Round : MonoBehaviour
             for(int i = 0; i < 5; i++){//deal 5 card to each player when starting the round
                 foreach(GameObject player in GameManager.Instance.Players)
                 {
-                    GameManager.Instance.deck.GetComponent<Deck>().Deal(player.GetComponent<PlayerController>());
+                    GameManager.Instance.Deck.Deal(player.GetComponent<PlayerController>());
                 }
             }
             foreach (GameObject player in GameManager.Instance.Players)
@@ -59,19 +62,24 @@ public class Round : MonoBehaviour
                 
 
                 int index = Random.Range(0, currentPlayer.GetComponent<PlayerController>().hand.Count);
-                currentPlayer.GetComponent<PlayerController>().Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
+                currPlayer.Discard(currentPlayer.GetComponent<PlayerController>().hand[index]);
             
         }
-        if (currentPlayer.GetComponent<PlayerController>().Played())
+        if (currPlayer.Played())
         {
             SwitchTurn();
         }   
 
     }
+    public void createBoard()
+    {
+        GameObject board = Instantiate(boardPrefab) as GameObject;
+        board.transform.SetParent(transform);
+        curboard = board.GetComponent<Board>();
+    }
 
     public void StartRound()
     {
-        ThisRoundTurn = true;
         Turn = 0;
     }
 
@@ -88,8 +96,8 @@ public class Round : MonoBehaviour
 
         TimeLeft = 11;
         RoundStarted = true;
-        GameManager.Instance.deck.GetComponent<Deck>().Deal(currentPlayer.GetComponent<PlayerController>());
-        currentPlayer.GetComponent<PlayerController>().EndTurn();
+        GameManager.Instance.Deck.Deal(currentPlayer.GetComponent<PlayerController>());
+        currPlayer.EndTurn();
         int Condition = checkWinCondition();
         Debug.Log(Condition);
         if (Condition == 1 || Condition == -1)//someone win
@@ -98,8 +106,7 @@ public class Round : MonoBehaviour
             GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
             End_Game.SetActive(true);
             Time.timeScale = 0;
-            
-            roundEnd = true;
+            CalculateReward(Condition);
             EndRound();
             return;
         }
@@ -108,7 +115,7 @@ public class Round : MonoBehaviour
         {
             Turn = 0;    
         }
-        currentPlayer.GetComponent<PlayerController>().StartTurn();
+        currPlayer.StartTurn();
 
         raiseCover();
         
@@ -117,14 +124,14 @@ public class Round : MonoBehaviour
     int checkWinCondition()
     {
         Board board = GameObject.Find("Map").GetComponent<Board>();
-
+        int WinStatus = 0;
         if(board.BreadthFirstSearch(2, 0))// if there is a path from start to goal
         {
-            return 1;//Goal digger win
+            WinStatus = 1;//Goal digger win
         }
         else//there is no path from start to goal
         {
-            if (GameManager.Instance.deck.GetComponent<Deck>().deck.Count == 0)//there no card left 
+            if (GameManager.Instance.Deck.deck.Count == 0)//there no card left 
             {
                 bool cardleft = false;
                 foreach(GameObject p in GameManager.Instance.Players)
@@ -135,17 +142,15 @@ public class Round : MonoBehaviour
                     }
                 }
                 if(!cardleft)
-                    return -1;//saboteur win
-            }
-              
+                    WinStatus = -1;//saboteur win
+            }  
         }
-        return 0;// no group has won
-        
+        return WinStatus;// no group has wo
     }
 
     public void EndRound()
     {
-        ThisRoundTurn = false;
+        roundEnd = true;
     }
 
     
@@ -177,5 +182,26 @@ public class Round : MonoBehaviour
         //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
         Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
         Time.timeScale = 0;
+    }
+
+    void CalculateReward(int WinnerCode){
+        string winner;
+        if(WinnerCode == 0){
+            return;
+        }else if (WinnerCode == 1){
+            winner = "dwarf";
+        }else{
+            winner = "saboteur";
+        }
+        foreach(GameObject p in GameManager.Instance.Players)
+        {
+            PlayerController player = p.GetComponent<PlayerController>();
+            if (player.getRole() == winner)
+            {
+                player.addPoint(Random.Range(1,3));
+            }else{
+                player.addPoint(0);
+            }
+        }
     }
 }

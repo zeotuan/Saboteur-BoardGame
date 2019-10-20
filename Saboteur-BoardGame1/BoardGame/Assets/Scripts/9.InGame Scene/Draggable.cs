@@ -60,12 +60,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
 
         Property c = this.GetComponent<Property>();
         if (boardDetail.checkValid(c,cloest_j, cloest_i))
-
         {
-           
             boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-            GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().Discard(this.gameObject);
-            
+            GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
         }
         else
         {
