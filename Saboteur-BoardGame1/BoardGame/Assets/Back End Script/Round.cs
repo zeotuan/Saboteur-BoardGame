@@ -13,16 +13,12 @@ public class Round : MonoBehaviour
     float TimeLeft = 10;
     [SerializeField]
     string[] roles;
-    public GameObject boardPrefab;
-    [SerializeField]
-    Board curboard;
+    
 
     void Start()
     {
-        createBoard();
         shufflePlayer();
         shuffleRole();
-        
         /*GameManager.Instance.shuffle(roles);
         GameManager.Instance.shuffle(GameManager.Instance.Players);*/
         if (!RoundStarted)
@@ -73,12 +69,7 @@ public class Round : MonoBehaviour
         }   
 
     }
-    public void createBoard()
-    {
-        GameObject board = Instantiate(boardPrefab) as GameObject;
-        board.transform.SetParent(transform);
-        curboard = board.GetComponent<Board>();
-    }
+    
 
     public void StartRound()
     {

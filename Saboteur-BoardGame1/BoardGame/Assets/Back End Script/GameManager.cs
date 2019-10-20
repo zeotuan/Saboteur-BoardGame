@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public Round currRound;
     public GameObject deck;
     public Deck Deck;
+    public Board Board;
     public GameObject deckPrefab;
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
@@ -35,6 +36,7 @@ public class GameManager : Singleton<GameManager>
             createPlayer();
         }       
         gameStarted = false;
+        Board = GameObject.Find("Map").GetComponent<Board>();
     }
     void Start()
     {
@@ -69,6 +71,7 @@ public class GameManager : Singleton<GameManager>
             PassedRounds.Add(currentRound);
             currentRound = createRound();
             Deck.GenerateDeck(10);
+            Board.GenerateBoard(5, 9, 5);
         }else{
             //Raise Score Board
         }               

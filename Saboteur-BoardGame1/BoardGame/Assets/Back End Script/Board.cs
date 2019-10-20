@@ -65,6 +65,13 @@ public class Board : MonoBehaviour
     private void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
         board = new GameObject[maxRow, maxCol];
+        if(board.Length > 0){
+            for (int r = 0; r < maxRow; r++) { 
+                for(int c = 0; c < maxCol; c++)
+                {
+                    Destroy(board[r,c]);  
+                }
+        }
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++) { 
