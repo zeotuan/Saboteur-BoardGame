@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     private string role;
     private bool IsBot;
     private List<int> Points = new List<int>();
-    private List<string> Role;
+    private List<string> Role = new List<string>();
     
     private GameObject playerInformation;
 

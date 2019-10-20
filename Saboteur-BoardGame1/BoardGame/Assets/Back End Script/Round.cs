@@ -60,7 +60,6 @@ public class Round : MonoBehaviour
         {
                 int index = Random.Range(0, currPlayer.hand.Count);
                 currPlayer.Discard(currPlayer.hand[index]);
-
         }
         if (currPlayer.Played())
         {
@@ -189,9 +188,9 @@ public class Round : MonoBehaviour
             PlayerController player = p.GetComponent<PlayerController>();
             if (player.getRole() == winner)
             {
-                player.addPoint(Random.Range(1,3));
+                //player.addPoint(Random.Range(1,3));
             }else{
-                player.addPoint(0);
+                //player.addPoint(0);
             }
         }
     }
