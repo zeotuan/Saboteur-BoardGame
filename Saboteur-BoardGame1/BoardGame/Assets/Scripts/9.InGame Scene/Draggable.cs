@@ -29,8 +29,9 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        Card c = this.GetComponent<Card>();
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (!this.GetComponent<Card>().Interactalbe)//effect card
+        if (!c.Interactalbe)//effect card
         {
             this.transform.SetParent(parentToReturnTo);
             return;
@@ -58,23 +59,32 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             }
         }
 
-        Property c = this.GetComponent<Property>();
-        if (boardDetail.checkValid(c,cloest_j, cloest_i))
-        {
-            boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-            GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
-            boardDetail.RevealDes(cloest_j,cloest_i);
-        }
-        else
-        {
-            if(boardDetail.CheckDes(c,cloest_j,cloest_i)){
+        Property p = this.GetComponent<Property>();
+        CardDetail cDetail = c.card;
+        if(cDetail is PathCard){
+            if (boardDetail.checkValid(p,cloest_j, cloest_i))
+            {
                 boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);   
+                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
                 boardDetail.RevealDes(cloest_j,cloest_i);
             }
+            else
+            {
+                if(boardDetail.CheckDes(p,cloest_j,cloest_i)){
+                    boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
+                    GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);   
+                    boardDetail.RevealDes(cloest_j,cloest_i);
+                }
             //Debug.Log(this.transform.parent.name);
             this.transform.SetParent(parentToReturnTo);
+            }
+        }else if (cDetail is Destroy_PathCard){
+            Property closest = board[cloest_j, cloest_i].GetComponent<Property>();
+            if(closest.used){
+                ((Destroy_PathCard)cDetail).Apply(closest); 
+            }
         }
+        
     }
 
     

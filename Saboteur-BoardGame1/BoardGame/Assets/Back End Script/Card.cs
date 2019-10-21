@@ -32,6 +32,8 @@ public class Card : MonoBehaviour
                 this.GetComponent<Property>().center = ((PathCard)card).middle;
                 this.GetComponent<Property>().frontCardArtWork = card.frontCardArtWork;
                 this.GetComponent<Property>().backCardArtWork = card.backCardArtWork;
+            }else if (card is Destroy_PathCard){
+                Interactalbe = true;
             }
                 
             rotation = 0;
