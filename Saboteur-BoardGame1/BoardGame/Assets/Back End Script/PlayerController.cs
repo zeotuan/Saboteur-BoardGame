@@ -29,8 +29,15 @@ public class PlayerController : MonoBehaviour
     private List<int> Points = new List<int>();
     [SerializeField]
     private List<string> Role = new List<string>();
-    
+    [SerializeField]
     private GameObject playerInformation;
+
+    public Sprite B_PickAxe;
+    public Sprite N_PickAxe;
+    public Sprite B_Lamb;
+    public Sprite N_Lamb;
+    public Sprite B_Cart;
+    public Sprite N_Cart;
 
     void Start()
     {
@@ -129,6 +136,36 @@ public class PlayerController : MonoBehaviour
             totalPoint += point;
         }
         return totalPoint;
+    }
+
+    public void UpdateEffectPanel()
+    {
+        if (PickAxe)
+        {
+            //playerInformation.transform.GetChild(10).GetComponent<>
+            playerInformation.transform.Find("Image (1)").GetComponent<Image>().sprite = N_PickAxe;
+
+        }
+        else
+        {
+            playerInformation.transform.Find("Image (1)").GetComponent<Image>().sprite = B_PickAxe;
+        }
+        if (Cart)
+        {
+            playerInformation.transform.Find("Image (2)").GetComponent<Image>().sprite = N_Cart;
+        }
+        else
+        {
+            playerInformation.transform.Find("Image (2)").GetComponent<Image>().sprite = B_Cart;
+        }
+        if (Lamb)
+        {
+            playerInformation.transform.Find("Image (3)").GetComponent<Image>().sprite = N_Lamb;
+        }
+        else
+        {
+            playerInformation.transform.Find("Image (3)").GetComponent<Image>().sprite = B_Lamb;
+        }
     }
 
 

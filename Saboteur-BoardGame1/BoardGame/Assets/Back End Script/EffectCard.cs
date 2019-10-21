@@ -26,7 +26,7 @@ public class EffectCard : CardDetail
             Target.Lamb = false;
         if (!Cart)
             Target.Cart = false;
-        
+        Target.UpdateEffectPanel();
         Debug.Log("Apply type on " + Target.name);
     }
 

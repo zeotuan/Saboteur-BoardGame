@@ -16,6 +16,7 @@ public class FixCard : EffectCard
             Target.Lamb = true;
         if (Cart)
             Target.Cart = true;
+        Target.UpdateEffectPanel();
         Debug.Log("Apply Fix on " + Target.name);
     }
 }

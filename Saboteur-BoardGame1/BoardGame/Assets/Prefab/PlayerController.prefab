@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardHolder: {fileID: 0}
-  playerHoler: {fileID: 0}
+  playerHolder: {fileID: 0}
+  currentPlayerHolder: {fileID: 0}
   PlayerHolderPrefab: {fileID: 7995826326293950270, guid: d1fbee19fd988ac4791b4331f18f57e4,
     type: 3}
   playerName: 
@@ -55,3 +56,12 @@ MonoBehaviour:
   MyTurn: 0
   FinishTurn: 0
   role: 
+  Points: 
+  Role: []
+  playerInformation: {fileID: 0}
+  B_PickAxe: {fileID: 21300000, guid: acf2227357bcbf44ca30301eaba1493d, type: 3}
+  N_PickAxe: {fileID: 21300000, guid: f0d9cc4b24c21b34b94c660a07238cef, type: 3}
+  B_Lamb: {fileID: 21300000, guid: 4783543d6d5aca3488aed6bf5add65bc, type: 3}
+  N_Lamb: {fileID: 21300000, guid: afdf18a20bbd72847875af6c47ff139e, type: 3}
+  B_Cart: {fileID: 21300000, guid: b391ad27202005940bed5d7eae3fac2c, type: 3}
+  N_Cart: {fileID: 21300000, guid: 8cb794e2962a32640b69996f1d9374ee, type: 3}
