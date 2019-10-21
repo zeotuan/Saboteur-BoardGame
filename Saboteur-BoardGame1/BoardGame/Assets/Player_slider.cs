@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class Player_slider : MonoBehaviour
 {
     public GameObject play_input_prefab;
-    public int PlayerNumber = 1;
+    public int PlayerNumber = 3;
     public void Start()
     {
-        PlayerNumber = 1;
+        PlayerNumber = 3;
+        GameObject.Instantiate(play_input_prefab).transform.SetParent(this.transform.parent.parent.Find("Input_Field"));
+        GameObject.Instantiate(play_input_prefab).transform.SetParent(this.transform.parent.parent.Find("Input_Field"));
         GameObject.Instantiate(play_input_prefab).transform.SetParent(this.transform.parent.parent.Find("Input_Field"));
     }
     // Start is called before the first frame update

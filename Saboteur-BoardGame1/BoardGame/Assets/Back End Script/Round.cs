@@ -59,8 +59,11 @@ public class Round : MonoBehaviour
     void Update()
     {
         TimeLeft -= Time.deltaTime;
-        //GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
-        
+        GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
+        if(TimeLeft <= 10)
+        {
+            
+        }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
                 int index = Random.Range(0, currPlayer.hand.Count);
@@ -81,6 +84,11 @@ public class Round : MonoBehaviour
         Turn = 0;
     }
 
+    public void  setTimeLeft(float x)
+    {
+        TimeLeft = x;
+    }
+
     public void SwitchTurn()
     {
    
@@ -92,7 +100,7 @@ public class Round : MonoBehaviour
             PlayersPanel.transform.GetChild(i).Find("Select").gameObject.SetActive(false);
         }
 
-        TimeLeft = 11;
+        TimeLeft = 60;
         RoundStarted = true;
         GameManager.Instance.Deck.Deal(currentPlayer.GetComponent<PlayerController>());
         currPlayer.EndTurn();
@@ -103,7 +111,7 @@ public class Round : MonoBehaviour
             //activate the end game panel
             GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
             End_Game.SetActive(true);
-            Time.timeScale = 0;
+            
             CalculateReward(Condition);
             EndRound();
             return;
@@ -179,7 +187,7 @@ public class Round : MonoBehaviour
         GameObject Canvas = GameObject.Find("Canvas");
         //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
         Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
-        Time.timeScale = 0;
+        
     }
 
     void CalculateReward(int WinnerCode){

@@ -108,6 +108,7 @@ public class PlayerController : MonoBehaviour
             card.SetActive(false);
             playerInformation.transform.SetParent(playerHolder);
         }
+        this.transform.parent.Find("Role").gameObject.SetActive(false);
     }
 
     public void Discard(GameObject card)

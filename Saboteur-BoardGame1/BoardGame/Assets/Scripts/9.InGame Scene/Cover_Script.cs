@@ -7,6 +7,6 @@ public class Cover_Script : MonoBehaviour
     public void Buttons()
     {
         this.gameObject.SetActive(false);
-        Time.timeScale = 1;
+        GameManager.Instance.currRound.setTimeLeft(10);
     }
 }

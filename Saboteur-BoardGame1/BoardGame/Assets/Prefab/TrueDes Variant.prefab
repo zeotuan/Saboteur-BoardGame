@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6677269406572953301}
   - component: {fileID: 3473584141514889366}
   - component: {fileID: 8872179758799680092}
-  - component: {fileID: 5084252928332362237}
   m_Layer: 5
   m_Name: tempImage
   m_TagString: Untagged
@@ -91,19 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_AspectMode: 3
   m_AspectRatio: 1
---- !u!114 &5084252928332362237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6229879354428349390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27e1573ef09966840a448bf342a9148a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4027060262869811807
+--- !u!114 &3774679215437926719
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -112,7 +99,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 410335968587384005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27e1573ef09966840a448bf342a9148a, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f59431f66c2bdf4b812400559bf0d91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &6284799225155785236

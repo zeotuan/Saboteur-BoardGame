@@ -11,7 +11,7 @@ public class Show_Destination : CardDetail
 
     public void Apply(Property prop)
     {
-        prop.gameObject.transform.Find("tempImage").gameObject.SetActive(true);
+        
         prop.gameObject.GetComponent<TempShowDes>().StartShowDes();
     }
 }

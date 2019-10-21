@@ -11,6 +11,7 @@ public class TempShowDes : MonoBehaviour
     }
     IEnumerator ShowDes()
     {
+        this.gameObject.transform.Find("tempImage").gameObject.SetActive(true);
         yield return new WaitForSeconds(2);
         this.gameObject.transform.Find("tempImage").gameObject.SetActive(false);
     }
