@@ -5,14 +5,13 @@ using UnityEngine;
 public class TempShowDes : MonoBehaviour
 {
     // Start is called before the first frame update
-    void Start()
+    public void StartShowDes()
     {
-        
+        StartCoroutine(ShowDes());
     }
-
-    // Update is called once per frame
-    void Update()
+    IEnumerator ShowDes()
     {
-        
+        yield return new WaitForSeconds(2);
+        this.gameObject.transform.Find("tempImage").gameObject.SetActive(false);
     }
 }
