@@ -28,18 +28,9 @@ public class GameManager : Singleton<GameManager>
     private String[] playerNames;
     
 
-
-    void Awake()
+    public int GetCurRoundCount()
     {
-        //base.Awake(); 
-    }   
-    void Start()
-    {
-        
-    }
-    void Update()
-    {
-            
+        return curRound;
     }
 
     public void StartGame(){

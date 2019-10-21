@@ -117,10 +117,12 @@ public class Round : MonoBehaviour
         {
             //activate the end game panel
             GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
-            End_Game.SetActive(true);
+            
             
             CalculateReward(Condition);
             EndRound();
+            End_Game.transform.Find("End game menu").GetComponent<score_board>().LoadScoreBoard();
+            End_Game.SetActive(true);
             return;
         }
         Turn++;

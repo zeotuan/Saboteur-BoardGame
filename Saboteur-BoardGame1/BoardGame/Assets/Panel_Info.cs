@@ -10,7 +10,7 @@ public class Panel_Info : MonoBehaviour
     void Start()
     {
         this.transform.Find("Player's name").GetComponent<Text>().text = this.transform.GetChild(10).GetComponent<PlayerController>().playerName;
-        this.transform.Find("Text").GetComponent<Text>().text = "Score: " + this.transform.GetChild(10).GetComponent<PlayerController>().getPoint().ToString();
+        this.transform.Find("Text").GetComponent<Text>().text = "Score: " + this.transform.GetChild(10).GetComponent<PlayerController>().getTotalPoint().ToString();
         this.transform.Find("Role").GetComponent<Text>().text = "Role: " + this.transform.GetChild(10).GetComponent<PlayerController>().getRole();
 
     }
