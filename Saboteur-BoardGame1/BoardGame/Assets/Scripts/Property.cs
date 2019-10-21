@@ -15,6 +15,8 @@ public class Property : MonoBehaviour
     public bool rotated = false;
     public int x;
     public int y;
+    public Sprite frontCardArtWork;
+    public Sprite backCardArtWork;
 
     public void rotate()
 
