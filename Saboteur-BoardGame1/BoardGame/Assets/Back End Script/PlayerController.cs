@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     private List<string> Role = new List<string>();
     [SerializeField]
     private GameObject playerInformation;
+    public string[] Prediction;
 
     public Sprite B_PickAxe;
     public Sprite N_PickAxe;
@@ -52,13 +53,12 @@ public class PlayerController : MonoBehaviour
         this.gameObject.transform.SetParent(playerInformation.transform);
         playerInformation.transform.Find("Player's name").GetComponent<Text>().text = playerName;
         playerInformation.name = this.name;
+        
         //StateMachine.ChangeState()
     }
     
     public void Update()
     {   
-
-
         //StateMachine.Update();    
         if (MyTurn)
         {
@@ -72,6 +72,7 @@ public class PlayerController : MonoBehaviour
             //
         }
     }
+
 
     public void StartTurn()
     {
@@ -121,6 +122,13 @@ public class PlayerController : MonoBehaviour
         FinishTurn = true;
     }
     
+    public void InitPlayer(int numPlayer){
+        Prediction = new string[numPlayer];
+    }
+
+    public void SetAssumption(int PlayerIndex, string assumedRole){
+        Prediction[PlayerIndex] = assumedRole;
+    }
 
     public bool Played()
     {
