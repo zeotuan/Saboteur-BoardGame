@@ -23,30 +23,6 @@ public class Board : MonoBehaviour
     [SerializeField]
     int xTrueDes, yTrueDes;
 
-    private void UpdateMouseOver()
-    {
-        //if it's my turn
-        if (!Camera.main)
-        {// if camera does not exist 
-            Debug.Log("unable to find camera");
-            return;
-        }
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("Board")))
-        {
-            mouseOver.x = (int)hit.point.x;
-            mouseOver.y = (int)hit.point.z;
-            Debug.Log("x:" + mouseOver.x + " y:" + mouseOver.y);
-        }
-        else
-        {
-            mouseOver.x = -1;
-            mouseOver.y = -1;
-        }
-
-    }
-
-
     // Start is called before the first frame update
     void Start()
     {
@@ -355,7 +331,6 @@ public class Board : MonoBehaviour
             if (up.Down && c.Up)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + up.x + up.y);
-                //CheckDes(up);
             }
             if (up.Down != c.Up && up.used)
             {
@@ -369,7 +344,6 @@ public class Board : MonoBehaviour
             if (down.Up && c.Down)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + down.x + down.y);
-                //CheckDes(down);
             }
             if (down.Up != c.Down && down.used)
             {
@@ -383,7 +357,6 @@ public class Board : MonoBehaviour
             if (right.Left && c.Right)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + right.x + right.y);
-                //CheckDes(eight);
             }
             if (right.Left != c.Right && right.used)
             {
@@ -398,23 +371,60 @@ public class Board : MonoBehaviour
             if (left.Right && c.Left)
             {
                 valid = true; Debug.Log("Valid Card Placed at position:" + left.x + " " + left.y);
-
             }
             if (left.Right != c.Left && left.used)
             {
                 return false;
             }
         }
-        //then check if the placed card compatible with any other path
+         //then check if the placed card compatible with any other path
         return valid;
 
     }
 
-    public void CheckDes(Property prop)
-    {
-        if (prop.y == 8 && (prop.x == 0 || prop.x == 2 || prop.x == 4))
-        {
-            //reveal card 
+    //if not valid check if des can be rotate so that it valid. 
+    public void CheckDes(Property c,int x, int y)
+    {   
+        bool checkDes = false;
+        if(y == 7 && (x == 0 || x == 2 || x == 4)){
+           Property Des = board[x, y+1].GetComponent<Property>();
+           if(!Des.used && x != xTrueDes && y != yTrueDes){
+                Des.rotate();//try rotate and check valid
+                checkDes = checkValid(c,x,y);
+                if(!checkDes){
+                    Des.rotate();
+                }
+           }
+           
+        }else if(y == 8 && (x == 1 || x ==3)){
+            Property DesUp = board[x-1,8].GetComponent<Property>();
+            Property DesDown = board[x+1,8].GetComponent<Property>();
+            if(!Des.used && x != xTrueDes && y != yTrueDes){
+                DesUp.rotate();
+                checkDes = checkValid(c,x,y);
+                if(!checkDes){
+                    DesDown.rotate();
+                    checkDes = checkValid(c,x,y);
+                    if(!checkDes){
+                        DesUp.rotate();
+                        checkDes = checkValid(c,x,y);
+                        if(!checkDes){
+                            DesDown.rotate();
+                        }
+                    }
+                }
+            }
+        }
+        return checkDes;
+    }
+
+    public void RevealDes(Property prop){
+        if(prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4)){
+           Property Des =  board[x, y+1].GetComponent<Property>();
+        }else if(y == 8 && (x == 1 || x ==3)){
+            Property DesUp = board[x-1,8].GetComponent<Property>();
+            Property DesDown = board[x+1,8].GetComponent<Property>();
+            
         }
     }
 
