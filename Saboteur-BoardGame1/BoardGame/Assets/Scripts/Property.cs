@@ -37,6 +37,7 @@ public class Property : MonoBehaviour
     }
     public void showCardFront()
     {
+        
         this.gameObject.transform.Find("Image").GetComponent<Image>().sprite = frontCardArtWork;
     }
 
