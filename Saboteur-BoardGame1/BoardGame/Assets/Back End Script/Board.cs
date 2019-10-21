@@ -143,18 +143,18 @@ public class Board : MonoBehaviour
         grid.Left = setProperty.Left;
         grid.Right = setProperty.Right;
         grid.center = setProperty.center;
-        board[x, y].transform.FindChild("Image").sprite = img;
+        board[x, y].transform.Find("Image").GetComponent<Image>().sprite = img;
         if (setProperty.rotated)
         {
             board[x, y].GetComponent<Image>().transform.Rotate(Vector3.forward * -180);
         }
         usedGridproperty.Add(grid);
-        /*
-        var tempColor = board[x, y].GetComponent<Image>().color;
+        
+        var tempColor = board[x, y].transform.Find("Image").GetComponent<Image>().color;
         tempColor.a = 1f;
         tempColor = Color.white;
-        board[x, y].GetComponent<Image>().color = tempColor;
-        */
+        board[x, y].transform.Find("Image").GetComponent<Image>().color = tempColor;
+        
 
 
     }
