@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     public Sprite N_Lamb;
     public Sprite B_Cart;
     public Sprite N_Cart;
+    public Sprite dwarf;
+    public Sprite sabotour;
 
     void Start()
     {
@@ -82,6 +84,18 @@ public class PlayerController : MonoBehaviour
         }
         this.transform.parent.Find("Role").gameObject.SetActive(true);
         this.transform.parent.Find("Panel").GetComponent<Button>().enabled = false;
+        if (this.getRole() == "dwarf")
+        {
+            //Debug.Log("Dwarf");
+            //Debug.Log(this.transform.parent.parent.name);
+            //this.transform.parent.parent.Find("Panel").GetComponent<Image>().sprite = dwarf;
+        }
+        else
+        {
+            //Debug.Log("Sabotour");
+           // Debug.Log(this.transform.parent.parent.name);
+            //this.transform.parent.parent.Find("Panel").GetComponent<Image>().sprite = sabotour;
+        }
     }
 
     public void EndTurn()
