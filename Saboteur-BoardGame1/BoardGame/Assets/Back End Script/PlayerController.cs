@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
             card.GetComponent<activate>().enabled = true;
         }
         this.transform.parent.Find("Role").gameObject.SetActive(true);
+        this.transform.parent.Find("Panel").GetComponent<Button>().enabled = false;
     }
 
     public void EndTurn()
