@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    
     public CardDetail card;
     public Vector3 oldScale;
     public int rotation;

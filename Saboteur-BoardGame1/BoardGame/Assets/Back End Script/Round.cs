@@ -36,6 +36,11 @@ public class Round : MonoBehaviour
                 PlayerController playerC = player.GetComponent<PlayerController>();
                 playerC.setRole(roles[count]);
                 //playerC.addRole(roles[count]);
+                foreach (GameObject card in playerC.hand)
+                {
+                    card.GetComponent<activate>().enabled = false;
+                    card.SetActive(false);
+                }
                 count++;
             }
             

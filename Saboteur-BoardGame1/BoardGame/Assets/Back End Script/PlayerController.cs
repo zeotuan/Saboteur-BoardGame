@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
         currentPlayerHolder = GameObject.Find("Bottom_Left").transform;
         playerInformation = Instantiate(PlayerHolderPrefab) as GameObject;
         playerInformation.transform.SetParent(playerHolder);
+        this.gameObject.transform.SetParent(playerInformation.transform);
         playerInformation.transform.Find("Player's name").GetComponent<Text>().text = playerName;
         playerInformation.name = this.name;
         //StateMachine.ChangeState()
@@ -169,10 +170,7 @@ public class PlayerController : MonoBehaviour
                 //
                 if(c is FixCard)
                 {
-
-
-                    ((FixCard)c).Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>());
-                   
+                    ((FixCard)c).Apply(GameManager.Instance.Players[Random.Range(0, 4)].GetComponent<PlayerController>());  
                 }
                 else
                 {
