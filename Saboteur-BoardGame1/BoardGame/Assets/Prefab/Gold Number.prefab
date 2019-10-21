@@ -90,6 +90,7 @@ GameObject:
   - component: {fileID: 4951201431455814247}
   - component: {fileID: 4951201431455814245}
   - component: {fileID: 4951201431455814244}
+  - component: {fileID: 7153765619941789199}
   m_Layer: 5
   m_Name: Gold Number
   m_TagString: Untagged
@@ -157,6 +158,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7153765619941789199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951201431455814246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7f56d0475b85574882f4e314a7e5167, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4951201432166283605
 GameObject:
   m_ObjectHideFlags: 0
