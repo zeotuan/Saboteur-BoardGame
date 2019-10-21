@@ -976,6 +976,7 @@ GameObject:
   - component: {fileID: 7995826326293950271}
   - component: {fileID: 7995826326293950269}
   - component: {fileID: 7995826326293950268}
+  - component: {fileID: 8913678180347659711}
   m_Layer: 5
   m_Name: Player's panel
   m_TagString: Untagged
@@ -1050,6 +1051,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8913678180347659711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995826326293950270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43e4042f2a220f4a907eef1355eb942, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7995826326395962165
 GameObject:
   m_ObjectHideFlags: 0

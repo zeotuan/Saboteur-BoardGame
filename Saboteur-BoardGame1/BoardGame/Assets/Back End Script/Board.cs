@@ -30,13 +30,7 @@ public class Board : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        UpdateMouseOver();
-        //if it is my turn
-        int x = (int)mouseOver.x;
-        int y = (int)mouseOver.y;
-    }
+
 
     public void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
@@ -383,7 +377,7 @@ public class Board : MonoBehaviour
     }
 
     //if not valid check if des can be rotate so that it valid. 
-    public void CheckDes(Property c,int x, int y)
+    public bool CheckDes(Property c,int x, int y)
     {   
         bool checkDes = false;
         if(y == 7 && (x == 0 || x == 2 || x == 4)){
@@ -399,7 +393,7 @@ public class Board : MonoBehaviour
         }else if(y == 8 && (x == 1 || x ==3)){
             Property DesUp = board[x-1,8].GetComponent<Property>();
             Property DesDown = board[x+1,8].GetComponent<Property>();
-            if(!Des.used && x != xTrueDes && y != yTrueDes){
+            if(!DesUp.used && x != xTrueDes && y != yTrueDes){
                 DesUp.rotate();
                 checkDes = checkValid(c,x,y);
                 if(!checkDes){
@@ -420,10 +414,10 @@ public class Board : MonoBehaviour
 
     public void RevealDes(Property prop){
         if(prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4)){
-           Property Des =  board[x, y+1].GetComponent<Property>();
-        }else if(y == 8 && (x == 1 || x ==3)){
-            Property DesUp = board[x-1,8].GetComponent<Property>();
-            Property DesDown = board[x+1,8].GetComponent<Property>();
+           Property Des =  board[prop.x, prop.y +1].GetComponent<Property>();
+        }else if(prop.y == 8 && (prop.x == 1 || prop.x ==3)){
+            Property DesUp = board[prop.x -1,8].GetComponent<Property>();
+            Property DesDown = board[prop.x +1,8].GetComponent<Property>();
             
         }
     }

@@ -35,7 +35,7 @@ public class Round : MonoBehaviour
             {
                 PlayerController playerC = player.GetComponent<PlayerController>();
                 playerC.setRole(roles[count]);
-                //playerC.addRole(roles[count]);
+                playerC.addRole(roles[count]);
                 foreach (GameObject card in playerC.hand)
                 {
                     card.GetComponent<activate>().enabled = false;
@@ -56,7 +56,7 @@ public class Round : MonoBehaviour
     void Update()
     {
         TimeLeft -= Time.deltaTime;
-        GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
+        //GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
         
         if(TimeLeft > 5)
         {

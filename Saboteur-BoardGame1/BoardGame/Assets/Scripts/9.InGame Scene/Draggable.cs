@@ -66,10 +66,10 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         }
         else
         {
-            if(boardDetail.CheckDes(c,cloest_j,cloest_i)){
+            /*if(boardDetail.CheckDes(c,cloest_j,cloest_i)){
                 boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());    
                 GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);    
-            }
+            }*/
             //Debug.Log(this.transform.parent.name);
             this.transform.SetParent(parentToReturnTo);
         }

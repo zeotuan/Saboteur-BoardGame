@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private string role;
     private bool IsBot;
+    [SerializeField]
     private List<int> Points = new List<int>();
+    [SerializeField]
     private List<string> Role = new List<string>();
     
     private GameObject playerInformation;
@@ -118,6 +120,17 @@ public class PlayerController : MonoBehaviour
     public void addPoint(int point){
         Points.Add(point);
     }
+
+    public int getPoint()
+    {
+        int totalPoint = 0;
+        foreach(int point in Points)
+        {
+            totalPoint += point;
+        }
+        return totalPoint;
+    }
+
 
     public void BotPlay()
     {
