@@ -65,3 +65,6 @@ MonoBehaviour:
   N_Lamb: {fileID: 21300000, guid: afdf18a20bbd72847875af6c47ff139e, type: 3}
   B_Cart: {fileID: 21300000, guid: b391ad27202005940bed5d7eae3fac2c, type: 3}
   N_Cart: {fileID: 21300000, guid: 8cb794e2962a32640b69996f1d9374ee, type: 3}
+  Role_back: {fileID: 21300000, guid: 8c08f1689838ead40bfc528b07c36053, type: 3}
+  dwarf: {fileID: 21300000, guid: 58ee500bf6b4667418fe9b0b9f16beed, type: 3}
+  sabotour: {fileID: 21300000, guid: 990cad9a90b48ac428b383b8192d2920, type: 3}

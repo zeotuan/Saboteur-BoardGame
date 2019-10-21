@@ -47,7 +47,6 @@ public class Round : MonoBehaviour
 
                 count++;
             }
-            
 
             currentPlayer.GetComponent<PlayerController>().StartTurn();
         }
@@ -98,6 +97,7 @@ public class Round : MonoBehaviour
         for (int i = 0; i < PlayersPanel.transform.childCount; i++)
         {
             PlayersPanel.transform.GetChild(i).Find("Select").gameObject.SetActive(false);
+            PlayersPanel.transform.GetChild(i).Find("Role_assump").gameObject.SetActive(false);
         }
 
         TimeLeft = 60;

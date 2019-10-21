@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public Sprite N_Lamb;
     public Sprite B_Cart;
     public Sprite N_Cart;
+    public Sprite Role_back;
     public Sprite dwarf;
     public Sprite sabotour;
 
@@ -87,14 +88,14 @@ public class PlayerController : MonoBehaviour
         if (this.getRole() == "dwarf")
         {
             //Debug.Log("Dwarf");
-            //Debug.Log(this.transform.parent.parent.name);
-            //this.transform.parent.parent.Find("Panel").GetComponent<Image>().sprite = dwarf;
+            //Debug.Log(this.transform.parent.name);
+            this.transform.parent.Find("Panel").GetComponent<Image>().sprite = dwarf;
         }
         else
         {
             //Debug.Log("Sabotour");
-           // Debug.Log(this.transform.parent.parent.name);
-            //this.transform.parent.parent.Find("Panel").GetComponent<Image>().sprite = sabotour;
+            //Debug.Log(this.transform.parent.name);
+            this.transform.parent.Find("Panel").GetComponent<Image>().sprite = sabotour;
         }
     }
 
@@ -108,7 +109,9 @@ public class PlayerController : MonoBehaviour
             card.SetActive(false);
             playerInformation.transform.SetParent(playerHolder);
         }
+        this.transform.parent.Find("Panel").GetComponent<Button>().enabled = true;
         this.transform.parent.Find("Role").gameObject.SetActive(false);
+        this.transform.parent.Find("Panel").GetComponent<Image>().sprite = Role_back;
     }
 
     public void Discard(GameObject card)
