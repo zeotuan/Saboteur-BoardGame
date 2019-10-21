@@ -21,8 +21,9 @@ public class Destroy_PathCard : CardDetail
         prop.visited = false;
         prop.gameObject.transform.Find("Image").GetComponent<Image>().sprite = null;
         var tempColor = prop.gameObject.transform.Find("Image").GetComponent<Image>().color;
-        tempColor.a = 100f;
         tempColor = Color.black;
+        tempColor.a = 0.4f;
+        
         prop.gameObject.transform.Find("Image").GetComponent<Image>().color = tempColor;
     }
 

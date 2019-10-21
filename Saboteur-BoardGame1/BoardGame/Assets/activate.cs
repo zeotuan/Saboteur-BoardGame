@@ -43,10 +43,10 @@ public class activate : MonoBehaviour
             this.transform.Find("Effect").gameObject.SetActive(false);
 
         }
-        
-       
-        
-        
+        this.transform.Find("Discard").gameObject.SetActive(false);
+
+
+
     }
     public void Update()
     {

@@ -48,12 +48,12 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             {
                 if (Vector3.Distance(this.transform.position, board[j, i].transform.position) < distance)
                 {
-                    if (board[j, i].transform.GetComponent<Property>().used == false)
-                    {
+                    //if (board[j, i].transform.GetComponent<Property>().used == false)
+                    //{
                         distance = Vector3.Distance(this.transform.position, board[j, i].transform.position);
                         cloest_j = j;
                         cloest_i = i;
-                    }
+                    //}
 
                 }
             }
@@ -75,13 +75,28 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
                     GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);   
                     boardDetail.RevealDes(cloest_j,cloest_i);
                 }
+                else
+                {
+                    this.transform.SetParent(parentToReturnTo);
+                }
             //Debug.Log(this.transform.parent.name);
-            this.transform.SetParent(parentToReturnTo);
+            
             }
         }else if (cDetail is Destroy_PathCard){
+            if ((cloest_i == 8 && (cloest_j == 0 || cloest_j == 2 || cloest_j == 4)) || (cloest_i == 0 && cloest_j == 2))
+            {
+                this.transform.SetParent(parentToReturnTo);
+                return;
+            }
             Property closest = board[cloest_j, cloest_i].GetComponent<Property>();
             if(closest.used){
-                ((Destroy_PathCard)cDetail).Apply(closest); 
+                Debug.Log("Destroying this path");
+                ((Destroy_PathCard)cDetail).Apply(closest);
+                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+            }
+            else
+            {
+                this.transform.SetParent(parentToReturnTo);
             }
         }
         

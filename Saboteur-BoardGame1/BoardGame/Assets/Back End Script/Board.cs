@@ -318,10 +318,13 @@ public class Board : MonoBehaviour
 
     public bool checkValid(Property c, int x, int y)
     {
+        if (c.used)
+            return false;
         Property left;
         Property up;
         Property right;
         Property down;
+        
         bool valid = false;
         if (x != 0)
         {
