@@ -15,7 +15,7 @@ public class score_board : MonoBehaviour
             PlayerController PlayerS = player.GetComponent<PlayerController>();
             GameObject PlayerInfoHolder = Instantiate(PlayerInfoPrefab) as GameObject;
             Player_info_control pic = PlayerInfoHolder.GetComponent<Player_info_control>();
-            pic.Row_number(count);
+            pic.Row_number(count+1);
             pic.Player_name(PlayerS.playerName);
             pic.Total_Gold(PlayerS.getTotalPoint());
             PlayerInfoHolder.transform.SetParent(this.gameObject.transform);

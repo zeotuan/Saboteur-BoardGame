@@ -9,4 +9,8 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene("2.Menu Scene");
         DestroyImmediate(GameManager.Instance.gameObject);
     }
+    public void Quit_game()
+    {
+        Application.Quit();
+    }
 }
