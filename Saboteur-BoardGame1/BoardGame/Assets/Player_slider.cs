@@ -7,6 +7,7 @@ public class Player_slider : MonoBehaviour
 {
     public GameObject play_input_prefab;
     public int PlayerNumber = 3;
+    public string[] Players_name;
     public void Start()
     {
         PlayerNumber = 3;
@@ -47,5 +48,22 @@ public class Player_slider : MonoBehaviour
             this.transform.parent.parent.Find("Input_Field").GetChild(i).Find("Player's name").GetComponent<Text>().text = "Player " + (i + 1) + " 's name:";
         }
         
+    }
+
+    public void Confirm()
+    {
+        Players_name = new string[this.transform.parent.parent.Find("Input_Field").childCount];
+        for (int i = 0; i < Players_name.Length; i++)
+        {
+            Players_name[i] = this.transform.parent.parent.Find("Input_Field").GetChild(i).Find("Text").GetComponent<Text>().text;
+        }
+        for (int i = 0; i < Players_name.Length; i++)
+        {
+            if (Players_name[i] == "")
+            {
+                Players_name[i] = "Player " + (i + 1).ToString();
+            }
+        }
+        this.transform.parent.parent.gameObject.SetActive(false);
     }
 }
