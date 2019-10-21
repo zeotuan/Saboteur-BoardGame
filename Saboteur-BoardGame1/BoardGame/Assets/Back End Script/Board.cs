@@ -43,12 +43,12 @@ public class Board : MonoBehaviour
             {
                 for (int c = 0; c < maxCol; c++)
                 {
-                    if(board[r,c] != null)
+                    
                         Destroy(board[r, c]);
                 }
             }
         }
-
+        board = new GameObject[maxRow, maxCol];
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++)
