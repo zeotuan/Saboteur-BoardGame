@@ -24,30 +24,18 @@ public class GameManager : Singleton<GameManager>
     int maxRound;
     [SerializeField]
     int curRound;
+    private int playerCount;
+    private String[] playerNames;
     
 
 
     void Awake()
     {
-        base.Awake();
-        
-        for(int i = 0; i < 5; i++)// innitate 7 player
-        {
-            createPlayer();
-        }       
-        gameStarted = false;
-        Board = GameObject.Find("Map").GetComponent<Board>();
+        base.Awake(); 
     }
     void Start()
     {
-        deck = Instantiate(deckPrefab) as GameObject;
-        deck.transform.SetParent(transform);
-        Deck = deck.GetComponent<Deck>();
-        if (!gameStarted)
-        {
-            currentRound = createRound();   
-            currentRound.GetComponent<Round>().StartRound();
-        }
+        
     }
     void Update()
     {
@@ -58,6 +46,38 @@ public class GameManager : Singleton<GameManager>
         }
 
             
+    }
+
+    public void StartGame(){
+
+        for(int i = 0; i < playerCount; i++)// innitate 7 player
+        {
+            createPlayer(playerNames[i]);
+        }       
+        gameStarted = false;
+        Board = GameObject.Find("Map").GetComponent<Board>();
+
+
+        deck = Instantiate(deckPrefab) as GameObject;
+        deck.transform.SetParent(transform);
+        Deck = deck.GetComponent<Deck>();
+        if (!gameStarted)
+        {
+            currentRound = createRound();   
+            currentRound.GetComponent<Round>().StartRound();
+        }
+    }
+
+    public void setPlayerCount(int num){
+        playerCount = num;
+    }
+
+    public void setMaxRound(int num){
+        maxRound = num;
+    }
+
+    public void setPlayerNames(String[] name){
+        playerNames = name;
     }
 
     public void SwitchRound()
@@ -93,12 +113,12 @@ public class GameManager : Singleton<GameManager>
 
     }
 
-    public void createPlayer()
+    public void createPlayer(String name)
     {
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
         player.transform.SetParent(transform);
         Players.Add(player);
-        player.GetComponent<PlayerController>().name = "Player " + (Players.Count).ToString() ;
+        player.GetComponent<PlayerController>().name = name ;
         //Ryan's
          
     }

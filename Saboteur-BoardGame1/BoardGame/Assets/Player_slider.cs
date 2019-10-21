@@ -64,13 +64,9 @@ public class Player_slider : MonoBehaviour
                 Players_name[i] = "Player " + (i + 1).ToString();
             }
         }
-        /*
-        for (int i =0;i < Players_name.Length; i++)
-        {
-            Debug.Log(Players_name[i]);
-        }
-        */
-        
+        GameManager.Instance.setPlayerCount(Players_name.Length);
+        GameManager.Instance.setPlayerNames(Players_name);
         this.transform.parent.parent.gameObject.SetActive(false);
+
     }
 }
