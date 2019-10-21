@@ -31,20 +31,14 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        base.Awake(); 
-    }
+        //base.Awake(); 
+    }   
     void Start()
     {
         
     }
     void Update()
     {
-        //stateMachine.Update();
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //QuitGamePanel.gameObject.SetActive(true);
-        }
-
             
     }
 

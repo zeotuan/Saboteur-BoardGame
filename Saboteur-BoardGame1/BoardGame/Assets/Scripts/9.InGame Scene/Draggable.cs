@@ -66,14 +66,14 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             if (boardDetail.checkValid(p,cloest_j, cloest_i))
             {
                 boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+                GameManager.Instance.currRound.GetCurPlayer().Discard(this.gameObject);
                 boardDetail.RevealDes(cloest_j,cloest_i);
             }
             else
             {
                 if(boardDetail.CheckDes(p,cloest_j,cloest_i)){
                     boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
-                    GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);   
+                    GameManager.Instance.currRound.GetCurPlayer().Discard(this.gameObject);   
                     boardDetail.RevealDes(cloest_j,cloest_i);
                 }
                 else
@@ -93,7 +93,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             if(closest.used){
                 Debug.Log("Destroying this path");
                 ((Destroy_PathCard)cDetail).Apply(closest);
-                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+                GameManager.Instance.currRound.GetCurPlayer().Discard(this.gameObject);
             }
             else
             {
@@ -103,7 +103,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             if ((cloest_i == 8 && (cloest_j == 0 || cloest_j == 2 || cloest_j == 4)))
             {
                 ((Show_Destination)cDetail).Apply(closest);
-                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+                GameManager.Instance.currRound.GetCurPlayer().Discard(this.gameObject);
             }else{
                 this.transform.SetParent(parentToReturnTo);
             }
