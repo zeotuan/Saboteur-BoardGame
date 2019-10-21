@@ -2109,7 +2109,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Next player
+  m_Text: 
 --- !u!222 &654783752
 CanvasRenderer:
   m_ObjectHideFlags: 0

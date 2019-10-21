@@ -96,7 +96,7 @@ public class Round : MonoBehaviour
     {
    
         GameObject PlayersPanel = GameObject.Find("Canvas/Panel/Left");
-        Debug.Log(PlayersPanel.transform.name);
+       
        
         for (int i = 0; i < PlayersPanel.transform.childCount; i++)
         {
@@ -192,8 +192,10 @@ public class Round : MonoBehaviour
     void raiseCover()
     {
         GameObject Canvas = GameObject.Find("Canvas");
+        Canvas.transform.Find("Panel/Cover").gameObject.GetComponent<Cover_Script>().setText(GetCurPlayer().playerName);
         //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
         Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
+        
         
     }
 
