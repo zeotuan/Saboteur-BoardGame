@@ -80,6 +80,7 @@ public class PlayerController : MonoBehaviour
             playerInformation.transform.SetParent(currentPlayerHolder);
             card.GetComponent<activate>().enabled = true;
         }
+        this.transform.parent.Find("Role").gameObject.SetActive(true);
     }
 
     public void EndTurn()

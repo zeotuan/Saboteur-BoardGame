@@ -61,14 +61,12 @@ public class Round : MonoBehaviour
         TimeLeft -= Time.deltaTime;
         //GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
         
-        if(TimeLeft > 5)
-        {
-            //PrepareToSwitchTurnPanel.Raise();
-        }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
                 int index = Random.Range(0, currPlayer.hand.Count);
                 currPlayer.Discard(currPlayer.hand[index]);
+               
+               
         }
         if (currPlayer.Played())
         {
@@ -85,6 +83,7 @@ public class Round : MonoBehaviour
 
     public void SwitchTurn()
     {
+   
         GameObject PlayersPanel = GameObject.Find("Canvas/Panel/Left");
         Debug.Log(PlayersPanel.transform.name);
        

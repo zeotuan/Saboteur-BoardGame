@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Show_Destination : MonoBehaviour
+public class Show_Destination : CardDetail
 {
     public Show_Destination(Sprite frontCardArtWork, Sprite backCardArtWork) : base(frontCardArtWork, backCardArtWork)
     {
@@ -11,6 +11,7 @@ public class Show_Destination : MonoBehaviour
 
     public void Apply(Property prop)
     {
-        prop.showDesfixedTime();
+        prop.gameObject.transform.Find("tempImage").gameObject.SetActive(true);
+        
     }
 }
