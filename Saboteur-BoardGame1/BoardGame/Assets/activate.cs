@@ -8,14 +8,16 @@ public class activate : MonoBehaviour
     // Start is called before the first frame update
     public void Activate()
     {
-            if (this.GetComponent<Card>().card is PathCard)
+        CardDetail c = this.GetComponent<Card>().card;
+            if (c is PathCard)
             {
                 //this.gameObject.active()
                 this.transform.Find("Path").gameObject.SetActive(true);
+                
 
             //this.transform.root.Find("Panel/Left/Player's panel/Select").gameObject.SetActive(false);
-        }
-        else
+            }
+            else if (c is EffectCard) 
             {
                 this.transform.Find("Effect").gameObject.SetActive(true);
 
@@ -25,7 +27,8 @@ public class activate : MonoBehaviour
                 this.transform.root.Find("Panel/Left").GetChild(i).Find("Select").gameObject.SetActive(true);
             }
             
-        }
+            }
+        this.transform.Find("Discard").gameObject.SetActive(true);
 
     }
 

@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Destory_PathCard : CardDetail
+public class Destroy_PathCard : CardDetail
 {
-    public Destory_PathCard() : base(frontCardArtWork, backCardArtWork)
+    public Destroy_PathCard(Sprite frontCardArtWork, Sprite backCardArtWork) : base (frontCardArtWork, backCardArtWork)
     {
-
     }
 
     public void Apply(Property prop)
@@ -16,7 +15,7 @@ public class Destory_PathCard : CardDetail
         prop.Down = false;
         prop.Right = false;
         prop.Left = false;
-        prop.Center = false;
+        prop.center = false;
         prop.used = false;
         prop.rotated = false;
         prop.visited = false;

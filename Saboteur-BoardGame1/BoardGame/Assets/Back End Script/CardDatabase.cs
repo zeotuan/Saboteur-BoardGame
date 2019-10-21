@@ -35,7 +35,7 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new EffectCard("Break Cart",true,true,false, cardSprites[19], cardBack[0]));
         cardList.Add(new FixCard("Fix PickAxe",true,false,false, cardSprites[20], cardBack[0]));
         cardList.Add(new EffectCard("Break PickAxe",false,true,true, cardSprites[21], cardBack[0]));
-        cardList.Add(new EffectCard("Break Path",false,false,false, cardSprites[22], cardBack[0]));
+        cardList.Add(new Destroy_PathCard(cardSprites[22], cardBack[0]));
         cardList.Add(new FixCard("Fix Lamb and PickAxe",true,true,false, cardSprites[23], cardBack[0]));
         cardList.Add(new FixCard("Fix Cart and PickAxe",true,false,true, cardSprites[24], cardBack[0]));
         cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[25], cardBack[0]));
