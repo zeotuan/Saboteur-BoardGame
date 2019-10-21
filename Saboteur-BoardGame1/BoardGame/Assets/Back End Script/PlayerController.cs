@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
         Destroy(card);
         FinishTurn = true;
     }
+    
 
     public bool Played()
     {

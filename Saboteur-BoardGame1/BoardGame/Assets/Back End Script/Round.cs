@@ -41,6 +41,7 @@ public class Round : MonoBehaviour
                     card.GetComponent<activate>().enabled = false;
                     card.SetActive(false);
                 }
+
                 count++;
             }
             
@@ -193,9 +194,9 @@ public class Round : MonoBehaviour
             PlayerController player = p.GetComponent<PlayerController>();
             if (player.getRole() == winner)
             {
-                //player.addPoint(Random.Range(1,3));
+                player.addPoint(Random.Range(1,3));
             }else{
-                //player.addPoint(0);
+                player.addPoint(0);
             }
         }
     }
