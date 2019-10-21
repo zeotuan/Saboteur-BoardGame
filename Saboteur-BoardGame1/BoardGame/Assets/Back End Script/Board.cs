@@ -61,15 +61,18 @@ public class Board : MonoBehaviour
                 else if (r == 0 && c == 8)
                 {
                     tile = Instantiate(DesGrid[0]) as GameObject;
+                    tile.GetComponent<Property>().showCardBack();
                 }
 
                 else if (r == 2 && c == 8)
                 {
                     tile = Instantiate(DesGrid[1]) as GameObject;
+                    tile.GetComponent<Property>().showCardBack();
                 }
                 else if (r == 4 && c == 8)
                 {
                     tile = Instantiate(DesGrid[2]) as GameObject;
+                    tile.GetComponent<Property>().showCardBack();
                 }
                 else
                 {
@@ -421,20 +424,23 @@ public class Board : MonoBehaviour
                 }
             }
         }
+        
         return checkDes;
     }
 
-    public void RevealDes(Property prop)
+    public void RevealDes(int x, int y)
     {
-        if (prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4))
+        if (y == 7 && (x == 0 || x == 2 || x == 4))
         {
-            Property Des = board[prop.x, prop.y + 1].GetComponent<Property>();
+            Property Des = board[x, y + 1].GetComponent<Property>();
+            Des.showCardFront();
         }
-        else if (prop.y == 8 && (prop.x == 1 || prop.x == 3))
+        else if (y == 8 && (x == 1 || x == 3))
         {
-            Property DesUp = board[prop.x - 1, 8].GetComponent<Property>();
-            Property DesDown = board[prop.x + 1, 8].GetComponent<Property>();
-
+            Property DesUp = board[x - 1, 8].GetComponent<Property>();
+            DesUp.showCardFront();
+            Property DesDown = board[x + 1, 8].GetComponent<Property>();
+            DesDown.showCardFront();
 
         }
     }
