@@ -36,7 +36,7 @@ public class Board : MonoBehaviour
     {
         //Destroy existed GridObject
         board = new GameObject[maxRow, maxCol];
- 
+
         if (board.Length > 0)
         {
             for (int r = 0; r < maxRow; r++)
@@ -46,7 +46,7 @@ public class Board : MonoBehaviour
                     Destroy(board[r, c]);
                 }
             }
-        }   
+        }
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++)
@@ -322,9 +322,10 @@ public class Board : MonoBehaviour
         if (x != 0)
         {
             up = board[x - 1, y].GetComponent<Property>();
-            if (up.Down && c.Up)
+
+            if (up.Down && c.Up && up.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + up.x + up.y);
+                valid = true;
             }
             if (up.Down != c.Up && up.used)
             {
@@ -335,9 +336,9 @@ public class Board : MonoBehaviour
         if (x != 4)
         {
             down = board[x + 1, y].GetComponent<Property>();
-            if (down.Up && c.Down)
+            if (down.Up && c.Down && down.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + down.x + down.y);
+                valid = true;
             }
             if (down.Up != c.Down && down.used)
             {
@@ -348,9 +349,9 @@ public class Board : MonoBehaviour
         if (y != 8)
         {
             right = board[x, y + 1].GetComponent<Property>();
-            if (right.Left && c.Right)
+            if (right.Left && c.Right && right.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + right.x + right.y);
+                valid = true;
             }
             if (right.Left != c.Right && right.used)
             {
@@ -362,47 +363,57 @@ public class Board : MonoBehaviour
         if (y != 0)
         {
             left = board[x, y - 1].GetComponent<Property>();
-            if (left.Right && c.Left)
+            if (left.Right && c.Left && left.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + left.x + " " + left.y);
+                valid = true;
             }
             if (left.Right != c.Left && left.used)
             {
                 return false;
             }
         }
-         //then check if the placed card compatible with any other path
+        //then check if the placed card compatible with any other path
+
         return valid;
 
     }
 
     //if not valid check if des can be rotate so that it valid. 
-    public bool CheckDes(Property c,int x, int y)
-    {   
+    public bool CheckDes(Property c, int x, int y)
+    {
         bool checkDes = false;
-        if(y == 7 && (x == 0 || x == 2 || x == 4)){
-           Property Des = board[x, y+1].GetComponent<Property>();
-           if(!Des.used && x != xTrueDes && y != yTrueDes){
+        if (y == 7 && (x == 0 || x == 2 || x == 4))
+        {
+            Property Des = board[x, y + 1].GetComponent<Property>();
+            if (!Des.used && x != xTrueDes && y != yTrueDes)
+            {
                 Des.rotate();//try rotate and check valid
-                checkDes = checkValid(c,x,y);
-                if(!checkDes){
+                checkDes = checkValid(c, x, y);
+                if (!checkDes)
+                {
                     Des.rotate();
                 }
-           }
-           
-        }else if(y == 8 && (x == 1 || x ==3)){
-            Property DesUp = board[x-1,8].GetComponent<Property>();
-            Property DesDown = board[x+1,8].GetComponent<Property>();
-            if(!DesUp.used && x != xTrueDes && y != yTrueDes){
+            }
+
+        }
+        else if (y == 8 && (x == 1 || x == 3))
+        {
+            Property DesUp = board[x - 1, 8].GetComponent<Property>();
+            Property DesDown = board[x + 1, 8].GetComponent<Property>();
+            if (!DesUp.used && x != xTrueDes && y != yTrueDes)
+            {
                 DesUp.rotate();
-                checkDes = checkValid(c,x,y);
-                if(!checkDes){
+                checkDes = checkValid(c, x, y);
+                if (!checkDes)
+                {
                     DesDown.rotate();
-                    checkDes = checkValid(c,x,y);
-                    if(!checkDes){
+                    checkDes = checkValid(c, x, y);
+                    if (!checkDes)
+                    {
                         DesUp.rotate();
-                        checkDes = checkValid(c,x,y);
-                        if(!checkDes){
+                        checkDes = checkValid(c, x, y);
+                        if (!checkDes)
+                        {
                             DesDown.rotate();
                         }
                     }
@@ -412,16 +423,21 @@ public class Board : MonoBehaviour
         return checkDes;
     }
 
-    public void RevealDes(Property prop){
-        if(prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4)){
-           Property Des =  board[prop.x, prop.y +1].GetComponent<Property>();
-        }else if(prop.y == 8 && (prop.x == 1 || prop.x ==3)){
-            Property DesUp = board[prop.x -1,8].GetComponent<Property>();
-            Property DesDown = board[prop.x +1,8].GetComponent<Property>();
-            
+    public void RevealDes(Property prop)
+    {
+        if (prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4))
+        {
+
+            Property Des = board[prop.x, prop.y + 1].GetComponent<Property>();
+        }
+        else if (prop.y == 8 && (prop.x == 1 || prop.x == 3))
+        {
+            Property DesUp = board[prop.x - 1, 8].GetComponent<Property>();
+            Property DesDown = board[prop.x + 1, 8].GetComponent<Property>();
+
+
         }
     }
-
 }
 
 
