@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     public List<GameObject> hand;//list of card 
     //StateMachine StateMachine = new StateMachine();
-    public bool PickAxe = true;
-    public bool Lamb = true;
-    public bool Cart = true;
+    public bool PickAxe;
+    public bool Lamb;
+    public bool Cart;
     [SerializeField]
     private bool MyTurn;
     [SerializeField]
