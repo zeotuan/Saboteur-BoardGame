@@ -63,13 +63,15 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         {
             boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
             GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+            boardDetail.RevealDes(cloest_j,cloest_i);
         }
         else
         {
-            /*if(boardDetail.CheckDes(c,cloest_j,cloest_i)){
-                boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());    
-                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);    
-            }*/
+            if(boardDetail.CheckDes(c,cloest_j,cloest_i)){
+                boardDetail.setGrid(cloest_j, cloest_i, this.transform.Find("Image").GetComponent<Image>().sprite, this.transform.GetComponent<Property>());
+                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);   
+                boardDetail.RevealDes(cloest_j,cloest_i);
+            }
             //Debug.Log(this.transform.parent.name);
             this.transform.SetParent(parentToReturnTo);
         }

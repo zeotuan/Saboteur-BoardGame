@@ -36,4 +36,12 @@ public class Property : MonoBehaviour
         b = c;
     }
 
+    public void showCardFront(){
+           this.gameObject.transform.Find("Image").GetComponent<Image>().sprite = frontCardArtWork;
+    }
+
+    public void showCardBack(){
+           this.gameObject.transform.Find("Image").GetComponent<Image>().sprite = backCardArtWork;
+    }
+
 }
