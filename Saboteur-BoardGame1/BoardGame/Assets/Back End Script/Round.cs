@@ -36,6 +36,9 @@ public class Round : MonoBehaviour
                 PlayerController playerC = player.GetComponent<PlayerController>();
                 playerC.setRole(roles[count]);
                 playerC.addRole(roles[count]);
+                playerC.PickAxe = true;
+                playerC.Lamb = true;
+                playerC.Cart = true;
                 foreach (GameObject card in playerC.hand)
                 {
                     card.GetComponent<activate>().enabled = false;
