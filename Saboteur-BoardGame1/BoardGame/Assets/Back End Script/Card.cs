@@ -24,7 +24,6 @@ public class Card : MonoBehaviour
         {
             if (card is PathCard)
             {
-                Interactalbe = true;
                 this.GetComponent<Property>().Up = ((PathCard)card).up;
                 this.GetComponent<Property>().Down = ((PathCard)card).down;
                 this.GetComponent<Property>().Left = ((PathCard)card).left;
@@ -32,7 +31,8 @@ public class Card : MonoBehaviour
                 this.GetComponent<Property>().center = ((PathCard)card).middle;
                 this.GetComponent<Property>().frontCardArtWork = card.frontCardArtWork;
                 this.GetComponent<Property>().backCardArtWork = card.backCardArtWork;
-            }else if (card is Destroy_PathCard){
+            }
+            if (card is Destroy_PathCard || card is PathCard || card is Show_Destination){
                 Interactalbe = true;
             }
                 

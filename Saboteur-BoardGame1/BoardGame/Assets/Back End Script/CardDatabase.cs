@@ -39,7 +39,7 @@ public class CardDatabase : Singleton<CardDatabase>
         cardList.Add(new FixCard("Fix Lamb and PickAxe",true,true,false, cardSprites[23], cardBack[0]));
         cardList.Add(new FixCard("Fix Cart and PickAxe",true,false,true, cardSprites[24], cardBack[0]));
         cardList.Add(new FixCard("Fix Lamb and Cart",false,true,true, cardSprites[25], cardBack[0]));
-        cardList.Add(new EffectCard("View Destination",true,true,true, cardSprites[26], cardBack[0]));
+        cardList.Add(new Show_Destination(cardSprites[26], cardBack[0]));
         Debug.Log("there are :"+cardList.Count + "card type in database" );
         
         //add more card here 

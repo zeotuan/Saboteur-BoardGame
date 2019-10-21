@@ -60,6 +60,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         }
 
         Property p = this.GetComponent<Property>();
+        Property closest = board[cloest_j, cloest_i].GetComponent<Property>();
         CardDetail cDetail = c.card;
         if(cDetail is PathCard){
             if (boardDetail.checkValid(p,cloest_j, cloest_i))
@@ -88,7 +89,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
                 this.transform.SetParent(parentToReturnTo);
                 return;
             }
-            Property closest = board[cloest_j, cloest_i].GetComponent<Property>();
+            
             if(closest.used){
                 Debug.Log("Destroying this path");
                 ((Destroy_PathCard)cDetail).Apply(closest);
@@ -96,6 +97,14 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
             }
             else
             {
+                this.transform.SetParent(parentToReturnTo);
+            }
+        } else if (cDetail is Show_Destination){
+            if ((cloest_i == 8 && (cloest_j == 0 || cloest_j == 2 || cloest_j == 4)))
+            {
+                ((Show_Destination)cDetail).Apply(closest);
+                GameManager.Instance.currRound.currPlayer.Discard(this.gameObject);
+            }else{
                 this.transform.SetParent(parentToReturnTo);
             }
         }

@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Showdestination : MonoBehaviour
+public class Show_Destination : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Show_Destination(Sprite frontCardArtWork, Sprite backCardArtWork) : base(frontCardArtWork, backCardArtWork)
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Apply(Property prop)
     {
-        
+        prop.showDesfixedTime();
     }
 }

@@ -17,7 +17,6 @@ public class Property : MonoBehaviour
     public int y;
     public Sprite frontCardArtWork;
     public Sprite backCardArtWork;
-
     public void rotate()
 
     {
@@ -35,6 +34,8 @@ public class Property : MonoBehaviour
         a = b;
         b = c;
     }
+
+
     public void showCardFront()
     {
         
@@ -46,4 +47,12 @@ public class Property : MonoBehaviour
         this.gameObject.transform.Find("Image").GetComponent<Image>().sprite = backCardArtWork;
     }
 
+    public void showDesfixedTime(){
+        float TimeLeft = 3;
+        showCardFront();
+        while(TimeLeft >= 0){
+            TimeLeft -= Time.deltaTime;
+        }
+        showCardBack();
+    }
 }
