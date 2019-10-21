@@ -24,32 +24,32 @@ public class Round : MonoBehaviour
         {
             Turn = 0;
             int count = 0;
-            foreach(GameObject player in GameManager.Instance.Players)
-                {
-                    player.GetComponent<PlayerController>().hand.Clear();   
-                }
-            for(int i = 0; i < 5; i++){//deal 5 card to each player when starting the round
-                foreach(GameObject player in GameManager.Instance.Players)
-                {
-                    GameManager.Instance.Deck.Deal(player.GetComponent<PlayerController>());
-                }
-            }
+
             foreach (GameObject player in GameManager.Instance.Players)
             {
+                
                 PlayerController playerC = player.GetComponent<PlayerController>();
+                playerC.hand.Clear();
+                playerC.setTurnNum(count);
                 playerC.setRole(roles[count]);
                 playerC.addRole(roles[count]);
                 playerC.PickAxe = true;
                 playerC.Lamb = true;
                 playerC.Cart = true;
+                for (int i = 0; i < 5; i++)
+                {//deal 5 card to each player when starting the round
+                    GameManager.Instance.Deck.Deal(playerC);
+                }
+
                 foreach (GameObject card in playerC.hand)
                 {
                     card.GetComponent<activate>().enabled = false;
                     card.SetActive(false);
                 }
-
                 count++;
             }
+
+           
 
             GetCurPlayer().GetComponent<PlayerController>().StartTurn();
             raiseCover();
@@ -102,6 +102,9 @@ public class Round : MonoBehaviour
         {
             PlayersPanel.transform.GetChild(i).Find("Select").gameObject.SetActive(false);
             PlayersPanel.transform.GetChild(i).Find("Role_assump").gameObject.SetActive(false);
+      
+            //PlayersPanel.transform.GetChild(i).Find("Panel").GetComponent<Image>().sprite
+
         }
 
         TimeLeft = 60;
@@ -126,6 +129,26 @@ public class Round : MonoBehaviour
             Turn = 0;    
         }
         GetCurPlayer().StartTurn();
+        for (int i = 0; i < PlayersPanel.transform.childCount; i++)
+        {
+
+           
+            PlayerController pl = PlayersPanel.transform.GetChild(i).Find("PlayerController(Clone)").gameObject.GetComponent<PlayerController>();
+            
+            string AssumedRole = GetCurPlayer().getAssumedRole(pl.getTurnNum());
+            if (AssumedRole == "dwarf")
+                PlayersPanel.transform.GetChild(i).Find("Panel").GetComponent<Image>().sprite = pl.dwarf;
+            else if (AssumedRole == "saboteur")
+            {
+                PlayersPanel.transform.GetChild(i).Find("Panel").GetComponent<Image>().sprite = pl.sabotour;
+            }
+            else
+            {
+                PlayersPanel.transform.GetChild(i).Find("Panel").GetComponent<Image>().sprite = pl.Role_back;
+            }
+            
+
+        }
 
         raiseCover();
         
@@ -219,4 +242,6 @@ public class Round : MonoBehaviour
             }
         }
     }
+
+    
 }

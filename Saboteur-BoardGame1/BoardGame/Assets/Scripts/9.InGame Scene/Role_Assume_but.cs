@@ -10,7 +10,8 @@ public class Role_Assume_but : MonoBehaviour
     // Start is called before the first frame update
     public void Onclicks()  
     {
-        if (this.transform.Find("Role_assump").gameObject.activeInHierarchy==true)
+
+        if (this.transform.Find("Role_assump").gameObject.activeInHierarchy)
         {
             this.transform.Find("Role_assump").gameObject.SetActive(false);
         }
@@ -18,15 +19,30 @@ public class Role_Assume_but : MonoBehaviour
         {
             this.transform.Find("Role_assump").gameObject.SetActive(true);
         }
+
     }
     public void Dwarf_Assumtion()
     {
-        this.transform.Find("Panel").GetComponent<Image>().sprite = dwarf;
+        GameManager.Instance.currRound.GetCurPlayer().SetAssumption(this.gameObject.transform.Find("PlayerController(Clone)").GetComponent<PlayerController>().getTurnNum(),"dwarf");
+        SetAssumptionPic("dwarf");
         Onclicks();
     }
     public void Sabotour_Assumtion()
     {
-        this.transform.Find("Panel").GetComponent<Image>().sprite = Sabotour;
+        GameManager.Instance.currRound.GetCurPlayer().SetAssumption(this.gameObject.transform.Find("PlayerController(Clone)").GetComponent<PlayerController>().getTurnNum(), "saboteur");
+        SetAssumptionPic("saboteur");
         Onclicks();
+    }
+
+    public void SetAssumptionPic(string role)
+    {
+        if (role == "dwarf")
+        {
+            this.transform.Find("Panel").GetComponent<Image>().sprite = dwarf;
+        }
+        else
+        {
+            this.transform.Find("Panel").GetComponent<Image>().sprite = Sabotour;
+        }
     }
 }

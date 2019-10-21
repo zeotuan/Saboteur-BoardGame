@@ -59,6 +59,8 @@ MonoBehaviour:
   Points: 
   Role: []
   playerInformation: {fileID: 0}
+  Prediction: []
+  TurnNum: 0
   B_PickAxe: {fileID: 21300000, guid: acf2227357bcbf44ca30301eaba1493d, type: 3}
   N_PickAxe: {fileID: 21300000, guid: f0d9cc4b24c21b34b94c660a07238cef, type: 3}
   B_Lamb: {fileID: 21300000, guid: 4783543d6d5aca3488aed6bf5add65bc, type: 3}

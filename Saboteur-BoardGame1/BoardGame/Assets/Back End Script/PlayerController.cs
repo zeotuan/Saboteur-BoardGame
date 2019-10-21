@@ -31,7 +31,10 @@ public class PlayerController : MonoBehaviour
     private List<string> Role = new List<string>();
     [SerializeField]
     private GameObject playerInformation;
+    [SerializeField]
     public string[] Prediction;
+    [SerializeField]
+    private int TurnNum;
 
     public Sprite B_PickAxe;
     public Sprite N_PickAxe;
@@ -52,7 +55,7 @@ public class PlayerController : MonoBehaviour
         playerInformation.transform.SetParent(playerHolder);
         this.gameObject.transform.SetParent(playerInformation.transform);
         playerInformation.transform.Find("Player's name").GetComponent<Text>().text = playerName;
-        playerInformation.name = this.name;
+        
         
         //StateMachine.ChangeState()
     }
@@ -99,6 +102,15 @@ public class PlayerController : MonoBehaviour
             this.transform.parent.Find("Panel").GetComponent<Image>().sprite = sabotour;
         }
     }
+    public string getAssumedRole(int index)
+    {
+        return Prediction[index];
+    }
+
+    public GameObject getPlayerPanel()
+    {
+        return playerInformation;
+    }
 
     public void EndTurn()
     {
@@ -121,7 +133,17 @@ public class PlayerController : MonoBehaviour
         Destroy(card);
         FinishTurn = true;
     }
-    
+
+    public void setTurnNum(int num)
+    {
+        TurnNum = num;
+    }
+
+    public int getTurnNum()
+    {
+        return TurnNum;
+    }
+
     public void InitPlayer(int numPlayer){
         Prediction = new string[numPlayer];
     }
