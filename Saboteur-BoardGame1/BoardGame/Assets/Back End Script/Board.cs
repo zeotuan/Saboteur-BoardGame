@@ -328,9 +328,10 @@ public class Board : MonoBehaviour
         if (x != 0)
         {
             up = board[x - 1, y].GetComponent<Property>();
-            if (up.Down && c.Up)
+
+            if (up.Down && c.Up && up.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + up.x + up.y);
+                valid = true; 
             }
             if (up.Down != c.Up && up.used)
             {
@@ -341,9 +342,9 @@ public class Board : MonoBehaviour
         if (x != 4)
         {
             down = board[x + 1, y].GetComponent<Property>();
-            if (down.Up && c.Down)
+            if (down.Up && c.Down && down.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + down.x + down.y);
+                valid = true;
             }
             if (down.Up != c.Down && down.used)
             {
@@ -354,9 +355,9 @@ public class Board : MonoBehaviour
         if (y != 8)
         {
             right = board[x, y + 1].GetComponent<Property>();
-            if (right.Left && c.Right)
+            if (right.Left && c.Right && right.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + right.x + right.y);
+                valid = true; 
             }
             if (right.Left != c.Right && right.used)
             {
@@ -368,9 +369,9 @@ public class Board : MonoBehaviour
         if (y != 0)
         {
             left = board[x, y - 1].GetComponent<Property>();
-            if (left.Right && c.Left)
+            if (left.Right && c.Left && left.used)
             {
-                valid = true; Debug.Log("Valid Card Placed at position:" + left.x + " " + left.y);
+                valid = true; 
             }
             if (left.Right != c.Left && left.used)
             {
@@ -378,6 +379,7 @@ public class Board : MonoBehaviour
             }
         }
          //then check if the placed card compatible with any other path
+
         return valid;
 
     }
@@ -421,13 +423,12 @@ public class Board : MonoBehaviour
     public void RevealDes(Property prop){
         if(prop.y == 7 && (prop.x == 0 || prop.x == 2 || prop.x == 4)){
            Property Des =  board[x, y+1].GetComponent<Property>();
+          
         }else if(y == 8 && (x == 1 || x ==3)){
             Property DesUp = board[x-1,8].GetComponent<Property>();
             Property DesDown = board[x+1,8].GetComponent<Property>();
-            
         }
     }
-
 }
 
 
