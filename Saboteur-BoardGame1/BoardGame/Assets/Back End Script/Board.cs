@@ -35,7 +35,7 @@ public class Board : MonoBehaviour
     public void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
         //Destroy existed GridObject
-        board = new GameObject[maxRow, maxCol];
+        
 
         if (board.Length > 0)
         {
@@ -43,10 +43,12 @@ public class Board : MonoBehaviour
             {
                 for (int c = 0; c < maxCol; c++)
                 {
-                    Destroy(board[r, c]);
+                    if(board[r,c] != null)
+                        Destroy(board[r, c]);
                 }
             }
         }
+        board = new GameObject[maxRow, maxCol];
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++)
