@@ -31,7 +31,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
     {
         Card c = this.GetComponent<Card>();
         GetComponent<CanvasGroup>().blocksRaycasts = true;
-        if (!c.Interactalbe)//effect card
+        if (!c.Interactalbe || !GameManager.Instance.currRound.GetCurPlayer().PickAxe || !GameManager.Instance.currRound.GetCurPlayer().Lamb || !GameManager.Instance.currRound.GetCurPlayer().Cart)//effect card
         {
             this.transform.SetParent(parentToReturnTo);
             return;
