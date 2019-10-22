@@ -13,7 +13,18 @@ public class Volume : MonoBehaviour
     //public float Main_value;
     private void Start()
     {
-        mute = false;
+        BGM.GetFloat("BGM_1", out origin_volume);
+        this.transform.Find("Panel/Pop_up/BGMSlider").GetComponent<Slider>().value = origin_volume;
+        if (origin_volume == -40)
+        {
+            mute = true;
+            this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        }
+        else
+        {
+            mute = false;
+            this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(false);
+        }
     }
     public void SetBGM(float BgmName)
     {
@@ -21,6 +32,17 @@ public class Volume : MonoBehaviour
         this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(false);
         mute = false;
         BGM.SetFloat("BGM_1", BgmName);
+        if (BgmName == -40)
+        {
+            mute = true;
+            this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(true);
+        }
+        else
+        {
+            mute = false;
+            this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(false);
+        }
+
     }
     public void SetMute()
     {
