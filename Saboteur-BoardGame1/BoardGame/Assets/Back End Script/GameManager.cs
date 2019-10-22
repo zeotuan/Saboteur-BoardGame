@@ -111,9 +111,13 @@ public class GameManager : Singleton<GameManager>
         player.transform.SetParent(transform);
         Players.Add(player);
         player.GetComponent<PlayerController>().playerName = name ;
+        player.GetComponent<PlayerController>().InitPlayer(playerCount);
         //Ryan's
          
     }
+
+    
+
     //generic function to create GameObject and add Parent to it 
     public GameObject createGameObject(GameObject Prefab, Transform Parent)
     {
