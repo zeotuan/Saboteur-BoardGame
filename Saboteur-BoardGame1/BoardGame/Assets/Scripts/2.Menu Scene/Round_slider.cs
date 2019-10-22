@@ -23,4 +23,9 @@ public class Round_slider : MonoBehaviour
         this.transform.parent.GetComponent<Text>().text = "Round:" + number;
         max_round = number;
     }
+
+    public void Confirm()
+    {
+        GameManager.Instance.setMaxRound(max_round);
+    }
 }
