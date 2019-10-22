@@ -31,20 +31,14 @@ public class GameManager : Singleton<GameManager>
 
     void Awake()
     {
-        base.Awake(); 
-    }
+        //base.Awake(); 
+    }   
     void Start()
     {
         
     }
     void Update()
     {
-        //stateMachine.Update();
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //QuitGamePanel.gameObject.SetActive(true);
-        }
-
             
     }
 
@@ -81,10 +75,8 @@ public class GameManager : Singleton<GameManager>
     }
 
     public void SwitchRound()
-    {
-       
-        curRound++;
-        if(curRound < maxRound){
+    { 
+        if(curRound++ < maxRound){
             gameStarted = true;
             currRound.EndRound();
             currRound.enabled = false;

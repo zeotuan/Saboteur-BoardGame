@@ -20,7 +20,7 @@ public class get_effectcard : MonoBehaviour
         //GameManager.Instance.currentRound.GetComponent<Round>().currentPlayer.GetComponent<PlayerController>().Discard(this.gameObject);
 
         //this.transform.root.Find("Panel/Cards")
-        GameManager.Instance.currRound.currPlayer.Discard(activate.currentlySelected.gameObject);
+        GameManager.Instance.currRound.GetCurPlayer().Discard(activate.currentlySelected.gameObject);
     }
 
 }

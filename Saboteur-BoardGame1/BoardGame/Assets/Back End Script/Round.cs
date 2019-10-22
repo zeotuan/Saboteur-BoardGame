@@ -48,7 +48,7 @@ public class Round : MonoBehaviour
                 count++;
             }
 
-            currentPlayer.GetComponent<PlayerController>().StartTurn();
+            GetCurPlayer().GetComponent<PlayerController>().StartTurn();
             raiseCover();
         }
         GameObject Canvas = GameObject.Find("Canvas");
@@ -66,12 +66,12 @@ public class Round : MonoBehaviour
         }
         if(TimeLeft <= 0)//out of time without playing anycard
         {
-                int index = Random.Range(0, currPlayer.hand.Count);
-                currPlayer.Discard(currPlayer.hand[index]);
+                int index = Random.Range(0, GetCurPlayer().hand.Count);
+            GetCurPlayer().Discard(GetCurPlayer().hand[index]);
                
                
         }
-        if (currPlayer.Played())
+        if (GetCurPlayer().Played())
         {
             SwitchTurn();
         }   
@@ -103,8 +103,8 @@ public class Round : MonoBehaviour
 
         TimeLeft = 60;
         RoundStarted = true;
-        GameManager.Instance.Deck.Deal(currentPlayer.GetComponent<PlayerController>());
-        currPlayer.EndTurn();
+        GameManager.Instance.Deck.Deal(GetCurPlayer().GetComponent<PlayerController>());
+        GetCurPlayer().EndTurn();
         int Condition = checkWinCondition();
         Debug.Log(Condition);
         if (Condition == 1 || Condition == -1)//someone win
@@ -122,12 +122,12 @@ public class Round : MonoBehaviour
         {
             Turn = 0;    
         }
-        currPlayer.StartTurn();
+        GetCurPlayer().StartTurn();
 
         raiseCover();
         
     }
-    public void GetCurPlayer(){
+    public PlayerController GetCurPlayer(){
         return GameManager.Instance.Players[Turn].GetComponent<PlayerController>();
     }
 
