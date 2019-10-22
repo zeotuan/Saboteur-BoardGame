@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
     //2 dimensional array for cards on board 
     public GameObject GridPrefab;
     [SerializeField]
-    public GameObject[,] board;
+    public GameObject[,] board = null;
     private Vector2 mouseOver;
     private Card SelectedCard;
     private Vector2 StartDrag;
@@ -37,7 +37,7 @@ public class Board : MonoBehaviour
         //Destroy existed GridObject
         
 
-        if (board.Length > 0)
+        if (board!= null)
         {
             for (int r = 0; r < maxRow; r++)
             {
@@ -48,7 +48,7 @@ public class Board : MonoBehaviour
                 }
             }
         }
-        board = new GameObject[maxRow, maxCol];
+
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
         for (int r = 0; r < maxRow; r++)
