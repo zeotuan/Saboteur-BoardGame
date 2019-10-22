@@ -118,7 +118,7 @@ public class GameManager : Singleton<GameManager>
         GameObject player = Instantiate(PlayerPrefab) as GameObject;
         player.transform.SetParent(transform);
         Players.Add(player);
-        player.GetComponent<PlayerController>().name = name ;
+        player.GetComponent<PlayerController>().playerName = name ;
         //Ryan's
          
     }
