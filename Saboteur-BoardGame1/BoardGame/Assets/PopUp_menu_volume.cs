@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
-public class Volume : MonoBehaviour
+public class PopUp_menu_volume : MonoBehaviour
 {
     public AudioMixer BGM;
     public bool mute = false;
@@ -18,13 +18,13 @@ public class Volume : MonoBehaviour
     public void SetBGM(float BgmName)
     {
         origin_volume = BgmName;
-        this.transform.Find("Panel/Pop_up/Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(false);
+        this.transform.Find("Mute").GetComponent<Toggle>().SetIsOnWithoutNotify(false);
         mute = false;
         BGM.SetFloat("BGM_1", BgmName);
     }
     public void SetMute()
     {
-        if(mute == false)
+        if (mute == false)
         {
             mute = true;
             BGM.SetFloat("BGM_1", -40);
