@@ -6,8 +6,7 @@ public class Round : MonoBehaviour
 {
     bool RoundStarted;
     public int Turn;
-    public GameObject currentPlayer { get { return GameManager.Instance.Players[Turn]; } }
-    public PlayerController currPlayer {get { return GameManager.Instance.Players[Turn].GetComponent<PlayerController>(); }}
+    
     bool roundEnd = false;
     [SerializeField]
     float TimeLeft = 10;
@@ -21,6 +20,7 @@ public class Round : MonoBehaviour
         shuffleRole();
         /*GameManager.Instance.shuffle(roles);
         GameManager.Instance.shuffle(GameManager.Instance.Players);*/
+        
         if (!RoundStarted)
         {
             Turn = 0;
@@ -49,6 +49,7 @@ public class Round : MonoBehaviour
             }
 
             currentPlayer.GetComponent<PlayerController>().StartTurn();
+            raiseCover();
         }
         GameObject Canvas = GameObject.Find("Canvas");
         //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
@@ -125,6 +126,9 @@ public class Round : MonoBehaviour
 
         raiseCover();
         
+    }
+    public void GetCurPlayer(){
+        return GameManager.Instance.Players[Turn].GetComponent<PlayerController>();
     }
 
     int checkWinCondition()
