@@ -170,6 +170,11 @@ public class PlayerController : MonoBehaviour
     {
         return this.role;
     }
+
+    public string getRoleIndex(int index){
+        return Role[index];
+    }
+
     public void addRole(string role){
         Role.Add(role);
     }
@@ -178,7 +183,11 @@ public class PlayerController : MonoBehaviour
         Points.Add(point);
     }
 
-    public int getPoint()
+    public int getPoint(int index){
+        return Points[index];
+    }
+
+    public int getTotalPoint()
     {
         int totalPoint = 0;
         foreach(int point in Points)
@@ -186,6 +195,10 @@ public class PlayerController : MonoBehaviour
             totalPoint += point;
         }
         return totalPoint;
+    }
+
+    public List<int> GetPoints(){
+        return Points;
     }
 
     public void UpdateEffectPanel()
