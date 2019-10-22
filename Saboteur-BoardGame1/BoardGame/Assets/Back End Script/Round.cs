@@ -6,7 +6,6 @@ public class Round : MonoBehaviour
 {
     bool RoundStarted;
     public int Turn;
-    
     bool roundEnd = false;
     [SerializeField]
     float TimeLeft = 10;
@@ -25,6 +24,10 @@ public class Round : MonoBehaviour
         {
             Turn = 0;
             int count = 0;
+            foreach(GameObject player in GameManager.Instance.Players)
+                {
+                    player.GetComponent<PlayerController>().hand.Clear();   
+                }
             for(int i = 0; i < 5; i++){//deal 5 card to each player when starting the round
                 foreach(GameObject player in GameManager.Instance.Players)
                 {
