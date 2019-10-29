@@ -52,7 +52,7 @@ public class GameManager : Singleton<GameManager>
             currentRound.GetComponent<Round>().StartRound();
             Deck.GenerateDeck(10);
             Deck.shuffle();
-            
+            Board.GenerateBoard(5, 9, 5);
         }
     }
 
@@ -78,7 +78,7 @@ public class GameManager : Singleton<GameManager>
             currentRound = createRound();
             Deck.GenerateDeck(10);
             Deck.shuffle();
-            
+            Board.GenerateBoard(5, 9, 5);
         }else{
             //Raise Score Board
         }               
