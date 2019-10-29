@@ -16,6 +16,7 @@ public class GameManager : Singleton<GameManager>
     public Round currRound;
     public GameObject deck;
     public Deck Deck;
+    public Board Board;
     public GameObject deckPrefab;
     //StateMachine stateMachine = new StateMachine();
     private bool gameStarted;
@@ -108,7 +109,9 @@ public class GameManager : Singleton<GameManager>
         player.GetComponent<PlayerController>().InitPlayer(playerCount);
         //Ryan's
          
-    }    
+    }
+
+    
 
     //generic function to create GameObject and add Parent to it 
     public GameObject createGameObject(GameObject Prefab, Transform Parent)
