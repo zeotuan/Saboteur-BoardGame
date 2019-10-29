@@ -8,7 +8,7 @@ public class Cover_Script : MonoBehaviour
     public void Buttons()
     {
         this.gameObject.SetActive(false);
-        GameManager.Instance.currRound.setTimeLeft(10);
+        GameManager.Instance.currRound.setTimeLeft(GameManager.Instance.getTimeLeft());
     }
 
     public void setText(string playerName)

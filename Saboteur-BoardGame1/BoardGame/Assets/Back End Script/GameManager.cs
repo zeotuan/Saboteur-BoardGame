@@ -26,7 +26,27 @@ public class GameManager : Singleton<GameManager>
     int curRound;
     private int playerCount;
     private String[] playerNames;
-    
+    float turnTime;
+
+    public bool roundLeft()
+    {
+        if(curRound+1 < maxRound)
+        {
+            return true;
+        }
+        return false;
+    }
+
+
+    public void setTurnTime(float time)
+    {
+        turnTime = time;
+    }
+
+    public float getTimeLeft()
+    {
+        return turnTime;
+    }
 
     public int GetCurRoundCount()
     {
@@ -50,6 +70,8 @@ public class GameManager : Singleton<GameManager>
         {
             currentRound = createRound();   
             currentRound.GetComponent<Round>().StartRound();
+            Deck.GenerateDeck(10);
+            Deck.shuffle();
         }
     }
 
@@ -67,21 +89,24 @@ public class GameManager : Singleton<GameManager>
 
     public void SwitchRound()
     { 
-        if(curRound++ < maxRound){
+        if(++curRound < maxRound){
             gameStarted = true;
             currRound.EndRound();
             currRound.enabled = false;
             PassedRounds.Add(currentRound);
             currentRound = createRound();
+            Board.GenerateBoard(5, 9, 5);
             Deck.GenerateDeck(10);
             Deck.shuffle();
-            Board.GenerateBoard(5, 9, 5);
+            
         }else{
-            //Raise Score Board
+            
         }               
 
         
     }
+
+    
 
     bool checkWinCondition()
     {

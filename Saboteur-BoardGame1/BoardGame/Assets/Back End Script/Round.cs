@@ -6,15 +6,16 @@ public class Round : MonoBehaviour
 {
     bool RoundStarted;
     public int Turn;
-    bool roundEnd = false;
+    public bool roundEnd = false;
     [SerializeField]
-    float TimeLeft = 10;
+    float TimeLeft = 60;
     [SerializeField]
     string[] roles;
     
 
     void Start()
     {
+        
         shufflePlayer();
         shuffleRole();
         /*GameManager.Instance.shuffle(roles);
@@ -63,10 +64,7 @@ public class Round : MonoBehaviour
     {
         TimeLeft -= Time.deltaTime;
         GameObject.Find("Time left").GetComponent<Time_Record>().time = TimeLeft;
-        if(TimeLeft <= 10)
-        {
-            
-        }
+        
         if(TimeLeft <= 0)//out of time without playing anycard
         {
                 int index = Random.Range(0, GetCurPlayer().hand.Count);
@@ -92,19 +90,22 @@ public class Round : MonoBehaviour
         TimeLeft = x;
     }
 
+    public void raiseCover()
+    {
+        GameObject Canvas = GameObject.Find("Canvas");
+        Canvas.transform.Find("Panel/Cover").gameObject.GetComponent<Cover_Script>().setText(GetCurPlayer().playerName);
+        //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
+        Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
+    }
+
     public void SwitchTurn()
     {
-   
         GameObject PlayersPanel = GameObject.Find("Canvas/Panel/Left");
-       
-       
         for (int i = 0; i < PlayersPanel.transform.childCount; i++)
         {
             PlayersPanel.transform.GetChild(i).Find("Select").gameObject.SetActive(false);
             PlayersPanel.transform.GetChild(i).Find("Role_assump").gameObject.SetActive(false);
-      
             //PlayersPanel.transform.GetChild(i).Find("Panel").GetComponent<Image>().sprite
-
         }
 
         TimeLeft = 60;
@@ -116,13 +117,12 @@ public class Round : MonoBehaviour
         if (Condition == 1 || Condition == -1)//someone win
         {
             //activate the end game panel
-            GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
+            
             
             
             CalculateReward(Condition);
             EndRound();
-            End_Game.transform.Find("End game menu").GetComponent<score_board>().LoadScoreBoard();
-            End_Game.SetActive(true);
+            raiseScoreBoard();
             return;
         }
         Turn++;
@@ -151,12 +151,30 @@ public class Round : MonoBehaviour
             
 
         }
-
         raiseCover();
         
     }
     public PlayerController GetCurPlayer(){
         return GameManager.Instance.Players[Turn].GetComponent<PlayerController>();
+    }
+
+    void raiseScoreBoard()
+    {
+        GameObject End_Game = GameObject.Find("Canvas/Panel/End Game");
+        End_Game.transform.Find("End game menu").GetComponent<score_board>().LoadScoreBoard();
+        End_Game.SetActive(true);
+        if (GameManager.Instance.roundLeft()){//if there are round left
+            End_Game.transform.Find("next round").gameObject.SetActive(true);
+            End_Game.transform.Find("Button").gameObject.SetActive(true);
+            End_Game.transform.Find("End Game").gameObject.SetActive(false);
+        }
+        else/// if there are no round left 
+        {
+            End_Game.transform.Find("End Game").gameObject.SetActive(true);
+            End_Game.transform.Find("next round").gameObject.SetActive(false);
+            End_Game.transform.Find("Button").gameObject.SetActive(false);
+        }
+        
     }
 
     int checkWinCondition()
@@ -214,15 +232,7 @@ public class Round : MonoBehaviour
         }
     }
 
-    void raiseCover()
-    {
-        GameObject Canvas = GameObject.Find("Canvas");
-        Canvas.transform.Find("Panel/Cover").gameObject.GetComponent<Cover_Script>().setText(GetCurPlayer().playerName);
-        //Canvas.transform.Find("Panel/Bottom_Left/Player's panel/Player's name").GetComponent<Text>().text = currentPlayer.name;
-        Canvas.transform.Find("Panel/Cover").gameObject.SetActive(true);
-        
-        
-    }
+    
 
     void CalculateReward(int WinnerCode){
         string winner;
