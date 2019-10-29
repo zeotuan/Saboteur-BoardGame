@@ -15,6 +15,7 @@ public class Round : MonoBehaviour
 
     void Start()
     {
+
         shufflePlayer();
         shuffleRole();
         /*GameManager.Instance.shuffle(roles);
@@ -84,7 +85,7 @@ public class Round : MonoBehaviour
 
     public void StartRound()
     {
-        Turn = 0;
+        
     }
 
     public void  setTimeLeft(float x)

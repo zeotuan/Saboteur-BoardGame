@@ -35,7 +35,7 @@ public class GameManager : Singleton<GameManager>
 
     public void StartGame(){
 
-        for(int i = 0; i < playerCount; i++)// innitate 7 player
+        for(int i = 0; i < playerCount; i++)// innitate player
         {
             createPlayer(playerNames[i]);
         }       
@@ -50,6 +50,9 @@ public class GameManager : Singleton<GameManager>
         {
             currentRound = createRound();   
             currentRound.GetComponent<Round>().StartRound();
+            Deck.GenerateDeck(10);
+            Deck.shuffle();
+            Board.GenerateBoard(5, 9, 5);
         }
     }
 
