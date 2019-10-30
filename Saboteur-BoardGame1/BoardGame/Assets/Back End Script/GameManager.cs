@@ -74,6 +74,7 @@ public class GameManager : Singleton<GameManager>
             PassedRounds.Add(currentRound);
             currentRound = createRound();
             Deck.GenerateDeck(10);
+            Deck.shuffle();
             Board.GenerateBoard(5, 9, 5);
         }else{
             //Raise Score Board

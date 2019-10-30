@@ -26,7 +26,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GenerateBoard(5, 9, 5);
+        
     }
 
     // Update is called once per frame

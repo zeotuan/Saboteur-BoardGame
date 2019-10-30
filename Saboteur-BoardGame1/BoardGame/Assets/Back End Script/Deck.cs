@@ -8,16 +8,6 @@ public class Deck : MonoBehaviour
     public GameObject CardPrefab;
     public List<GameObject> deck;
 
-    private void Awake()
-    {
-        GenerateDeck(10);
-        
-    }
-    void Start()
-    {
-        shuffle();
-        //xGameManager.Instance.shuffle(deck);
-    }
 
     public void GenerateDeck(int numberPlayer)
     {
@@ -76,7 +66,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    void shuffle()
+    public void shuffle()
     {
         for(int i =0; i < deck.Count; i++)
         {
