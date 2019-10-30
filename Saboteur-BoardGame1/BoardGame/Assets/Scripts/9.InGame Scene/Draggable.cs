@@ -38,7 +38,7 @@ public class Draggable : MonoBehaviour, IBeginDragHandler,IDragHandler,IEndDragH
         }
  
         //find closest path
-        float distance = Vector3.Distance(this.transform.position, board[0, 0].transform.position);
+        float distance = Vector3.Distance(this.transform.position, board[0,0].transform.position);
         int cloest_j = 0;
         int cloest_i = 0;
         
