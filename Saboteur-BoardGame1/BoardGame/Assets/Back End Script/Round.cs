@@ -11,8 +11,16 @@ public class Round : MonoBehaviour
     float TimeLeft = 10;
     [SerializeField]
     string[] roles;
-    
+    public GameObject MapPrefab;
+    public Board board;
 
+
+    public void createMap(){
+        GameObject b = Instance(MapPrefab) as GameObject;
+        board = b.GetComponent<Board>();
+        b.transform.SetParent(GameObject.Find("Panel"));
+    }
+    
     void Start()
     {
 
