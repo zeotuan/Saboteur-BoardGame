@@ -10,7 +10,7 @@ public class Board : MonoBehaviour
     //2 dimensional array for cards on board 
     public GameObject GridPrefab;
     [SerializeField]
-    public GameObject[,] board = null;
+    public GameObject[,] board;
     private Vector2 mouseOver;
     private Card SelectedCard;
     private Vector2 StartDrag;
@@ -26,7 +26,7 @@ public class Board : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GenerateBoard(5,9,5);
     }
 
     // Update is called once per frame
@@ -35,19 +35,6 @@ public class Board : MonoBehaviour
     public void GenerateBoard(int numPlayer, int maxCol, int maxRow)
     {
         //Destroy existed GridObject
-        
-
-        if (board!= null)
-        {
-            for (int r = 0; r < maxRow; r++)
-            {
-                for (int c = 0; c < maxCol; c++)
-                {
-                    
-                        Destroy(board[r, c]);
-                }
-            }
-        }
         board = new GameObject[maxRow, maxCol];
         shuffleDestination();
         //GameManager.Instance.shuffle(DesGrid);
